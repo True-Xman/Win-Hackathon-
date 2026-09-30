@@ -381,8 +381,8 @@
   "superteam:colosseum-crypto-worlds-fair": {
     "name": "Colosseum Crypto World's Fair + Superteam 'Global' side tracks (Meteora DBC $20k, Panta $5k, RPC Fast $10k, SolanaCZE/Vietnam $10k...)",
     "url": "https://colosseum.com/hackathon",
-    "tier": "X",
-    "status": "REJECT (KYC risk under current rules)",
+    "tier": "C",
+    "status": "DEPRIORITIZED (KYC discretionary=UNKNOWN, country=UNKNOWN; format mismatch)",
     "checked": "2026-09-30",
     "deadlines": {
       "build": "2026-09-14 -> 2026-10-12/13"
@@ -415,7 +415,8 @@
     ],
     "next": [
       "Do not pursue unless Saleh explicitly accepts possible KYC"
-    ]
+    ],
+    "note": "2026-09-30 policy update: CLAUDE.md treats 'crypto payout + KYC unclear' as UNKNOWN. Colosseum ToS says KYC 'may' be performed (discretionary) -> UNKNOWN, not FAIL. Foundation-paid regional tracks (isFndnPaying) remain FAIL (KYC mandatory per Superteam FAQ)."
   },
   "superteam:steve-agent-arena": {
     "name": "Steve Agent Arena (Superteam Earn, 500 USDC)",
@@ -482,6 +483,237 @@
     },
     "next": [
       "monitor ETHGlobal for next online event; KYC/payout still to be researched"
+    ]
+  },
+  "superteam:meteora-dbc": {
+    "name": "Meteora DBC side track (Colosseum Crypto World's Fair, Superteam Earn)",
+    "url": "https://earn.superteam.fun/listing/meteora-dbc",
+    "tier": "C",
+    "status": "DEPRIORITIZED-UNKNOWN",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "submission": "2026-10-13T06:59:00Z (Superteam deadline); Colosseum main Sep 14 - Oct 12"
+    },
+    "prize": {
+      "text": "$20,000 USDC: 10k/5k/3k/1.5k/0.5k (5 winners)",
+      "payout": "USDC to Superteam Earn wallet (external sponsor; FAQ), commitment date 2026-10-31"
+    },
+    "gates": {
+      "remote": {
+        "v": "PASS",
+        "ev": "online, region=Global (Superteam API)",
+        "src": "Superteam API details"
+      },
+      "payout": {
+        "v": "PASS",
+        "ev": "token USDC; FAQ: external-sponsor rewards 'paid out to the wallet associated with the winner's Superteam Earn account'",
+        "src": "https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "FAQ: external sponsors 'occasionally... invoices, KYC'; Colosseum ToS: KYC 'may' be performed + consent. Discretionary, not stated mandatory.",
+        "src": "FAQ + Colosseum ToS"
+      },
+      "country": {
+        "v": "UNKNOWN",
+        "ev": "Superteam region Global, but Colosseum ToS excludes sanctioned-country residents/nationals -> user jurisdiction restriction makes this UNKNOWN",
+        "src": "Colosseum ToS"
+      },
+      "paid_actions": {
+        "v": "UNKNOWN",
+        "ev": "Must build on Meteora DBC/DAMM (Solana). 'We prefer projects gone live on mainnet' = preference; mainnet deploy costs SOL fees -> small out-of-pocket risk. Devnet viability UNVERIFIED.",
+        "src": "listing"
+      }
+    },
+    "competition": {
+      "note": "14 submissions on Superteam Earn with 13 days left (API _count). Plus must register + submit on Colosseum (video, GTM pitch)."
+    },
+    "risks": [
+      "Solana-specific, not AI-first (Meteora publishes agent skill + docs MCP)",
+      "Colosseum submission overhead",
+      "KYC discretionary"
+    ],
+    "next": [
+      "Decide KYC tolerance (see chat)"
+    ]
+  },
+  "superteam:panta-api-side-track": {
+    "name": "Panta API side track (Colosseum Crypto World's Fair, Superteam Earn)",
+    "url": "https://earn.superteam.fun/listing/panta-api-side-track",
+    "tier": "C",
+    "status": "DEPRIORITIZED-UNKNOWN",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "submission": "2026-10-13T06:59:00Z; commitment 2026-10-27"
+    },
+    "prize": {
+      "text": "$5,000 USDG: 2k/1k/1k/1k (4 winners)",
+      "payout": "USDG to Superteam Earn wallet (external sponsor)"
+    },
+    "gates": {
+      "remote": {
+        "v": "PASS",
+        "ev": "online, Global",
+        "src": "API"
+      },
+      "payout": {
+        "v": "PASS",
+        "ev": "token USDG; wallet payout per Superteam FAQ",
+        "src": "FAQ"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "same as Meteora entry",
+        "src": "FAQ + Colosseum ToS"
+      },
+      "country": {
+        "v": "UNKNOWN",
+        "ev": "same as Meteora entry",
+        "src": "Colosseum ToS"
+      },
+      "paid_actions": {
+        "v": "UNKNOWN",
+        "ev": "Panta API usage; API key/cost not verified",
+        "src": "listing"
+      }
+    },
+    "competition": {
+      "note": "7 submissions with 13 days left; 4 winners. 'AI + prediction markets' explicitly allowed."
+    },
+    "risks": [
+      "Needs Colosseum registration + submission",
+      "Panta API access/cost unverified"
+    ],
+    "next": [
+      "Verify Panta API key is free before any build time"
+    ]
+  },
+  "superteam:rpc-fast-side-track": {
+    "name": "RPC Fast side track (Superteam Earn)",
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack",
+    "tier": "X",
+    "status": "REJECT",
+    "checked": "2026-09-30",
+    "gates": {
+      "payout": {
+        "v": "FAIL",
+        "ev": "'All prizes are provided exclusively in the form of RPC Fast subscription plans... not paid or transferred as cash, cryptocurrency'",
+        "src": "listing"
+      },
+      "country": {
+        "v": "FAIL",
+        "ev": "'At least one core team member must be based in Czechia or Slovakia...'",
+        "src": "listing"
+      }
+    },
+    "risks": [
+      "not cash"
+    ],
+    "next": [
+      "none"
+    ]
+  },
+  "monad:metropolis": {
+    "name": "Monad Metropolis hackathon",
+    "organizer": "Monad Foundation",
+    "url": "https://monad.xyz/developers/hackathons/metropolis",
+    "tier": "B",
+    "status": "CANDIDATE-UNKNOWN-KYC",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-09-01 -> 2026-10-13T23:59 ET",
+      "judging": "Oct 14-27",
+      "winners": "2026-11-03"
+    },
+    "prize": {
+      "text": "$145,000 per rules v3.0 (25k overall + 4 tracks x 30k, top 3 x 10k); '$250,000+' headline includes sponsor bounties",
+      "payout": "USDC or equivalent to primary contact's wallet within 30 days of announcement or KYC completion, whichever later (quoted in a participant's public README; official rules modal is login-gated)"
+    },
+    "prize_evidence": "Rules text read via https://github.com/precious-akpan/monad-metropolis-merchant-rails (secondary source, medium confidence). Official rules only inside login-gated app hackathon.monad.xyz.",
+    "gates": {
+      "remote": {
+        "v": "PASS",
+        "ev": "'online and open globally'; city activations optional",
+        "src": "https://monad.xyz/developers/hackathons/metropolis"
+      },
+      "payout": {
+        "v": "PASS(secondary source)",
+        "ev": "'USDC or equivalent... to the primary contact's wallet'",
+        "src": "participant README quoting rules"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "'KYC may be required' (discretionary); payout timing 'or KYC completion, whichever is later' implies KYC can occur at payout",
+        "src": "participant README"
+      },
+      "country": {
+        "v": "UNKNOWN",
+        "ev": "'18+; standard OFAC/EU/UN sanctioned-jurisdiction exclusions' -> depends on user jurisdiction",
+        "src": "participant README; FAQ says eligibility restrictions are in official rules"
+      },
+      "paid_actions": {
+        "v": "PASS(secondary source)",
+        "ev": "'mainnet or testnet (either is fine)'; no paid action text found",
+        "src": "participant README"
+      }
+    },
+    "build_fit": {
+      "track": "Track 04 'Trust, identity & AI infrastructure' fits agents/MCP",
+      "ai_assisted": "High",
+      "note": "Submissions must be open source (rules Sec 7.2; FAQ says 'encouraged')"
+    },
+    "competition": {
+      "note": "Monad flagship, six weeks, 4 tracks; likely large. Count UNKNOWN. Top-3 per track paid (10k each)."
+    },
+    "risks": [
+      "Rules only visible after login",
+      "KYC discretionary",
+      "Sanctions clause depends on user jurisdiction",
+      "13 days left; 6-week event so others started Sep 1",
+      "Monad/EVM stack learning curve"
+    ],
+    "unresolved": [
+      "Official rules text (login)",
+      "Exact KYC trigger",
+      "Track 04 definition"
+    ],
+    "next": [
+      "User decision on discretionary-KYC tolerance",
+      "If yes: register (needs account) and read official rules modal"
+    ]
+  },
+  "hedera:ai-bounty": {
+    "name": "Hedera AI Agent Bounty (weekly, HBAR)",
+    "url": "https://ai-bounties.hedera.com/",
+    "tier": "W",
+    "status": "WATCH (all 5 weekly rounds passed; recurring pattern)",
+    "checked": "2026-09-30",
+    "prize": {
+      "text": "$500-$1,500 per week, paid in HBAR (30-day average price), up to 90 days after final deadline",
+      "payout": "HBAR (crypto)"
+    },
+    "gates": {
+      "payout": {
+        "v": "PASS",
+        "ev": "'Payouts are in HBAR... paid up to 90 days following the final bounty deadline'",
+        "src": "https://ai-bounties.hedera.com/"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "page has no KYC language (absence != PASS)",
+        "src": "same"
+      },
+      "country": {
+        "v": "UNKNOWN",
+        "ev": "form has 'Country of residence' field; no exclusions stated",
+        "src": "same"
+      }
+    },
+    "risks": [
+      "closed now"
+    ],
+    "next": [
+      "re-check page monthly for a new round (CAP-07)"
     ]
   }
 }

@@ -57,6 +57,9 @@ class PayoutGate(unittest.TestCase):
     def test_silent_is_not_pass(self):
         self.assertNotIn(v("Prize distribution may take up to 90 days.", "payout"), ("PASS", "FAIL"))
 
+    def test_settlement_onchain_is_not_payout_pass(self):
+        self.assertNotEqual(v("Fast settlement makes new onchain markets practical. Curation is paid for by users.", "payout"), "PASS")
+
     def test_each_is_not_ach(self):
         self.assertNotEqual(v("dedicated prizes and recognition for each partner's top implementations", "payout"), "FAIL")
 

@@ -9,7 +9,8 @@ Preferred: crypto/stablecoin/wallet payout (if bank/PSP needed -> verify receiva
 Priority: ability to actually receive the prize > how attractive the event looks.
 Not promised: winning. Optimize realistic competitive position.
 
-OPEN INPUT NEEDED: Saleh's country of residence/citizenship (only to test eligibility + sanctions/payout rails; never used to disguise anything).
+COUNTRY: never asked, never inferred (CLAUDE.md). Fact used: user has jurisdiction + payment restrictions. Country-dependent eligibility (e.g. sanctions clauses) = UNKNOWN -> deprioritize unless rules are clearly worldwide.
+PAYOUT: crypto-only is a HARD gate (CLAUDE.md).
 
 ## Added 2026-09-30 (from verification work)
 - Payout-rail gate is separate from KYC: "paid by bank transfer" (e.g. Open Agent Hackathon) is RISK until Saleh's bank/PSP is confirmed able to receive it.

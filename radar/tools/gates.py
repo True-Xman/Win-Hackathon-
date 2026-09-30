@@ -46,7 +46,7 @@ GATES = {
     "payout": dict(
         risk=r"cash prize|prize (pool|money)|credits?\b",
         fail=r"(prize|payout|paid|reward|distribut|payable)[^.]{0,80}(bank (transfer|account)|\bwire\b|PayPal|Stripe|\bWise\b|Payoneer|\bACH\b|direct deposit|cheque|gift card)|(bank transfer|wire transfer|PayPal|Stripe|Payoneer)[^.]{0,60}(prize|payout)",
-        pass_=r"(prize|payout|paid|reward|distribut|payable|sent|settle)[^.]{0,80}(USDC|USDT|USDG|stablecoin|on-?chain|crypto(currency)?|wallet)|(USDC|USDT|USDG|stablecoin|crypto(currency)?)[^.]{0,60}(prize|payout|paid|reward|distribut)"),
+        pass_=r"(prizes?|payouts?|winners? (are |will be )?(paid|receive)|distributed|payable)[^.]{0,80}(USDC|USDT|USDG|stablecoin|crypto(currency)?|wallet)|(USDC|USDT|USDG|stablecoin)[^.]{0,60}(prizes?|payouts?)"),
     "age": dict(risk=r"\b18\b|age of majority|at least \d+ years|minors?", fail=r"", pass_=r""),
     "onsite": dict(
         risk=r"on-?site|in[- ]person|finals? (will be )?(held|at)|attend in",
