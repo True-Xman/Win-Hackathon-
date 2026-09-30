@@ -62,5 +62,12 @@ Do not re-research an entry unless: stale (`capradar.py due`), requirement chang
 - Gaps: DoraHacks, Devpost root (WAF), GitHub search (policy), X/Reddit intel (fetch not yet tried in depth)
 - Re-eval: new source needed for crypto-payout events (e.g. Superteam-style USDC bounties are the current best fit) (2026-10-15)
 
+### CAP-09 Crypto-payout source discovery (trigger: crypto-only hard gate)
+- Candidates: Superteam Earn API (wallet payouts, FAQ-verified), HackList aggregator (hacklist.io; no feed/API seen, WebFetch-readable), Monad/Hedera/Colosseum org pages, X-Agent (USDT, closed)
+- Selected: Superteam collector (existing) + HackList as manual lead source + per-org pages; `gates.py` payout gate = crypto-only
+- Status: INTEGRATED (Superteam) / MANUAL (HackList) | Evidence: research/crypto-first-discovery.md
+- Rejected: Devpost sponsor-run contests (W-8BEN/identity), bank-only events (GenAI Works, lablab default)
+- Risk: login-gated official rules (Monad) force secondary sources | Re-eval: new crypto hackathon wave or HackList exposes a feed (2026-10-20)
+
 ### CAP-08 Payment-reliability intel (did winners actually get paid?)
 - Status: OPEN GAP, no evidence found for lablab/GenAI Works | Re-eval: before committing build time to any event with UNKNOWN payout

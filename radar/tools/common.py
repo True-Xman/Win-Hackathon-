@@ -64,9 +64,10 @@ def parse_dt(s):
     if not s:
         return None
     try:
-        return dt.datetime.fromisoformat(s.replace("Z", "+00:00"))
+        d = dt.datetime.fromisoformat(s.replace("Z", "+00:00"))
     except ValueError:
         return None
+    return d if d.tzinfo else d.replace(tzinfo=dt.timezone.utc)  # naive stamps are treated as UTC
 
 
 def days_left(s):
