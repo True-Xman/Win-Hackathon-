@@ -14,3 +14,6 @@
 | Payment-reliability intel (did winners get paid?) | GAP | No web evidence found for lablab/GenAI Works. Needs X/Reddit/Discord search — x.com fetch not yet tried in depth |
 | Previous-winner / competitor analyzer | TODO (Phase 3) | Public GitHub repos of competitors visible via search; GitHub API blocked -> use WebSearch/WebFetch on github.com pages |
 | Build-phase tooling (spec parser, QA harness, demo/submission audit) | TODO after event chosen | Will build per chosen event |
+
+| Dark Factory prep kit | BUILT + tested | `build/dark-factory/` mandates + mandate-lint + zero-network clean-boot check |
+| Open Agent + Dark Factory research | WRITTEN | `research/*.md` |

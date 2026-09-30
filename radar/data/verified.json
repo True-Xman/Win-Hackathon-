@@ -9,11 +9,12 @@
     "deadlines": {
       "registration_closes": "2026-10-13T00:00:00Z",
       "build_window": "2026-10-15T00:00:00Z -> 2026-10-20T23:45:00Z",
-      "results": "2026-10-30T16:00:00Z"
+      "results": "2026-10-30T16:00:00Z",
+      "workshops": "Oct 7 Zetaris, Oct 8 NVIDIA, Oct 12 Meterless, Oct 14 onboarding (9-10:30 PT)"
     },
     "prize": {
       "text": "Up to $20,000",
-      "distribution": "UNKNOWN (only 'up to'; per-track split not published)",
+      "distribution": "Organizer academy page: $8,000 grand / $4,000 runner-up / $2,000 third + bonus points (= $14,000 named of 'up to $20,000'); ~$6,000 likely sponsor bounties; overall-vs-per-track UNVERIFIED",
       "payout": "bank transfer within 30 days of results",
       "currency_crypto": false
     },
@@ -58,7 +59,8 @@
       "ai_assisted": "High: 'Generated code is allowed and expected'",
       "mvp_days": "2-3 of the 6-day window",
       "polish_days": "all 6",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "sponsor_stack": "Zetaris data layer via MCP; NVIDIA token layer; Meterless orchestration"
     },
     "submission": [
       "public repo (or private with access grant)",
@@ -141,14 +143,16 @@
         "Alejdro83/pocketful",
         "Ccyclop/pocketful-dark-factory"
       ],
-      "note": "Featherless credit cap of 1,000 participants suggests ~1,000-scale signups (inference). Low placement bar: 1st place needs only 1 eligible entry."
+      "note": "Featherless credit cap of 1,000 participants suggests ~1,000-scale signups (inference). Low placement bar: 1st place needs only 1 eligible entry.",
+      "notes2": "Competitor repo shows Stage 1 ~30% of entry, zero-network clean boot via unshare -rn; spec visible only after lablab enrollment"
     },
     "judging": "60/100 = the factory itself (generic reusable mandates, how far through 4 stages, docs); 40/100 = what it shipped. Harness-scored + judges.",
     "build_fit": {
       "ai_assisted": "Native: the task IS orchestrating coding agents",
       "mvp_days": "stage 1 in ~2 days if spec is clear",
       "polish_days": "~5.5 days remain",
-      "difficulty": "medium-high (new tool BAND Desktop, strict harness)"
+      "difficulty": "medium-high (new tool BAND Desktop, strict harness)",
+      "runtime": "BAND Desktop requires Claude Code installed+signed in (docs.band.ai/jam)"
     },
     "submission": [
       "3 distinct coding-agent seats in BAND Desktop with generic mandate files",
