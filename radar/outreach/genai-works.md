@@ -6,9 +6,9 @@ Hi GenAI Works team,
 
 I'm planning to register for the Open Agent Hackathon 2026. Before I invest the build time, could you clarify three things about prize payments?
 
-1. The rules say prizes are "paid by bank transfer within 30 days". Are other payout methods available (e.g. USDC/stablecoin, PayPal, Payoneer, Wise)?
-2. Do winners need to provide ID documents, tax forms, or any other identity verification to receive a prize? If so, which ones?
-3. Are there any countries where you cannot send prizes? My country of residence is [COUNTRY] — please tell me honestly if that would prevent payment, so I don't waste either of our time.
+1. The rules say prizes are "paid by bank transfer within 30 days". Is payout in USDC/USDT to a wallet possible?
+2. Do winners need ID documents, tax forms or any identity verification to receive a prize (including for crypto payout)?
+3. Is payout in crypto (USDC/USDT, direct wallet) possible, without identity-verified payout providers?
 
 Also: is the per-track prize split published anywhere ("up to $20,000")?
 

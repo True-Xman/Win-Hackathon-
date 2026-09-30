@@ -3,6 +3,9 @@
 Precedence: this file overrides `radar/constraints.md`, `radar/README.md` and any older note where they conflict
 (e.g. country questions, payout gate). Update those files to match when you next touch them.
 
+## Capability Radar
+Use the Capability Radar only when a meaningful capability gap or phase transition appears. It is event-driven, not per-turn. See radar/CAPABILITY_RADAR.md.
+
 ## Project
 Hackathon Opportunity Radar + Execution Partner (`radar/`): discover, verify, shortlist, then build/submit.
 Run: `bash radar/run.sh`. Data: `radar/data/`. Board: `radar/SHORTLIST.md`. Research: `radar/research/`.

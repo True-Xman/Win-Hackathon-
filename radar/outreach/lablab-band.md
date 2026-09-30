@@ -7,8 +7,8 @@ Hi,
 I'm considering entering the Dark Factory hackathon (WeAreDevelopers x BAND, ends Oct 5). Could you confirm:
 
 1. Who pays the cash prizes (BAND or lablab.ai) and in which currency/method (bank, PayPal, USDC, other)?
-2. Do winners need to submit ID, tax forms, or any KYC to be paid?
-3. Any countries where prizes cannot be delivered? My country of residence is [COUNTRY].
+2. Do winners need ID documents, tax forms or any identity verification to receive a prize (including for crypto payout)?
+3. Is payout in crypto (USDC/USDT, direct wallet) possible, with no identity-verified payout provider?
 4. The $1,500/$1,000/$500 per-track split — is it final?
 
 Thanks,

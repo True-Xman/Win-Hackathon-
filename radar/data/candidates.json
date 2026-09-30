@@ -1,6 +1,6 @@
 {
   "genai:open-agent-2026": {
-    "collected_at": "2026-09-30T05:41:59.447280+00:00",
+    "collected_at": "2026-09-30T06:42:17.738979+00:00",
     "collector": "genai_works",
     "deadline": "2026-10-13T00:00:00+00:00",
     "id": "genai:open-agent-2026",
@@ -24,7 +24,7 @@
     "url": "https://hackathon.genai.works/"
   },
   "hn:49514844": {
-    "collected_at": "2026-09-30T05:41:54.665008+00:00",
+    "collected_at": "2026-09-30T06:42:18.417082+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49514844",
@@ -46,7 +46,7 @@
     "url": "https://openagentforum.com/"
   },
   "hn:49521899": {
-    "collected_at": "2026-09-30T05:41:54.357859+00:00",
+    "collected_at": "2026-09-30T06:42:18.092981+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49521899",
@@ -66,8 +66,50 @@
     ],
     "url": "https://xtra.sh/blog/hackathon/"
   },
+  "hn:49534466": {
+    "collected_at": "2026-09-30T06:42:18.417077+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49534466",
+    "mode": null,
+    "name": "This North Carolina County Is Taking Mug Shots Offline. Not Everyone Agrees",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.wsj.com/us-news/this-north-carolina-county-is-taking-mug-shots-offline-not-everyone-agrees-ccedd582"
+  },
+  "hn:49545337": {
+    "collected_at": "2026-09-30T06:42:18.417070+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49545337",
+    "mode": null,
+    "name": "Show HN: 58% US County fail PDF Accessibility",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://accesslumens.com/research/state-of-us-county-pdf-accessibility-2026"
+  },
   "hn:49546452": {
-    "collected_at": "2026-09-30T05:41:54.664996+00:00",
+    "collected_at": "2026-09-30T06:42:18.417064+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49546452",
@@ -87,8 +129,30 @@
     ],
     "url": "https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash"
   },
+  "hn:49552616": {
+    "collected_at": "2026-09-30T06:42:18.417058+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49552616",
+    "mode": null,
+    "name": "Launch HN: Mireye (YC S26) – Infrastructure for Physical World AI Agents",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://news.ycombinator.com/item?id=49552616"
+  },
   "hn:49553682": {
-    "collected_at": "2026-09-30T05:41:54.357852+00:00",
+    "collected_at": "2026-09-30T06:42:18.092975+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49553682",
@@ -109,7 +173,7 @@
     "url": "https://xtra.sh/blog/hackathon/"
   },
   "hn:49564328": {
-    "collected_at": "2026-09-30T05:41:54.357846+00:00",
+    "collected_at": "2026-09-30T06:42:18.092966+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49564328",
@@ -130,7 +194,7 @@
     "url": "https://carvitals.org/"
   },
   "hn:49570650": {
-    "collected_at": "2026-09-30T05:41:54.357837+00:00",
+    "collected_at": "2026-09-30T06:42:18.092959+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49570650",
@@ -151,7 +215,7 @@
     "url": "https://twitter.com/_sathvikr/status/2095989588418249093"
   },
   "hn:49596055": {
-    "collected_at": "2026-09-30T05:41:54.357831+00:00",
+    "collected_at": "2026-09-30T06:42:18.092954+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49596055",
@@ -172,7 +236,7 @@
     "url": "https://mathathonchallenge.com/index.html"
   },
   "hn:49596581": {
-    "collected_at": "2026-09-30T05:41:54.664989+00:00",
+    "collected_at": "2026-09-30T06:42:18.417046+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49596581",
@@ -193,7 +257,7 @@
     "url": "https://www.tmj4.com/news/local-news/in-your-community/waukesha-county/lawsuit-waukesha-county-man-gets-flocked-by-sheriffs-dept-after-filing-complaint-against-deputy"
   },
   "hn:49598822": {
-    "collected_at": "2026-09-30T05:41:54.664979+00:00",
+    "collected_at": "2026-09-30T06:42:18.417038+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49598822",
@@ -215,7 +279,7 @@
     "url": "https://9to5mac.com/2026/09/05/capping-bug-bounty-submissions-is-the-wrong-response-in-the-ai-era-of-security-threats/"
   },
   "hn:49616142": {
-    "collected_at": "2026-09-30T05:41:54.664970+00:00",
+    "collected_at": "2026-09-30T06:42:18.417032+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49616142",
@@ -236,7 +300,7 @@
     "url": "https://news3lv.com/news/local/burning-man-festival-black-rock-city-nevada-pershing-county-deaths-washoe"
   },
   "hn:49628531": {
-    "collected_at": "2026-09-30T05:41:54.664961+00:00",
+    "collected_at": "2026-09-30T06:42:18.417025+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49628531",
@@ -256,8 +320,29 @@
     ],
     "url": "https://www.bountyindex.in"
   },
+  "hn:49643209": {
+    "collected_at": "2026-09-30T06:42:18.417018+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49643209",
+    "mode": null,
+    "name": "Sheriff's investigator charged with misusing Flock camera data",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.timesunion.com/news/article/sheriff-albany-county-investigator-charged-22424123.php"
+  },
   "hn:49657229": {
-    "collected_at": "2026-09-30T05:41:54.664952+00:00",
+    "collected_at": "2026-09-30T06:42:18.417011+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49657229",
@@ -279,7 +364,7 @@
     "url": "https://hackerone.com/mozilla/updates?type=team"
   },
   "hn:49660651": {
-    "collected_at": "2026-09-30T05:41:54.357823+00:00",
+    "collected_at": "2026-09-30T06:42:18.092947+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49660651",
@@ -300,8 +385,29 @@
     ],
     "url": "https://www.businessinsider.com/openai-caltech-ai-math-hackathon-backlash-anthropic-2026-9"
   },
+  "hn:49664614": {
+    "collected_at": "2026-09-30T06:42:18.417004+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49664614",
+    "mode": null,
+    "name": "Kosciusko County Council Defunds Flock Cameras, Other Surveillance Tech",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.inkfreenews.com/2026/09/11/kosciusko-county-council-defunds-flock-cameras-other-surveillance-tech/"
+  },
   "hn:49677392": {
-    "collected_at": "2026-09-30T05:41:54.664943+00:00",
+    "collected_at": "2026-09-30T06:42:18.416996+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49677392",
@@ -322,7 +428,7 @@
     "url": "https://extinction-bounties.com/writing/pacing-is-a-setting-on-a-dial/"
   },
   "hn:49712224": {
-    "collected_at": "2026-09-30T05:41:54.357807+00:00",
+    "collected_at": "2026-09-30T06:42:18.092943+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49712224",
@@ -344,7 +450,7 @@
     "url": "https://quesma.com/blog/our-first-hackathon/"
   },
   "hn:49719096": {
-    "collected_at": "2026-09-30T05:41:54.357801+00:00",
+    "collected_at": "2026-09-30T06:42:18.092938+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49719096",
@@ -365,7 +471,7 @@
     "url": "https://news.ycombinator.com/item?id=49719096"
   },
   "hn:49721998": {
-    "collected_at": "2026-09-30T05:41:54.664936+00:00",
+    "collected_at": "2026-09-30T06:42:18.416987+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49721998",
@@ -386,7 +492,7 @@
     "url": "https://medium.com/@JasonPuglisi/bug-bounty-principles-c379a2062614"
   },
   "hn:49723159": {
-    "collected_at": "2026-09-30T05:41:54.357793+00:00",
+    "collected_at": "2026-09-30T06:42:18.092930+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49723159",
@@ -408,7 +514,7 @@
     "url": "https://www.theregister.com/ai-and-ml/2026/09/15/cobol-dev-won-net-hackathon-with-help-from-ai-and-their-cio-loves-it/5296438"
   },
   "hn:49729492": {
-    "collected_at": "2026-09-30T05:41:54.664930+00:00",
+    "collected_at": "2026-09-30T06:42:18.416982+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49729492",
@@ -429,8 +535,30 @@
     ],
     "url": "https://forever.security/blog/bragjack-hijacking-5-browsers-via-built-in-ai-assistants/"
   },
+  "hn:49749656": {
+    "collected_at": "2026-09-30T06:42:18.092923+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49749656",
+    "mode": null,
+    "name": "A heap overflow and SSO misconfiguration to compromise OpenAI internal repos",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://www.hacktron.ai/blog/hacking-openai"
+  },
   "hn:49760509": {
-    "collected_at": "2026-09-30T05:41:54.664922+00:00",
+    "collected_at": "2026-09-30T06:42:18.416976+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49760509",
@@ -451,7 +579,7 @@
     "url": "https://www.phoronix.com/news/Intel-Bug-Bounty-Program-Ends"
   },
   "hn:49762468": {
-    "collected_at": "2026-09-30T05:41:54.664915+00:00",
+    "collected_at": "2026-09-30T06:42:18.416970+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49762468",
@@ -472,7 +600,7 @@
     "url": "https://words.filippo.io/seeds-bounty/"
   },
   "hn:49762647": {
-    "collected_at": "2026-09-30T05:41:54.664908+00:00",
+    "collected_at": "2026-09-30T06:42:18.416964+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49762647",
@@ -493,7 +621,7 @@
     "url": "https://fixbugbounty.com/"
   },
   "hn:49767561": {
-    "collected_at": "2026-09-30T05:41:54.664902+00:00",
+    "collected_at": "2026-09-30T06:42:18.416960+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49767561",
@@ -514,7 +642,7 @@
     "url": "https://countyourtimes.com/our-son"
   },
   "hn:49771206": {
-    "collected_at": "2026-09-30T05:41:54.357782+00:00",
+    "collected_at": "2026-09-30T06:42:18.092912+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49771206",
@@ -536,7 +664,7 @@
     "url": "https://aiworthusing.com/agent-index/text-me"
   },
   "hn:49776572": {
-    "collected_at": "2026-09-30T05:41:54.664894+00:00",
+    "collected_at": "2026-09-30T06:42:18.416954+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49776572",
@@ -557,7 +685,7 @@
     "url": "https://rushter.com/blog/security-bb-and-scopes/"
   },
   "hn:49784393": {
-    "collected_at": "2026-09-30T05:41:54.357776+00:00",
+    "collected_at": "2026-09-30T06:42:18.092894+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49784393",
@@ -579,7 +707,7 @@
     "url": "https://quesma.com/blog/our-first-hackathon/"
   },
   "hn:49785135": {
-    "collected_at": "2026-09-30T05:41:54.664886+00:00",
+    "collected_at": "2026-09-30T06:42:18.416946+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49785135",
@@ -600,7 +728,7 @@
     "url": "https://www.techpowerup.com/352872/intel-ends-its-usd-100-000-bug-bounty-program"
   },
   "hn:49788625": {
-    "collected_at": "2026-09-30T05:41:54.664879+00:00",
+    "collected_at": "2026-09-30T06:42:18.416937+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49788625",
@@ -622,7 +750,7 @@
     "url": "https://www.lampysecurity.com/post/using-typesafe-ai-in-bug-bounty"
   },
   "hn:49795247": {
-    "collected_at": "2026-09-30T05:41:54.357770+00:00",
+    "collected_at": "2026-09-30T06:42:18.092885+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49795247",
@@ -643,7 +771,7 @@
     "url": "https://blog.cygankiewicz.com/en/cezar-agent-orchestrator/"
   },
   "hn:49831231": {
-    "collected_at": "2026-09-30T05:41:54.357763+00:00",
+    "collected_at": "2026-09-30T06:42:18.092861+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49831231",
@@ -665,7 +793,7 @@
     "url": "https://news.ycombinator.com/item?id=49831231"
   },
   "hn:49834800": {
-    "collected_at": "2026-09-30T05:41:54.664873+00:00",
+    "collected_at": "2026-09-30T06:42:18.416931+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49834800",
@@ -686,7 +814,7 @@
     "url": "https://www.kristv.com/news/local-news/in-your-neighborhood/san-patricio-county/sinton/rising-beef-costs-push-a-top-50-texas-bbq-spot-to-pull-brisket-from-its-everyday-menu"
   },
   "hn:49853122": {
-    "collected_at": "2026-09-30T05:41:54.664863+00:00",
+    "collected_at": "2026-09-30T06:42:18.416915+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49853122",
@@ -707,7 +835,7 @@
     "url": "https://ianbutterworth.github.io/18-bouncy-balls/"
   },
   "hn:49855285": {
-    "collected_at": "2026-09-30T05:41:54.664856+00:00",
+    "collected_at": "2026-09-30T06:42:18.416911+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49855285",
@@ -728,7 +856,7 @@
     "url": "https://www.crimestoppersinternational.org/bounty"
   },
   "hn:49856376": {
-    "collected_at": "2026-09-30T05:41:54.664849+00:00",
+    "collected_at": "2026-09-30T06:42:18.416904+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49856376",
@@ -749,7 +877,7 @@
     "url": "https://dontkyc.me/userlogin"
   },
   "hn:49856624": {
-    "collected_at": "2026-09-30T05:41:54.664840+00:00",
+    "collected_at": "2026-09-30T06:42:18.416897+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49856624",
@@ -770,7 +898,7 @@
     "url": "https://www.pbs.org/show/bucks-county-usa/"
   },
   "hn:49858612": {
-    "collected_at": "2026-09-30T05:41:54.357751+00:00",
+    "collected_at": "2026-09-30T06:42:18.092845+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49858612",
@@ -791,7 +919,7 @@
     "url": "https://colosseum.com/arena/projects/parano1d"
   },
   "hn:49866308": {
-    "collected_at": "2026-09-30T05:41:54.357743+00:00",
+    "collected_at": "2026-09-30T06:42:18.092831+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49866308",
@@ -812,7 +940,7 @@
     "url": "https://sidequest-snowy-seven.vercel.app/"
   },
   "hn:49867179": {
-    "collected_at": "2026-09-30T05:41:54.664832+00:00",
+    "collected_at": "2026-09-30T06:42:18.416891+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49867179",
@@ -833,7 +961,7 @@
     "url": "https://github.com/alonsovidales/protonmail-sender-spoofing"
   },
   "hn:49877422": {
-    "collected_at": "2026-09-30T05:41:54.664823+00:00",
+    "collected_at": "2026-09-30T06:42:18.416881+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49877422",
@@ -854,7 +982,7 @@
     "url": "https://github.com/alonsovidales/protonmail-sender-spoofing/"
   },
   "hn:49879798": {
-    "collected_at": "2026-09-30T05:41:54.664789+00:00",
+    "collected_at": "2026-09-30T06:42:18.416843+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49879798",
@@ -875,7 +1003,7 @@
     "url": "https://boulderreportinglab.org/2026/09/27/boulder-countys-wildfire-risk-eased-after-summer-rain-fall-winds-and-drought-remain-concerns/"
   },
   "hn:49900878": {
-    "collected_at": "2026-09-30T05:41:54.357709+00:00",
+    "collected_at": "2026-09-30T06:42:18.092777+00:00",
     "collector": "hackernews",
     "deadline": null,
     "id": "hn:49900878",
@@ -896,7 +1024,7 @@
     "url": "https://twitter.com/realAdamLevi/status/2104921647081799899"
   },
   "lablab:ai-genesis-2026": {
-    "collected_at": "2026-09-30T05:41:53.648744+00:00",
+    "collected_at": "2026-09-30T06:42:16.990728+00:00",
     "collector": "lablab",
     "deadline": "2026-11-02T15:00:00.000Z",
     "id": "lablab:ai-genesis-2026",
@@ -918,7 +1046,7 @@
     "url": "https://lablab.ai/ai-hackathons/ai-genesis-2026"
   },
   "lablab:amd-developer-hackathon-act-iii": {
-    "collected_at": "2026-09-30T05:41:53.648663+00:00",
+    "collected_at": "2026-09-30T06:42:16.990659+00:00",
     "collector": "lablab",
     "deadline": "2026-10-18T15:00:00.000Z",
     "id": "lablab:amd-developer-hackathon-act-iii",
@@ -939,7 +1067,7 @@
     "url": "https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii"
   },
   "lablab:amd-lablab-ai-academy-challenge": {
-    "collected_at": "2026-09-30T05:41:53.648567+00:00",
+    "collected_at": "2026-09-30T06:42:16.990565+00:00",
     "collector": "lablab",
     "deadline": "2026-12-01T19:00:00.000Z",
     "id": "lablab:amd-lablab-ai-academy-challenge",
@@ -961,7 +1089,7 @@
     "url": "https://lablab.ai/ai-hackathons/amd-lablab-ai-academy-challenge"
   },
   "lablab:assemblyai-voice-agent-hackathon": {
-    "collected_at": "2026-09-30T05:41:53.648638+00:00",
+    "collected_at": "2026-09-30T06:42:16.990634+00:00",
     "collector": "lablab",
     "deadline": "2026-09-30T15:00:00.000Z",
     "id": "lablab:assemblyai-voice-agent-hackathon",
@@ -983,7 +1111,7 @@
     "url": "https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon"
   },
   "lablab:techex-amsterdam-hackathon": {
-    "collected_at": "2026-09-30T05:41:53.648687+00:00",
+    "collected_at": "2026-09-30T06:42:16.990683+00:00",
     "collector": "lablab",
     "deadline": "2026-10-19T19:00:00.000Z",
     "id": "lablab:techex-amsterdam-hackathon",
@@ -1005,7 +1133,7 @@
     "url": "https://lablab.ai/ai-hackathons/techex-amsterdam-hackathon"
   },
   "lablab:vultr-hackathon": {
-    "collected_at": "2026-09-30T05:41:53.648720+00:00",
+    "collected_at": "2026-09-30T06:42:16.990706+00:00",
     "collector": "lablab",
     "deadline": "2026-11-08T22:00:00.000Z",
     "id": "lablab:vultr-hackathon",
@@ -1027,7 +1155,7 @@
     "url": "https://lablab.ai/ai-hackathons/vultr-hackathon"
   },
   "lablab:wearedevelopers-hackathon": {
-    "collected_at": "2026-09-30T05:41:53.648611+00:00",
+    "collected_at": "2026-09-30T06:42:16.990608+00:00",
     "collector": "lablab",
     "deadline": "2026-10-06T06:59:00.000Z",
     "id": "lablab:wearedevelopers-hackathon",
@@ -1048,7 +1176,7 @@
     "url": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
   },
   "superteam:ai-solana-track": {
-    "collected_at": "2026-09-30T05:41:29.036749+00:00",
+    "collected_at": "2026-09-30T06:40:14.749965+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:ai-solana-track",
@@ -1073,7 +1201,7 @@
     "url": "https://earn.superteam.fun/listing/ai-solana-track"
   },
   "superteam:anti-brain-drain-content-bounty-colosseum-push": {
-    "collected_at": "2026-09-30T05:40:12.185430+00:00",
+    "collected_at": "2026-09-30T06:38:55.962923+00:00",
     "collector": "superteam",
     "deadline": "2026-09-30T18:14:59.000Z",
     "id": "superteam:anti-brain-drain-content-bounty-colosseum-push",
@@ -1097,7 +1225,7 @@
     "url": "https://earn.superteam.fun/listing/anti-brain-drain-content-bounty-colosseum-push"
   },
   "superteam:blockchain-hack-krakow-submissions": {
-    "collected_at": "2026-09-30T05:40:32.180617+00:00",
+    "collected_at": "2026-09-30T06:39:18.358834+00:00",
     "collector": "superteam",
     "deadline": "2026-10-11T21:59:59.000Z",
     "id": "superteam:blockchain-hack-krakow-submissions",
@@ -1121,7 +1249,7 @@
     "url": "https://earn.superteam.fun/listing/blockchain-hack-krakow-submissions"
   },
   "superteam:blockchain-hack-warsaw-submissions": {
-    "collected_at": "2026-09-30T05:40:33.201854+00:00",
+    "collected_at": "2026-09-30T06:39:19.323346+00:00",
     "collector": "superteam",
     "deadline": "2026-10-11T21:59:59.000Z",
     "id": "superteam:blockchain-hack-warsaw-submissions",
@@ -1145,7 +1273,7 @@
     "url": "https://earn.superteam.fun/listing/blockchain-hack-warsaw-submissions"
   },
   "superteam:breakpoint-london-starter-pack": {
-    "collected_at": "2026-09-30T05:40:21.233103+00:00",
+    "collected_at": "2026-09-30T06:39:07.275551+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T18:29:59.999Z",
     "id": "superteam:breakpoint-london-starter-pack",
@@ -1169,7 +1297,7 @@
     "url": "https://earn.superteam.fun/listing/breakpoint-london-starter-pack"
   },
   "superteam:build-and-demo-a-mermail-agent-skill": {
-    "collected_at": "2026-09-30T05:40:29.825227+00:00",
+    "collected_at": "2026-09-30T06:39:16.269369+00:00",
     "collector": "superteam",
     "deadline": "2026-10-07T13:59:59.000Z",
     "id": "superteam:build-and-demo-a-mermail-agent-skill",
@@ -1177,7 +1305,7 @@
     "name": "Build and Demo a Mermail Agent Skill",
     "notes": [
       "agentAccess=HUMAN_ONLY",
-      "submissions=178"
+      "submissions=180"
     ],
     "organizer": "Mermail",
     "payout": "on-chain USDC (Solana)",
@@ -1194,7 +1322,7 @@
     "url": "https://earn.superteam.fun/listing/build-and-demo-a-mermail-agent-skill"
   },
   "superteam:build-solutions-advancing-the-machine-economy-with-peaq": {
-    "collected_at": "2026-09-30T05:41:37.088984+00:00",
+    "collected_at": "2026-09-30T06:40:22.841515+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:build-solutions-advancing-the-machine-economy-with-peaq",
@@ -1218,7 +1346,7 @@
     "url": "https://earn.superteam.fun/listing/build-solutions-advancing-the-machine-economy-with-peaq"
   },
   "superteam:climb-our-reader-leaderboard-for-sepoct-2026": {
-    "collected_at": "2026-09-30T05:41:47.761062+00:00",
+    "collected_at": "2026-09-30T06:42:10.980975+00:00",
     "collector": "superteam",
     "deadline": "2026-10-14T22:59:59.000Z",
     "id": "superteam:climb-our-reader-leaderboard-for-sepoct-2026",
@@ -1242,7 +1370,7 @@
     "url": "https://earn.superteam.fun/listing/climb-our-reader-leaderboard-for-sepoct-2026"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-la-familia-track": {
-    "collected_at": "2026-09-30T05:41:33.061449+00:00",
+    "collected_at": "2026-09-30T06:40:17.723159+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-la-familia-track",
@@ -1266,7 +1394,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-la-familia-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack": {
-    "collected_at": "2026-09-30T05:40:36.294826+00:00",
+    "collected_at": "2026-09-30T06:39:22.485217+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack",
@@ -1290,7 +1418,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-solanacze-track": {
-    "collected_at": "2026-09-30T05:40:41.799502+00:00",
+    "collected_at": "2026-09-30T06:39:28.992862+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-solanacze-track",
@@ -1314,7 +1442,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-solanacze-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-argentina-track": {
-    "collected_at": "2026-09-30T05:40:39.792825+00:00",
+    "collected_at": "2026-09-30T06:39:26.360424+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-argentina-track",
@@ -1338,7 +1466,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-argentina-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-australia-track": {
-    "collected_at": "2026-09-30T05:41:45.701377+00:00",
+    "collected_at": "2026-09-30T06:42:08.141907+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-australia-track",
@@ -1362,7 +1490,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-australia-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-balkan-track": {
-    "collected_at": "2026-09-30T05:40:42.916507+00:00",
+    "collected_at": "2026-09-30T06:39:30.118804+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-balkan-track",
@@ -1386,7 +1514,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-balkan-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-georgia-track": {
-    "collected_at": "2026-09-30T05:41:30.813211+00:00",
+    "collected_at": "2026-09-30T06:40:15.730033+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-georgia-track",
@@ -1410,7 +1538,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-georgia-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-germany-track": {
-    "collected_at": "2026-09-30T05:41:26.909000+00:00",
+    "collected_at": "2026-09-30T06:40:12.638521+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-germany-track",
@@ -1434,7 +1562,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-germany-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ie-track": {
-    "collected_at": "2026-09-30T05:40:37.317207+00:00",
+    "collected_at": "2026-09-30T06:39:23.604053+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ie-track",
@@ -1458,7 +1586,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-ie-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-india-track": {
-    "collected_at": "2026-09-30T05:41:43.540675+00:00",
+    "collected_at": "2026-09-30T06:41:34.233645+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-india-track",
@@ -1482,7 +1610,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-india-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-kazakhstan-track": {
-    "collected_at": "2026-09-30T05:41:34.077389+00:00",
+    "collected_at": "2026-09-30T06:40:19.059039+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-kazakhstan-track",
@@ -1506,7 +1634,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-kazakhstan-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nepal-track": {
-    "collected_at": "2026-09-30T05:41:31.765500+00:00",
+    "collected_at": "2026-09-30T06:40:16.685976+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nepal-track",
@@ -1530,7 +1658,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-nepal-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nigeria-track": {
-    "collected_at": "2026-09-30T05:41:41.116878+00:00",
+    "collected_at": "2026-09-30T06:40:28.255826+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nigeria-track",
@@ -1554,7 +1682,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-nigeria-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nl-track": {
-    "collected_at": "2026-09-30T05:41:40.100033+00:00",
+    "collected_at": "2026-09-30T06:40:26.094787+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nl-track",
@@ -1578,7 +1706,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-nl-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-poland-track": {
-    "collected_at": "2026-09-30T05:41:35.090479+00:00",
+    "collected_at": "2026-09-30T06:40:20.365629+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-poland-track",
@@ -1602,7 +1730,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-poland-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-singapore-track": {
-    "collected_at": "2026-09-30T05:40:38.773207+00:00",
+    "collected_at": "2026-09-30T06:39:25.337071+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-singapore-track",
@@ -1626,7 +1754,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-singapore-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ukraine-track": {
-    "collected_at": "2026-09-30T05:41:28.006046+00:00",
+    "collected_at": "2026-09-30T06:40:13.639181+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ukraine-track",
@@ -1650,7 +1778,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-ukraine-track"
   },
   "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track": {
-    "collected_at": "2026-09-30T05:40:44.381288+00:00",
+    "collected_at": "2026-09-30T06:39:31.129622+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track",
@@ -1674,7 +1802,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track"
   },
   "superteam:colosseum-show-us-what-got": {
-    "collected_at": "2026-09-30T05:40:24.213279+00:00",
+    "collected_at": "2026-09-30T06:39:10.281245+00:00",
     "collector": "superteam",
     "deadline": "2026-10-04T20:59:59.000Z",
     "id": "superteam:colosseum-show-us-what-got",
@@ -1698,7 +1826,7 @@
     "url": "https://earn.superteam.fun/listing/colosseum-show-us-what-got"
   },
   "superteam:create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs": {
-    "collected_at": "2026-09-30T05:40:10.161419+00:00",
+    "collected_at": "2026-09-30T06:38:53.520947+00:00",
     "collector": "superteam",
     "deadline": "2026-09-30T22:59:59.000Z",
     "id": "superteam:create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs",
@@ -1706,7 +1834,7 @@
     "name": "Create a Short Video Explainer for Hisa: $5000 up for grabs.",
     "notes": [
       "agentAccess=HUMAN_ONLY",
-      "submissions=91"
+      "submissions=93"
     ],
     "organizer": "Hisa",
     "payout": "on-chain USDG (Solana)",
@@ -1722,7 +1850,7 @@
     "url": "https://earn.superteam.fun/listing/create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs"
   },
   "superteam:create-twitter-post-about-the-stream-burn": {
-    "collected_at": "2026-09-30T05:40:30.910548+00:00",
+    "collected_at": "2026-09-30T06:39:17.296904+00:00",
     "collector": "superteam",
     "deadline": "2026-10-09T21:59:59.999Z",
     "id": "superteam:create-twitter-post-about-the-stream-burn",
@@ -1746,7 +1874,7 @@
     "url": "https://earn.superteam.fun/listing/create-twitter-post-about-the-stream-burn"
   },
   "superteam:create-x-content-on-mentioneds-team-trading-competition": {
-    "collected_at": "2026-09-30T05:40:34.219576+00:00",
+    "collected_at": "2026-09-30T06:39:20.456047+00:00",
     "collector": "superteam",
     "deadline": "2026-10-11T22:59:59.000Z",
     "id": "superteam:create-x-content-on-mentioneds-team-trading-competition",
@@ -1770,7 +1898,7 @@
     "url": "https://earn.superteam.fun/listing/create-x-content-on-mentioneds-team-trading-competition"
   },
   "superteam:drive-attention-to-segmento-projects": {
-    "collected_at": "2026-09-30T05:41:46.696361+00:00",
+    "collected_at": "2026-09-30T06:42:09.914472+00:00",
     "collector": "superteam",
     "deadline": "2026-10-14T21:59:59.000Z",
     "id": "superteam:drive-attention-to-segmento-projects",
@@ -1794,7 +1922,7 @@
     "url": "https://earn.superteam.fun/listing/drive-attention-to-segmento-projects"
   },
   "superteam:explain-market-tokenization-in-your-country": {
-    "collected_at": "2026-09-30T05:40:19.224435+00:00",
+    "collected_at": "2026-09-30T06:39:05.345562+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T18:29:59.999Z",
     "id": "superteam:explain-market-tokenization-in-your-country",
@@ -1818,7 +1946,7 @@
     "url": "https://earn.superteam.fun/listing/explain-market-tokenization-in-your-country"
   },
   "superteam:explain-tokenization-supercycle-for-an-asset-category": {
-    "collected_at": "2026-09-30T05:40:16.144978+00:00",
+    "collected_at": "2026-09-30T06:39:01.321611+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T18:29:59.999Z",
     "id": "superteam:explain-tokenization-supercycle-for-an-asset-category",
@@ -1842,7 +1970,7 @@
     "url": "https://earn.superteam.fun/listing/explain-tokenization-supercycle-for-an-asset-category"
   },
   "superteam:grow-rewards-make-your-first-move": {
-    "collected_at": "2026-09-30T05:41:51.982846+00:00",
+    "collected_at": "2026-09-30T06:42:15.065706+00:00",
     "collector": "superteam",
     "deadline": "2026-10-17T06:59:59.000Z",
     "id": "superteam:grow-rewards-make-your-first-move",
@@ -1866,7 +1994,7 @@
     "url": "https://earn.superteam.fun/listing/grow-rewards-make-your-first-move"
   },
   "superteam:hype-video-for-breakpoint-london": {
-    "collected_at": "2026-09-30T05:40:20.155531+00:00",
+    "collected_at": "2026-09-30T06:39:06.334877+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T18:29:59.999Z",
     "id": "superteam:hype-video-for-breakpoint-london",
@@ -1874,7 +2002,7 @@
     "name": "Hype Video for Breakpoint London",
     "notes": [
       "agentAccess=HUMAN_ONLY",
-      "submissions=12"
+      "submissions=14"
     ],
     "organizer": "Superteam",
     "payout": "on-chain USDC (Solana)",
@@ -1890,7 +2018,7 @@
     "url": "https://earn.superteam.fun/listing/hype-video-for-breakpoint-london"
   },
   "superteam:introduce-web3-projects-to-segmento": {
-    "collected_at": "2026-09-30T05:40:28.529468+00:00",
+    "collected_at": "2026-09-30T06:39:15.235569+00:00",
     "collector": "superteam",
     "deadline": "2026-10-06T21:59:59.999Z",
     "id": "superteam:introduce-web3-projects-to-segmento",
@@ -1914,7 +2042,7 @@
     "url": "https://earn.superteam.fun/listing/introduce-web3-projects-to-segmento"
   },
   "superteam:kriptok-league-trading-content-partner": {
-    "collected_at": "2026-09-30T05:40:13.206333+00:00",
+    "collected_at": "2026-09-30T06:38:57.049978+00:00",
     "collector": "superteam",
     "deadline": "2026-09-30T20:59:59.000Z",
     "id": "superteam:kriptok-league-trading-content-partner",
@@ -1938,7 +2066,7 @@
     "url": "https://earn.superteam.fun/listing/kriptok-league-trading-content-partner"
   },
   "superteam:launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market": {
-    "collected_at": "2026-09-30T05:41:53.000278+00:00",
+    "collected_at": "2026-09-30T06:42:16.091473+00:00",
     "collector": "superteam",
     "deadline": "2026-10-23T21:59:59.000Z",
     "id": "superteam:launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market",
@@ -1962,7 +2090,7 @@
     "url": "https://earn.superteam.fun/listing/launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market"
   },
   "superteam:marketing-task-for-solana-startup-terminal-student-projects": {
-    "collected_at": "2026-09-30T05:40:27.488290+00:00",
+    "collected_at": "2026-09-30T06:39:13.866797+00:00",
     "collector": "superteam",
     "deadline": "2026-10-06T21:59:59.999Z",
     "id": "superteam:marketing-task-for-solana-startup-terminal-student-projects",
@@ -1986,7 +2114,7 @@
     "url": "https://earn.superteam.fun/listing/marketing-task-for-solana-startup-terminal-student-projects"
   },
   "superteam:meteora-dbc": {
-    "collected_at": "2026-09-30T05:40:47.930927+00:00",
+    "collected_at": "2026-09-30T06:40:06.097486+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:meteora-dbc",
@@ -2010,7 +2138,7 @@
     "url": "https://earn.superteam.fun/listing/meteora-dbc"
   },
   "superteam:moonyfoundationtipcards": {
-    "collected_at": "2026-09-30T05:40:15.174400+00:00",
+    "collected_at": "2026-09-30T06:38:59.481315+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T06:59:59.000Z",
     "id": "superteam:moonyfoundationtipcards",
@@ -2034,7 +2162,7 @@
     "url": "https://earn.superteam.fun/listing/moonyfoundationtipcards"
   },
   "superteam:panta-api-side-track": {
-    "collected_at": "2026-09-30T05:41:39.108787+00:00",
+    "collected_at": "2026-09-30T06:40:24.980329+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:panta-api-side-track",
@@ -2058,7 +2186,7 @@
     "url": "https://earn.superteam.fun/listing/panta-api-side-track"
   },
   "superteam:pitch-and-demo-your-product-at-online-demo-day": {
-    "collected_at": "2026-09-30T05:41:48.715861+00:00",
+    "collected_at": "2026-09-30T06:42:12.017874+00:00",
     "collector": "superteam",
     "deadline": "2026-10-15T20:59:59.000Z",
     "id": "superteam:pitch-and-demo-your-product-at-online-demo-day",
@@ -2082,7 +2210,7 @@
     "url": "https://earn.superteam.fun/listing/pitch-and-demo-your-product-at-online-demo-day"
   },
   "superteam:pitch-and-demo-your-project-at-demo-day-in-kyiv": {
-    "collected_at": "2026-09-30T05:41:49.891240+00:00",
+    "collected_at": "2026-09-30T06:42:13.047706+00:00",
     "collector": "superteam",
     "deadline": "2026-10-15T20:59:59.000Z",
     "id": "superteam:pitch-and-demo-your-project-at-demo-day-in-kyiv",
@@ -2106,7 +2234,7 @@
     "url": "https://earn.superteam.fun/listing/pitch-and-demo-your-project-at-demo-day-in-kyiv"
   },
   "superteam:pre-audit-credits-adevarlabs": {
-    "collected_at": "2026-09-30T05:41:44.564515+00:00",
+    "collected_at": "2026-09-30T06:42:07.160989+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:pre-audit-credits-adevarlabs",
@@ -2130,7 +2258,7 @@
     "url": "https://earn.superteam.fun/listing/pre-audit-credits-adevarlabs"
   },
   "superteam:present-your-ux-at-roast-your-ux": {
-    "collected_at": "2026-09-30T05:40:25.213604+00:00",
+    "collected_at": "2026-09-30T06:39:11.399141+00:00",
     "collector": "superteam",
     "deadline": "2026-10-05T20:59:59.000Z",
     "id": "superteam:present-your-ux-at-roast-your-ux",
@@ -2154,7 +2282,7 @@
     "url": "https://earn.superteam.fun/listing/present-your-ux-at-roast-your-ux"
   },
   "superteam:road-to-colosseum-builders-reflect-and-share": {
-    "collected_at": "2026-09-30T05:40:35.244836+00:00",
+    "collected_at": "2026-09-30T06:39:21.476616+00:00",
     "collector": "superteam",
     "deadline": "2026-10-12T16:59:00.000Z",
     "id": "superteam:road-to-colosseum-builders-reflect-and-share",
@@ -2178,7 +2306,7 @@
     "url": "https://earn.superteam.fun/listing/road-to-colosseum-builders-reflect-and-share"
   },
   "superteam:road-to-colosseum-hackathon-build-your-mvp": {
-    "collected_at": "2026-09-30T05:40:11.141867+00:00",
+    "collected_at": "2026-09-30T06:38:54.531572+00:00",
     "collector": "superteam",
     "deadline": "2026-10-05T21:59:59.000Z",
     "id": "superteam:road-to-colosseum-hackathon-build-your-mvp",
@@ -2202,7 +2330,7 @@
     "url": "https://earn.superteam.fun/listing/road-to-colosseum-hackathon-build-your-mvp"
   },
   "superteam:share-your-most-memorable-solana-breakpoint-moment-on-x": {
-    "collected_at": "2026-09-30T05:40:17.258649+00:00",
+    "collected_at": "2026-09-30T06:39:02.467588+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T18:29:59.999Z",
     "id": "superteam:share-your-most-memorable-solana-breakpoint-moment-on-x",
@@ -2226,7 +2354,7 @@
     "url": "https://earn.superteam.fun/listing/share-your-most-memorable-solana-breakpoint-moment-on-x"
   },
   "superteam:show-tokenization-in-2050-via-x-post-thread-or-short-video": {
-    "collected_at": "2026-09-30T05:40:18.258030+00:00",
+    "collected_at": "2026-09-30T06:39:03.539861+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T18:29:59.999Z",
     "id": "superteam:show-tokenization-in-2050-via-x-post-thread-or-short-video",
@@ -2234,7 +2362,7 @@
     "name": "Show Tokenization in 2050 via X Post, Thread, or Short Video",
     "notes": [
       "agentAccess=HUMAN_ONLY",
-      "submissions=45"
+      "submissions=46"
     ],
     "organizer": "Superteam",
     "payout": "on-chain USDC (Solana)",
@@ -2250,7 +2378,7 @@
     "url": "https://earn.superteam.fun/listing/show-tokenization-in-2050-via-x-post-thread-or-short-video"
   },
   "superteam:side-track-superteam-brasil": {
-    "collected_at": "2026-09-30T05:41:22.901828+00:00",
+    "collected_at": "2026-09-30T06:40:09.181758+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:side-track-superteam-brasil",
@@ -2274,7 +2402,7 @@
     "url": "https://earn.superteam.fun/listing/side-track-superteam-brasil"
   },
   "superteam:solana-summit-canada-creator-challenge-part-2": {
-    "collected_at": "2026-09-30T05:40:14.201094+00:00",
+    "collected_at": "2026-09-30T06:38:58.351044+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T03:59:59.000Z",
     "id": "superteam:solana-summit-canada-creator-challenge-part-2",
@@ -2298,7 +2426,7 @@
     "url": "https://earn.superteam.fun/listing/solana-summit-canada-creator-challenge-part-2"
   },
   "superteam:stealf-bounty": {
-    "collected_at": "2026-09-30T05:40:23.214182+00:00",
+    "collected_at": "2026-09-30T06:39:09.318360+00:00",
     "collector": "superteam",
     "deadline": "2026-10-02T21:59:59.000Z",
     "id": "superteam:stealf-bounty",
@@ -2322,7 +2450,7 @@
     "url": "https://earn.superteam.fun/listing/stealf-bounty"
   },
   "superteam:steve-agent-arena-launch-your-agent-and-win-500-usdc": {
-    "collected_at": "2026-09-30T05:40:22.204101+00:00",
+    "collected_at": "2026-09-30T06:39:08.283489+00:00",
     "collector": "superteam",
     "deadline": "2026-10-01T21:59:59.000Z",
     "id": "superteam:steve-agent-arena-launch-your-agent-and-win-500-usdc",
@@ -2347,7 +2475,7 @@
     "url": "https://earn.superteam.fun/listing/steve-agent-arena-launch-your-agent-and-win-500-usdc"
   },
   "superteam:submit-crypto-worlds-fair-project-for-turkish-builders": {
-    "collected_at": "2026-09-30T05:41:42.158539+00:00",
+    "collected_at": "2026-09-30T06:41:01.345975+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:submit-crypto-worlds-fair-project-for-turkish-builders",
@@ -2371,7 +2499,7 @@
     "url": "https://earn.superteam.fun/listing/submit-crypto-worlds-fair-project-for-turkish-builders"
   },
   "superteam:submit-project-for-certik-security-audit-credits": {
-    "collected_at": "2026-09-30T05:40:40.789247+00:00",
+    "collected_at": "2026-09-30T06:39:28.003749+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:submit-project-for-certik-security-audit-credits",
@@ -2395,7 +2523,7 @@
     "url": "https://earn.superteam.fun/listing/submit-project-for-certik-security-audit-credits"
   },
   "superteam:submit-solana-project-to-build-for-breakpoint-track": {
-    "collected_at": "2026-09-30T05:41:23.988585+00:00",
+    "collected_at": "2026-09-30T06:40:10.551347+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:submit-solana-project-to-build-for-breakpoint-track",
@@ -2419,7 +2547,7 @@
     "url": "https://earn.superteam.fun/listing/submit-solana-project-to-build-for-breakpoint-track"
   },
   "superteam:superteam-japan-x-enxross-by-tokyo-dome-side-track": {
-    "collected_at": "2026-09-30T05:41:20.792681+00:00",
+    "collected_at": "2026-09-30T06:40:07.116059+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:superteam-japan-x-enxross-by-tokyo-dome-side-track",
@@ -2443,7 +2571,7 @@
     "url": "https://earn.superteam.fun/listing/superteam-japan-x-enxross-by-tokyo-dome-side-track"
   },
   "superteam:superteam-kazakhstan-x-idos-games-side-track": {
-    "collected_at": "2026-09-30T05:40:46.733961+00:00",
+    "collected_at": "2026-09-30T06:40:05.100145+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:superteam-kazakhstan-x-idos-games-side-track",
@@ -2467,7 +2595,7 @@
     "url": "https://earn.superteam.fun/listing/superteam-kazakhstan-x-idos-games-side-track"
   },
   "superteam:superteam-kazakhstan-x-kase-side-track-corporate-actions-on-blockchain": {
-    "collected_at": "2026-09-30T05:41:36.060437+00:00",
+    "collected_at": "2026-09-30T06:40:21.814966+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:superteam-kazakhstan-x-kase-side-track-corporate-actions-on-blockchain",
@@ -2491,7 +2619,7 @@
     "url": "https://earn.superteam.fun/listing/superteam-kazakhstan-x-kase-side-track-corporate-actions-on-blockchain"
   },
   "superteam:superteam-my-x-solami-build-global-buatan-malaysia": {
-    "collected_at": "2026-09-30T05:40:45.428111+00:00",
+    "collected_at": "2026-09-30T06:39:32.149715+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:superteam-my-x-solami-build-global-buatan-malaysia",
@@ -2515,7 +2643,7 @@
     "url": "https://earn.superteam.fun/listing/superteam-my-x-solami-build-global-buatan-malaysia"
   },
   "superteam:superteam-my-x-superscrypt-build-global-buatan-malaysia": {
-    "collected_at": "2026-09-30T05:41:25.083579+00:00",
+    "collected_at": "2026-09-30T06:40:11.560953+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:superteam-my-x-superscrypt-build-global-buatan-malaysia",
@@ -2539,7 +2667,7 @@
     "url": "https://earn.superteam.fun/listing/superteam-my-x-superscrypt-build-global-buatan-malaysia"
   },
   "superteam:superteamuae-sidetrack-colosseum": {
-    "collected_at": "2026-09-30T05:41:38.108407+00:00",
+    "collected_at": "2026-09-30T06:40:23.858399+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:superteamuae-sidetrack-colosseum",
@@ -2563,7 +2691,7 @@
     "url": "https://earn.superteam.fun/listing/superteamuae-sidetrack-colosseum"
   },
   "superteam:try-a-solana-project-and-give-useful-feedback-tokengems": {
-    "collected_at": "2026-09-30T05:41:50.967458+00:00",
+    "collected_at": "2026-09-30T06:42:14.085722+00:00",
     "collector": "superteam",
     "deadline": "2026-10-17T06:59:59.000Z",
     "id": "superteam:try-a-solana-project-and-give-useful-feedback-tokengems",
@@ -2571,7 +2699,7 @@
     "name": "Try a Solana Project and Give Useful Feedback | TokenGems",
     "notes": [
       "agentAccess=HUMAN_ONLY",
-      "submissions=25"
+      "submissions=26"
     ],
     "organizer": "TokenGems",
     "payout": "on-chain USDC (Solana)",
@@ -2587,7 +2715,7 @@
     "url": "https://earn.superteam.fun/listing/try-a-solana-project-and-give-useful-feedback-tokengems"
   },
   "superteam:video-editing-challenge": {
-    "collected_at": "2026-09-30T05:40:26.441868+00:00",
+    "collected_at": "2026-09-30T06:39:12.465204+00:00",
     "collector": "superteam",
     "deadline": "2026-10-06T20:59:59.000Z",
     "id": "superteam:video-editing-challenge",
@@ -2611,7 +2739,7 @@
     "url": "https://earn.superteam.fun/listing/video-editing-challenge"
   },
   "superteam:worlds-fair-canada": {
-    "collected_at": "2026-09-30T05:41:21.889666+00:00",
+    "collected_at": "2026-09-30T06:40:08.137029+00:00",
     "collector": "superteam",
     "deadline": "2026-10-13T06:59:00.000Z",
     "id": "superteam:worlds-fair-canada",

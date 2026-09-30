@@ -38,12 +38,10 @@
       },
       "payout": {
         "evidence": [
-          "r at the start of the build window. - Employees of the organizer and of judging sponsors may participate but are not eligible for cash prizes. - One account per participant. Duplicate accounts disqualify the whole team. ## 2. Teams - Teams of one to five people. Solo en",
-          "all deadlines are UTC. ## 5. What you can use - Any language, framework, model or cloud, including closed-source APIs and sponsor credits. - Pre-existing open-source libraries are fine. Pre-existing product code must be declared in the submission form. - Generated co",
-          "unties are decided by that sponsor's panel. - Ties are resolved on the Impact score, then on submission timestamp. ## 8. Prizes - Prize pool up to $20,000, paid by bank transfer within 30 days of the results announcement. - Cash prizes are split equally among team membe"
+          "ponsor bounties are decided by that sponsor's panel. - Ties are resolved on the Impact score, then on submission timestamp. ## 8. Prizes - Prize pool up to $20,000, paid by bank transfer within 30 days of the results announcement. - Cash prizes are split equally among team members unless the team submits a differen"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "FAIL"
       },
       "student": {
         "evidence": [
@@ -392,9 +390,9 @@
       },
       "payout": {
         "evidence": [
-          "A restaurant reservation system, like OpenTable a table must never be double-booked, under concurrency, retries and time zones. A wallet and payments app, like Venmo money must never be created, destroyed or spent twice, under concurrent transfers, retries and round",
           "-source model inference to agent workflows Power reasoning, generation and specialized-model use cases $25 of Feather Per-Request credits per participant — no model size limit, context up to 256K up to 1,000 participants, first come, first served the promo code and s",
-          "p takes a card. If you do not plan to keep using Featherless after the hackathon, cancel before the next billing cycle. 💡 Partner credits, promo codes and setup guides are provided directly by each technology partner and may depend on availability, eligibility and pl"
+          "p takes a card. If you do not plan to keep using Featherless after the hackathon, cancel before the next billing cycle. 💡 Partner credits, promo codes and setup guides are provided directly by each technology partner and may depend on availability, eligibility and pl",
+          "may depend on availability, eligibility and platform terms. lablab.ai helps coordinate access, but each platform manages its own credits, limits, billing and API keys. Split across the two tracks. You compete only against teams in the track you chose. A place is awa"
         ],
         "positive_evidence": [],
         "verdict": "INFO"
@@ -440,12 +438,10 @@
       },
       "payout": {
         "evidence": [
-          "Build and Demo a Mermail Agent Skill What Is Mermail? Mermail gives AI agents their own inbox and a user-controlled Agent Wallet through MCP. It provides a foundation for builders and creators to develop new agent skills, workflows, and experiences. What yo",
-          "ld a reusable Mermail Agent Skill and create a 2–5 minute video proving that it works. Your skill may use Mermail’s inbox, Agent Wallet, or both. We encourage original ideas that expand what AI agents can accomplish with Mermail. What to Build Create a well-docum",
-          "duce the demonstrated workflow. Innovation: Introduces a creative or valuable agent capability. Prize Structure A total of 500 USDC in prizes: 1st Place: 250 USDC 2nd Place: 100 USDC 3rd Place: 50 USDC Most Innovative Skill: 50 USDC Best Video Demonstratio"
+          "bility: Other builders can reproduce the demonstrated workflow. Innovation: Introduces a creative or valuable agent capability. Prize Structure A total of 500 USDC in prizes: 1st Place: 250 USDC 2nd Place: 100 USDC 3rd Place: 50 USDC Most Innovative Skill: 50 USDC Best Video Demonstration: 50 USDC Resources and Community Mermail Template"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -494,12 +490,10 @@
       },
       "payout": {
         "evidence": [
-          "h the community. Ready to build? Let's support each other. Reward Structure Total reward pool: ~$10,500 in RPC infrastructure credits distributed across 21 selected teams. Each team is eligible for an equivalent of ~$500 prize. Each selected team receives one o",
-          "xclusively in the form of RPC Fast subscription plans assigned to the selected teams. Prizes are not paid or transferred as cash, cryptocurrency, or other monetary funds. Prize activation Prize subscriptions will be assigned to selected teams within two (2) weeks after th",
-          "It is the participant's responsibility to use the awarded subscription during its assigned period. Unused subscription time, CU credits, or other included resources cannot be carried over, rescheduled, extended, or exchanged for cash, cryptocurrency, or any other m"
+          "Form of rewards All prizes are provided exclusively in the form of RPC Fast subscription plans assigned to the selected teams. Prizes are not paid or transferred as cash, cryptocurrency, or other monetary funds. Prize activation Prize subscriptions will be assigned to selected teams within two (2) weeks after th"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -545,12 +539,11 @@
       },
       "payout": {
         "evidence": [
-          "uilder community in Czechia, connecting developers, students, founders and teams across the Czech Republic and Slovakia. For the Crypto World's Fair Hackathon, we're bringing builders together through our Zero to Hero 2.0 initiative, including university and commun",
-          "y and community events across Czechia and Slovakia and our five-day Build Station in Prague. This track provides a $10,000 local prize pool for the strongest eligible projects from our community competing in the global Colosseum Crypto World's Fair Hackathon. Track Sc",
-          "gible projects from our community competing in the global Colosseum Crypto World's Fair Hackathon. Track Scope This is a local prize pool for Czech and Slovak teams participating in Colosseum's Crypto World's Fair Hackathon. You build your project for the global hac"
+          "gible projects from our community competing in the global Colosseum Crypto World's Fair Hackathon. Track Scope This is a local prize pool for Czech and Slovak teams participating in Colosseum's Crypto World's Fair Hackathon. You build your project for the global hackathon, submit it to Colosseum, and then submit the same projec",
+          "ere on Superteam Earn to compete for an additional share of our $10,000 local prize pool. This is not a separate hackathon. The Crypto World's Fair is multichain, but this local prize pool is focused on projects building on Solana. Multichain projects are welcome as long as Solana is a meaningful part of the wor"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [
@@ -602,12 +595,10 @@
       },
       "payout": {
         "evidence": [
-          "workshops, mentorship, ecosystem resources, and direct feedback from experienced builders and industry leaders. With a $10,000 cash prize pool , infrastructure credits, and access to the wider Solana builder ecosystem, this is your chance to build something real — an",
-          "Pitch your product in front of the judging panel, get real feedback, and show what you’ve built. Infrastructure Support: Access credits, discounts, and developer resources from infrastructure partners across wallets, RPCs, security, data, payments, and more. Priz",
-          "ers across wallets, RPCs, security, data, payments, and more. Prizes & Builder Resources Road to Colosseum features a $10,000 cash prize pool , plus infrastructure credits, mentorship, security, and go-to-market support from ecosystem partners and innovation centers"
+          "h and more ecosystem partners to be announced. Register now our Workshop and Office hours: https://luma.com/superteam-vietnam Rewards 🥇 First Prize: $4,000 USDC 🥈 Second Prize: $2,000 USDC 🥉 Third Prize: $1,000 USDC 3 Side Track Prize: $1,000 USDC Eligibility To be eligible for Road to Colosseum, your project"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -650,12 +641,10 @@
       },
       "payout": {
         "evidence": [
-          "owned prediction market network built on Solana and part of the Superteam ecosystem. Launch a market on any real-world outcome — crypto prices, sports, culture. Take a position on Yes or No — prices move in real time with the crowd's conviction. Trust the result",
-          "ition stays yours: if your call is right, you earn from the market on top of any bounty prize. Step by Step Connect your Solana wallet at daejin.xyz . Take a position (min. $5) in one of the featured markets. Take a screenshot and note why you picked Yes or No.",
-          "rom steps 2–4. Tag @Daejinxyz and @Superteam, then publish. Submit your thread link on Earn, plus the link to your market. Your wallet address is collected with the submission, so don't post it in the thread. Eligibility A thread is judged only if it meets all o"
+          "[platform policy] FAQ: 'rewards for listings sponsored by external companies... will be paid out to the wallet associated with the winner's Superteam Earn account' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -703,10 +692,10 @@
       },
       "payout": {
         "evidence": [
-          ": https://t.me/meteora_dev Discretionary Grants For Builders To further empower Solana builders during Stocklana and Colosseum Crypto World’s Fair, select qualified teams and hackathon winners building innovative AI or RWA use cases with Meteora DBC during this p"
+          "[platform policy] FAQ: 'rewards for listings sponsored by external companies... will be paid out to the wallet associated with the winner's Superteam Earn account' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -752,12 +741,11 @@
       },
       "payout": {
         "evidence": [
-          "on market functionality including market discovery, market data, market creation, trading, positions, and claims. For Colosseum Crypto World's Fair, we are offering a $5,000 USDG Sidetrack prize pool for builders who use Panta API to explore what prediction market",
-          "applications, and experiences beyond a traditional prediction market platform. Submit your project to both the official Colosseum Crypto World's Fair hackathon and the Panta Sidetrack on Superteam Earn. Submitting to the Panta Sidetrack does not replace your offi",
-          "that help users understand and interact with prediction markets. Sports & Events: Build products around sports, entertainment, crypto, elections, news, or other real-world events. Social Prediction: Build social products where communities can create, discover,"
+          "on market functionality including market discovery, market data, market creation, trading, positions, and claims. For Colosseum Crypto World's Fair, we are offering a $5,000 USDG Sidetrack prize pool for builders who use Panta API to explore what prediction markets can become when they are built into products, applications",
+          "pact Potential: The potential for real-world use beyond the hackathon. Traction: Evidence of users, usage, or early traction. Reward Structure 1st Place: 2000 USDG 2nd Place: 1000 USDG 3rd Place: 1000 USDG 4th Place: 1000 USDG Resources Panta API docs: https://docs.panta.market/ API Playground : https://github.com/Kaito-HQ/"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -803,12 +791,10 @@
       },
       "payout": {
         "evidence": [
-          "Audit in-kind security services ($4,000 pre-audit value each across 5 teams) to Solana/Rust projects participating in Colosseum's Crypto World's Fair hackathon. Apply, answer a few questions, and tweet about it for a chance to receive a comprehensive pre-audit revie",
-          "ce to receive a comprehensive pre-audit review from a SEAL-Certified audit firm. Eligibility Must have submitted to Colosseum Crypto World’s Fair Open to any eligible Solana/Rust submission to Colosseum Crypto World's Fair Solana/Rust submissions only How it",
-          "bs on X. Suggested copy: “ Just submitted our project to the @AdevarLabs Security Sidetrack on @superteamearn for @Colosseum’s Crypto World’s Fair Hackathon Excited for the chance to receive a full security Pre-Audit for our project. [project link] ” Reward:"
+          "[platform policy] FAQ: 'rewards for listings sponsored by external companies... will be paid out to the wallet associated with the winner's Superteam Earn account' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -856,12 +842,10 @@
       },
       "payout": {
         "evidence": [
-          "Steve Agent Arena: Compete for 500 USDC About the Steve Agent Arena Bounty Create your own agent, put it to work across Solana, earn XP and compete for the top of the",
-          "your own agent, put it to work across Solana, earn XP and compete for the top of the Arena. Your agent comes with its own Solana wallet and access to 400+ tools for trading, market data, swaps, risk management, automation, payments and more. Your agent, your wallet",
-          "ve Agent on Solana Mainnet. Eligible activity includes: Adrena perps Phoenix perps Jupiter or Magicblock swaps of at least 20 USDC Trades must be executed through your agent wallet. Wash trading, self-dealing and artificial transaction loops do not count. Y"
+          "alifying and bonus activity must be completed before the competition closes. Activity during the evaluation week does not count. Rewards 500 USDC Total Prize Pool 🥇 1st Place: 250 USDC 🥈 2nd Place: 150 USDC 🥉 3rd Place: 100 USDC Rewards will be distributed in USDC on Solana. Get Started Go to steve.oobeprotocol.ai Create your S"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],
@@ -911,12 +895,10 @@
       },
       "payout": {
         "evidence": [
-          "in the blockchain security space, combining academic expertise with enterprise-grade solutions to protect the web3 world. For the Crypto World's Fair hackathon, we're excited to support builders by providing essential security resources. Mission Our goal is to bac",
-          "to support builders by providing essential security resources. Mission Our goal is to back promising projects emerging from the Crypto World's Fair hackathon by providing critical security audits, helping them launch confidently on mainnet, and attracting further",
-          "tly on mainnet, and attracting further investment. Hackathon Track Scope This track is for any team submitting a project to the Crypto World's Fair hackathon that plans to launch on mainnet and raise capital post-hackathon. We're looking for projects building for"
+          "overall quality of your project's code. Overall Project Quality and Originality: The innovation and execution of your project. Reward Structure 1st Place: 10,000 USDG in CertiK audit credits 2nd Place: 10,000 USDG in CertiK audit credits 3rd Place: 10,000 USDG in CertiK audit credits 4th Place: 10,000 USDG in CertiK audit credits 5th Plac"
         ],
         "positive_evidence": [],
-        "verdict": "INFO"
+        "verdict": "PASS"
       },
       "student": {
         "evidence": [],

@@ -3,8 +3,8 @@
     "name": "Open Agent Hackathon 2026",
     "organizer": "GenAI Works (sponsors: NVIDIA, Zetaris)",
     "url": "https://hackathon.genai.works/event/open-agent-hackathon-2026",
-    "tier": "A",
-    "status": "SHORTLIST",
+    "tier": "C",
+    "status": "DEPRIORITIZED (payout FAIL unless crypto option confirmed)",
     "checked": "2026-09-30",
     "deadlines": {
       "registration_closes": "2026-10-13T00:00:00Z",
@@ -35,8 +35,8 @@
         "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
       },
       "payout": {
-        "v": "RISK",
-        "ev": "'Prize pool up to $20,000, paid by bank transfer within 30 days of the results announcement.' 'Taxes and any local charges are the recipient's responsibility.' No crypto option stated.",
+        "v": "FAIL",
+        "ev": "'Prize pool up to $20,000, paid by bank transfer within 30 days of the results announcement.' 'Taxes and any local charges are the recipient's responsibility.' No crypto option stated. => bank-only = FAIL under CLAUDE.md crypto-only gate unless organizer confirms a crypto option.",
         "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
       },
       "paid_actions": {
@@ -123,7 +123,7 @@
       },
       "payout": {
         "v": "UNKNOWN",
-        "ev": "See prize.payout. Rule-book text via search: 'organizers contact winning teams to gather delivery details'; 'up to 90 days'.",
+        "ev": "See prize.payout. Rule-book text via search: 'organizers contact winning teams to gather delivery details'; 'up to 90 days'. Crypto payout NOT stated => UNKNOWN (deprioritize until confirmed).",
         "src": "https://lablab.ai/hackathon-rules (via search snippet)"
       },
       "paid_actions": {

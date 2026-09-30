@@ -44,5 +44,25 @@ class GateTests(unittest.TestCase):
         self.assertIn(r["verdict"], ("RISK", "FAIL"))
 
 
+class PayoutGate(unittest.TestCase):
+    def test_bank_only_fails(self):
+        self.assertEqual(v("Prize pool up to $20,000, paid by bank transfer within 30 days.", "payout"), "FAIL")
+
+    def test_crypto_passes(self):
+        self.assertEqual(v("Prizes are paid in USDC to your wallet.", "payout"), "PASS")
+
+    def test_crypto_or_fiat_passes(self):
+        self.assertEqual(v("Winners are paid via bank transfer or USDC.", "payout"), "PASS")
+
+    def test_silent_is_not_pass(self):
+        self.assertNotIn(v("Prize distribution may take up to 90 days.", "payout"), ("PASS", "FAIL"))
+
+    def test_each_is_not_ach(self):
+        self.assertNotEqual(v("dedicated prizes and recognition for each partner's top implementations", "payout"), "FAIL")
+
+    def test_crypto_disclaimer_is_not_payout_pass(self):
+        self.assertNotEqual(v("You accept all risk with your cryptocurrency holdings and wallet keys.", "payout"), "PASS")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

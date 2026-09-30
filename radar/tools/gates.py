@@ -42,10 +42,11 @@ GATES = {
         risk=r"mainnet|entry fee|registration fee|submission fee|purchase|paid (plan|tier|api|subscription)|credit card|must (pay|deposit|stake)|minimum (trade|deposit)|at least \d+ (qualifying )?trades?|swaps? of at least",
         fail=r"(must|required to|need to)[^.]{0,60}(pay|purchase|deposit|stake|execute[^.]{0,30}(mainnet|trades?))|entry fee|registration fee|submission fee|(execute|make|complete|perform)[^.]{0,30}at least \d+ (qualifying )?(trades?|transactions?|swaps?)|(swaps?|trades?) of at least \d+ ?(USDC|USDT|SOL|ETH|USD)",
         pass_=r"free to (enter|participate|join)|no (entry|registration) fee"),
+    # CLAUDE.md hard gate: crypto payout is REQUIRED. Crypto stated near prize wording = PASS; fiat-only = FAIL; silent = UNKNOWN.
     "payout": dict(
-        risk=r"USDC|USDT|USDG|stablecoin|crypto(currency)?|wallet|PayPal|bank (transfer|account)|wire|Payoneer|gift card|credits?\b|cash prize|prize (pool|money)",
-        fail=r"",
-        pass_=r"paid (in|via|out in) (USDC|USDT|USDG|crypto|stablecoin)|(USDC|USDT|USDG) (will be )?(sent|paid|distributed)"),
+        risk=r"cash prize|prize (pool|money)|credits?\b",
+        fail=r"(prize|payout|paid|reward|distribut|payable)[^.]{0,80}(bank (transfer|account)|\bwire\b|PayPal|Stripe|\bWise\b|Payoneer|\bACH\b|direct deposit|cheque|gift card)|(bank transfer|wire transfer|PayPal|Stripe|Payoneer)[^.]{0,60}(prize|payout)",
+        pass_=r"(prize|payout|paid|reward|distribut|payable|sent|settle)[^.]{0,80}(USDC|USDT|USDG|stablecoin|on-?chain|crypto(currency)?|wallet)|(USDC|USDT|USDG|stablecoin|crypto(currency)?)[^.]{0,60}(prize|payout|paid|reward|distribut)"),
     "age": dict(risk=r"\b18\b|age of majority|at least \d+ years|minors?", fail=r"", pass_=r""),
     "onsite": dict(
         risk=r"on-?site|in[- ]person|finals? (will be )?(held|at)|attend in",
@@ -84,6 +85,10 @@ def analyze(text, source=""):
             v, ev = "INFO", risk
         else:
             v, ev = "UNKNOWN", []
+        if g == "payout" and pas:  # a stated crypto route satisfies the gate even if a fiat route is also offered
+            v, ev = "PASS", pas
+            res["gates"][g] = {"verdict": v, "evidence": ev, "positive_evidence": []}
+            continue
         # explicit positive evidence is shown alongside a RISK verdict but never overrides it
         res["gates"][g] = {"verdict": v, "evidence": ev, "positive_evidence": pas if v in ("RISK", "FAIL") else []}
     return res

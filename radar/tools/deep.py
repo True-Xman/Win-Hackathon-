@@ -90,6 +90,9 @@ def platform_overlay(c, gates):
             bump("kyc", "FAIL", "Listing is Solana-Foundation-paid (isFndnPaying=true). FAQ: 'the winner needs to complete KYC to receive money for Superteam / Solana-sponsored listings.'", FAQ)
         else:
             bump("kyc", "RISK", "External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.'", FAQ)
+        if not d.get("isFndnPaying") and gates["payout"]["verdict"] in ("UNKNOWN", "INFO"):
+            gates["payout"]["verdict"] = "PASS"
+            gates["payout"]["evidence"] = [f"[platform policy] FAQ: 'rewards for listings sponsored by external companies... will be paid out to the wallet associated with the winner's Superteam Earn account' (src: {FAQ})"]
         if (d.get("Hackathon") or {}).get("slug") == "crypto-worlds-fair":
             bump("kyc", "RISK", "Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.'", COLO)
             bump("country", "RISK", "Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country.", COLO)
