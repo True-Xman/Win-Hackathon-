@@ -1,0 +1,2637 @@
+{
+  "genai:open-agent-2026": {
+    "collected_at": "2026-09-30T05:41:59.447280+00:00",
+    "collector": "genai_works",
+    "deadline": "2026-10-13T00:00:00+00:00",
+    "id": "genai:open-agent-2026",
+    "mode": "online",
+    "name": "Open Agent Hackathon 2026",
+    "notes": [
+      "dates from homepage text; registration closes Oct 13 00:00 UTC"
+    ],
+    "organizer": "GenAI Works",
+    "payout": null,
+    "platform": "genai.works",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hackathon.genai.works homepage",
+    "start": "2026-10-15T00:00:00+00:00",
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://hackathon.genai.works/"
+  },
+  "hn:49514844": {
+    "collected_at": "2026-09-30T05:41:54.665008+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49514844",
+    "mode": null,
+    "name": "Show HN: Open Agent Forum – a signed public square for agents",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://openagentforum.com/"
+  },
+  "hn:49521899": {
+    "collected_at": "2026-09-30T05:41:54.357859+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49521899",
+    "mode": null,
+    "name": "Hacking One of North America's Biggest Hackathons",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://xtra.sh/blog/hackathon/"
+  },
+  "hn:49546452": {
+    "collected_at": "2026-09-30T05:41:54.664996+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49546452",
+    "mode": null,
+    "name": "Is This the Future of America?",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.theverge.com/cs/features/975597/loudoun-county-virginia-data-center-backlash"
+  },
+  "hn:49553682": {
+    "collected_at": "2026-09-30T05:41:54.357852+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49553682",
+    "mode": null,
+    "name": "Hacking One of North America's Biggest Hackathons",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://xtra.sh/blog/hackathon/"
+  },
+  "hn:49564328": {
+    "collected_at": "2026-09-30T05:41:54.357846+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49564328",
+    "mode": null,
+    "name": "Built Carvitals for a hackathon, car service and realtime value tracking",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://carvitals.org/"
+  },
+  "hn:49570650": {
+    "collected_at": "2026-09-30T05:41:54.357837+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49570650",
+    "mode": null,
+    "name": "Mathathon – $2M Hackathon for Math",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://twitter.com/_sathvikr/status/2095989588418249093"
+  },
+  "hn:49596055": {
+    "collected_at": "2026-09-30T05:41:54.357831+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49596055",
+    "mode": null,
+    "name": "Caltech Mathathon – first hackathon ever devoted to research level mathematics",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://mathathonchallenge.com/index.html"
+  },
+  "hn:49596581": {
+    "collected_at": "2026-09-30T05:41:54.664989+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49596581",
+    "mode": null,
+    "name": "Man gets 'Flocked' by sheriff's dept. after filing complaint against deputy",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.tmj4.com/news/local-news/in-your-community/waukesha-county/lawsuit-waukesha-county-man-gets-flocked-by-sheriffs-dept-after-filing-complaint-against-deputy"
+  },
+  "hn:49598822": {
+    "collected_at": "2026-09-30T05:41:54.664979+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49598822",
+    "mode": null,
+    "name": "Capping bug bounty submissions is the wrong response in the AI era",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://9to5mac.com/2026/09/05/capping-bug-bounty-submissions-is-the-wrong-response-in-the-ai-era-of-security-threats/"
+  },
+  "hn:49616142": {
+    "collected_at": "2026-09-30T05:41:54.664970+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49616142",
+    "mode": null,
+    "name": "Three people have died during Burning Man Festival, Pershing County Sheriff says",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://news3lv.com/news/local/burning-man-festival-black-rock-city-nevada-pershing-county-deaths-washoe"
+  },
+  "hn:49628531": {
+    "collected_at": "2026-09-30T05:41:54.664961+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49628531",
+    "mode": null,
+    "name": "Show HN: Bounty Index ,compare public bug bounty programs across 6 platforms",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.bountyindex.in"
+  },
+  "hn:49657229": {
+    "collected_at": "2026-09-30T05:41:54.664952+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49657229",
+    "mode": null,
+    "name": "Mozilla pauses it's Bug Bounty Program for 3 months due to AI report volume",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://hackerone.com/mozilla/updates?type=team"
+  },
+  "hn:49660651": {
+    "collected_at": "2026-09-30T05:41:54.357823+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49660651",
+    "mode": null,
+    "name": "OpenAI pulls out of math hackathon after open letter criticizing AI math 'slop'",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://www.businessinsider.com/openai-caltech-ai-math-hackathon-backlash-anthropic-2026-9"
+  },
+  "hn:49677392": {
+    "collected_at": "2026-09-30T05:41:54.664943+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49677392",
+    "mode": null,
+    "name": "Pacing Is a Setting on a Dial",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://extinction-bounties.com/writing/pacing-is-a-setting-on-a-dial/"
+  },
+  "hn:49712224": {
+    "collected_at": "2026-09-30T05:41:54.357807+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49712224",
+    "mode": null,
+    "name": "Hackathons in the vibe coding era: our token economics experiment",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://quesma.com/blog/our-first-hackathon/"
+  },
+  "hn:49719096": {
+    "collected_at": "2026-09-30T05:41:54.357801+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49719096",
+    "mode": null,
+    "name": "For those into GenAI entertainment, I am excited about this hackathon",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://news.ycombinator.com/item?id=49719096"
+  },
+  "hn:49721998": {
+    "collected_at": "2026-09-30T05:41:54.664936+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49721998",
+    "mode": null,
+    "name": "Bug Bounty Operating Principles",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://medium.com/@JasonPuglisi/bug-bounty-principles-c379a2062614"
+  },
+  "hn:49723159": {
+    "collected_at": "2026-09-30T05:41:54.357793+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49723159",
+    "mode": null,
+    "name": "COBOL dev won .NET hackathon with help from AI",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://www.theregister.com/ai-and-ml/2026/09/15/cobol-dev-won-net-hackathon-with-help-from-ai-and-their-cio-loves-it/5296438"
+  },
+  "hn:49729492": {
+    "collected_at": "2026-09-30T05:41:54.664930+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49729492",
+    "mode": null,
+    "name": "With 1 Extension: $20K in Bounties from Anthropic, Perplexity, Google, Microsoft",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://forever.security/blog/bragjack-hijacking-5-browsers-via-built-in-ai-assistants/"
+  },
+  "hn:49760509": {
+    "collected_at": "2026-09-30T05:41:54.664922+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49760509",
+    "mode": null,
+    "name": "Intel Appears to End Its Bug Bounty Program",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.phoronix.com/news/Intel-Bug-Bounty-Program-Ends"
+  },
+  "hn:49762468": {
+    "collected_at": "2026-09-30T05:41:54.664915+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49762468",
+    "mode": null,
+    "name": "NIST Elliptic Curves Seeds Bounty (2023)",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://words.filippo.io/seeds-bounty/"
+  },
+  "hn:49762647": {
+    "collected_at": "2026-09-30T05:41:54.664908+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49762647",
+    "mode": null,
+    "name": "Let's Fix Bug Bounty",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://fixbugbounty.com/"
+  },
+  "hn:49767561": {
+    "collected_at": "2026-09-30T05:41:54.664902+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49767561",
+    "mode": null,
+    "name": "How many times will my son see my parents?",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://countyourtimes.com/our-son"
+  },
+  "hn:49771206": {
+    "collected_at": "2026-09-30T05:41:54.357782+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49771206",
+    "mode": null,
+    "name": "Show HN: Text-me: a personal agent that learns your pace",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://aiworthusing.com/agent-index/text-me"
+  },
+  "hn:49776572": {
+    "collected_at": "2026-09-30T05:41:54.664894+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49776572",
+    "mode": null,
+    "name": "Real attackers don't think in bug bounty scopes",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://rushter.com/blog/security-bb-and-scopes/"
+  },
+  "hn:49784393": {
+    "collected_at": "2026-09-30T05:41:54.357776+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49784393",
+    "mode": null,
+    "name": "Hackathons in the vibe coding era: our token economics experiment",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://quesma.com/blog/our-first-hackathon/"
+  },
+  "hn:49785135": {
+    "collected_at": "2026-09-30T05:41:54.664886+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49785135",
+    "mode": null,
+    "name": "Intel Ends Its $100k Bug Bounty Program",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.techpowerup.com/352872/intel-ends-its-usd-100-000-bug-bounty-program"
+  },
+  "hn:49788625": {
+    "collected_at": "2026-09-30T05:41:54.664879+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49788625",
+    "mode": null,
+    "name": "Using TypeSafe AI in Bug Bounty",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://www.lampysecurity.com/post/using-typesafe-ai-in-bug-bounty"
+  },
+  "hn:49795247": {
+    "collected_at": "2026-09-30T05:41:54.357770+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49795247",
+    "mode": null,
+    "name": "Open Mercato Hackathon in Wrocław – AveCezar",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://blog.cygankiewicz.com/en/cezar-agent-orchestrator/"
+  },
+  "hn:49831231": {
+    "collected_at": "2026-09-30T05:41:54.357763+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49831231",
+    "mode": null,
+    "name": "Show HN: PlaceCall (YC W26) – agentic API to call businesses and get things done",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only",
+      "ai-relevant"
+    ],
+    "url": "https://news.ycombinator.com/item?id=49831231"
+  },
+  "hn:49834800": {
+    "collected_at": "2026-09-30T05:41:54.664873+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49834800",
+    "mode": null,
+    "name": "Rising beef costs push a Top Texas BBQ spot to pull brisket from menu",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.kristv.com/news/local-news/in-your-neighborhood/san-patricio-county/sinton/rising-beef-costs-push-a-top-50-texas-bbq-spot-to-pull-brisket-from-its-everyday-menu"
+  },
+  "hn:49853122": {
+    "collected_at": "2026-09-30T05:41:54.664863+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49853122",
+    "mode": null,
+    "name": "Music for 18 Bouncy Balls",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://ianbutterworth.github.io/18-bouncy-balls/"
+  },
+  "hn:49855285": {
+    "collected_at": "2026-09-30T05:41:54.664856+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49855285",
+    "mode": null,
+    "name": "Bring cybercriminals to justice: CyberCrime Bounty Program",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.crimestoppersinternational.org/bounty"
+  },
+  "hn:49856376": {
+    "collected_at": "2026-09-30T05:41:54.664849+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49856376",
+    "mode": null,
+    "name": "A bounty system for surfacing new crypto scam patterns before they spread",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://dontkyc.me/userlogin"
+  },
+  "hn:49856624": {
+    "collected_at": "2026-09-30T05:41:54.664840+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49856624",
+    "mode": null,
+    "name": "One Silicon Valley founder bought the Bucks County school board",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://www.pbs.org/show/bucks-county-usa/"
+  },
+  "hn:49858612": {
+    "collected_at": "2026-09-30T05:41:54.357751+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49858612",
+    "mode": null,
+    "name": "Show HN: Proof-native smart contracts without a transaction archive",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://colosseum.com/arena/projects/parano1d"
+  },
+  "hn:49866308": {
+    "collected_at": "2026-09-30T05:41:54.357743+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49866308",
+    "mode": null,
+    "name": "Building a app for a hackathon for hackathon winners (Sweden 2026)",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://sidequest-snowy-seven.vercel.app/"
+  },
+  "hn:49867179": {
+    "collected_at": "2026-09-30T05:41:54.664832+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49867179",
+    "mode": null,
+    "name": "Proton Mail confirmed and paid a bounty for a spoofing bug, then left it unfixed",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://github.com/alonsovidales/protonmail-sender-spoofing"
+  },
+  "hn:49877422": {
+    "collected_at": "2026-09-30T05:41:54.664823+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49877422",
+    "mode": null,
+    "name": "Proton Mail confirmed and paid a bounty for a spoofing bug, then left it unfixed",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://github.com/alonsovidales/protonmail-sender-spoofing/"
+  },
+  "hn:49879798": {
+    "collected_at": "2026-09-30T05:41:54.664789+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49879798",
+    "mode": null,
+    "name": "Boulder County's wildfire risk eased after summer rain",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://boulderreportinglab.org/2026/09/27/boulder-countys-wildfire-risk-eased-after-summer-rain-fall-winds-and-drought-remain-concerns/"
+  },
+  "hn:49900878": {
+    "collected_at": "2026-09-30T05:41:54.357709+00:00",
+    "collector": "hackernews",
+    "deadline": null,
+    "id": "hn:49900878",
+    "mode": null,
+    "name": "YC employee blocks Jews from hackathon",
+    "notes": [],
+    "organizer": null,
+    "payout": null,
+    "platform": "HN",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "hn.algolia.com",
+    "start": null,
+    "tags": [
+      "lead-only"
+    ],
+    "url": "https://twitter.com/realAdamLevi/status/2104921647081799899"
+  },
+  "lablab:ai-genesis-2026": {
+    "collected_at": "2026-09-30T05:41:53.648744+00:00",
+    "collector": "lablab",
+    "deadline": "2026-11-02T15:00:00.000Z",
+    "id": "lablab:ai-genesis-2026",
+    "mode": null,
+    "name": "AI GENESIS",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-10-26T15:00:00.000Z",
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/ai-genesis-2026"
+  },
+  "lablab:amd-developer-hackathon-act-iii": {
+    "collected_at": "2026-09-30T05:41:53.648663+00:00",
+    "collector": "lablab",
+    "deadline": "2026-10-18T15:00:00.000Z",
+    "id": "lablab:amd-developer-hackathon-act-iii",
+    "mode": null,
+    "name": "AMD Developer Hackathon: ACT III",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-10-12T15:00:00.000Z",
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii"
+  },
+  "lablab:amd-lablab-ai-academy-challenge": {
+    "collected_at": "2026-09-30T05:41:53.648567+00:00",
+    "collector": "lablab",
+    "deadline": "2026-12-01T19:00:00.000Z",
+    "id": "lablab:amd-lablab-ai-academy-challenge",
+    "mode": null,
+    "name": "Lablab x AMD AI Academy Challenge",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-09-01T19:00:00.000Z",
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/amd-lablab-ai-academy-challenge"
+  },
+  "lablab:assemblyai-voice-agent-hackathon": {
+    "collected_at": "2026-09-30T05:41:53.648638+00:00",
+    "collector": "lablab",
+    "deadline": "2026-09-30T15:00:00.000Z",
+    "id": "lablab:assemblyai-voice-agent-hackathon",
+    "mode": null,
+    "name": "AssemblyAI - Voice Agent Hackathon",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-09-01T15:00:00.000Z",
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon"
+  },
+  "lablab:techex-amsterdam-hackathon": {
+    "collected_at": "2026-09-30T05:41:53.648687+00:00",
+    "collector": "lablab",
+    "deadline": "2026-10-19T19:00:00.000Z",
+    "id": "lablab:techex-amsterdam-hackathon",
+    "mode": null,
+    "name": "TechEx Amsterdam Hackathon - AI & Big Data Expo Europe",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-10-16T19:00:00.000Z",
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/techex-amsterdam-hackathon"
+  },
+  "lablab:vultr-hackathon": {
+    "collected_at": "2026-09-30T05:41:53.648720+00:00",
+    "collector": "lablab",
+    "deadline": "2026-11-08T22:00:00.000Z",
+    "id": "lablab:vultr-hackathon",
+    "mode": null,
+    "name": "Vultr: Agent Rush Hackathon",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-11-03T15:00:00.000Z",
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/vultr-hackathon"
+  },
+  "lablab:wearedevelopers-hackathon": {
+    "collected_at": "2026-09-30T05:41:53.648611+00:00",
+    "collector": "lablab",
+    "deadline": "2026-10-06T06:59:00.000Z",
+    "id": "lablab:wearedevelopers-hackathon",
+    "mode": null,
+    "name": "WeAreDevelopers x BAND present: Dark Factory (hackathon edition)",
+    "notes": [],
+    "organizer": "lablab.ai (+sponsors)",
+    "payout": null,
+    "platform": "lablab.ai",
+    "prize_text": null,
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "lablab.ai/event page payload",
+    "start": "2026-09-26T16:00:00.000Z",
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
+  },
+  "superteam:ai-solana-track": {
+    "collected_at": "2026-09-30T05:41:29.036749+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:ai-solana-track",
+    "mode": "online",
+    "name": "AI × Solana Track Thailand Track $10,000",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=2"
+    ],
+    "organizer": "Superteam Thailand ",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon",
+      "ai-relevant"
+    ],
+    "url": "https://earn.superteam.fun/listing/ai-solana-track"
+  },
+  "superteam:anti-brain-drain-content-bounty-colosseum-push": {
+    "collected_at": "2026-09-30T05:40:12.185430+00:00",
+    "collector": "superteam",
+    "deadline": "2026-09-30T18:14:59.000Z",
+    "id": "superteam:anti-brain-drain-content-bounty-colosseum-push",
+    "mode": "online",
+    "name": "Anti Brain Drain Content Bounty - Colosseum Push",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=4"
+    ],
+    "organizer": "Superteam Nepal",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDC",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/anti-brain-drain-content-bounty-colosseum-push"
+  },
+  "superteam:blockchain-hack-krakow-submissions": {
+    "collected_at": "2026-09-30T05:40:32.180617+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-11T21:59:59.000Z",
+    "id": "superteam:blockchain-hack-krakow-submissions",
+    "mode": "online",
+    "name": "Blockchain Hack Kraków - Submissions",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=6"
+    ],
+    "organizer": "Superteam Poland",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "2000 USDG",
+    "prize_usd": 2000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/blockchain-hack-krakow-submissions"
+  },
+  "superteam:blockchain-hack-warsaw-submissions": {
+    "collected_at": "2026-09-30T05:40:33.201854+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-11T21:59:59.000Z",
+    "id": "superteam:blockchain-hack-warsaw-submissions",
+    "mode": "online",
+    "name": "Blockchain Hack Warsaw - Submissions",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=10"
+    ],
+    "organizer": "Superteam Poland",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "2000 USDG",
+    "prize_usd": 2000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/blockchain-hack-warsaw-submissions"
+  },
+  "superteam:breakpoint-london-starter-pack": {
+    "collected_at": "2026-09-30T05:40:21.233103+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T18:29:59.999Z",
+    "id": "superteam:breakpoint-london-starter-pack",
+    "mode": "online",
+    "name": "Breakpoint London Starter Pack",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=31"
+    ],
+    "organizer": "Superteam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5500 USDC",
+    "prize_usd": 5500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/breakpoint-london-starter-pack"
+  },
+  "superteam:build-and-demo-a-mermail-agent-skill": {
+    "collected_at": "2026-09-30T05:40:29.825227+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-07T13:59:59.000Z",
+    "id": "superteam:build-and-demo-a-mermail-agent-skill",
+    "mode": "online",
+    "name": "Build and Demo a Mermail Agent Skill",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=178"
+    ],
+    "organizer": "Mermail",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDC",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty",
+      "ai-relevant"
+    ],
+    "url": "https://earn.superteam.fun/listing/build-and-demo-a-mermail-agent-skill"
+  },
+  "superteam:build-solutions-advancing-the-machine-economy-with-peaq": {
+    "collected_at": "2026-09-30T05:41:37.088984+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:build-solutions-advancing-the-machine-economy-with-peaq",
+    "mode": "online",
+    "name": "Germany side track: Advance the Machine Economy with peaq",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "peaq",
+    "payout": "on-chain USDT (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "3995 USDT",
+    "prize_usd": 3995,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/build-solutions-advancing-the-machine-economy-with-peaq"
+  },
+  "superteam:climb-our-reader-leaderboard-for-sepoct-2026": {
+    "collected_at": "2026-09-30T05:41:47.761062+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-14T22:59:59.000Z",
+    "id": "superteam:climb-our-reader-leaderboard-for-sepoct-2026",
+    "mode": "online",
+    "name": "Climb Our Reader Leaderboard for Sep/Oct 2026",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=4"
+    ],
+    "organizer": "Sempai HQ",
+    "payout": "on-chain SKR (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "250 SKR",
+    "prize_usd": 250,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/climb-our-reader-leaderboard-for-sepoct-2026"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-la-familia-track": {
+    "collected_at": "2026-09-30T05:41:33.061449+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-la-familia-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | La Familia Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "La Familia",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-la-familia-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack": {
+    "collected_at": "2026-09-30T05:40:36.294826+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | RPC Fast Infrastructure Sidetrack",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=5"
+    ],
+    "organizer": "RPC Fast",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10474 USDC",
+    "prize_usd": 10474,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-solanacze-track": {
+    "collected_at": "2026-09-30T05:40:41.799502+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-solanacze-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | SolanaCZE Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "SolanaCZE",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-solanacze-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-argentina-track": {
+    "collected_at": "2026-09-30T05:40:39.792825+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-argentina-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Argentina Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Argentina",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-argentina-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-australia-track": {
+    "collected_at": "2026-09-30T05:41:45.701377+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-australia-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Australia Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=1"
+    ],
+    "organizer": "Superteam Australia",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-australia-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-balkan-track": {
+    "collected_at": "2026-09-30T05:40:42.916507+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-balkan-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Balkan Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=1"
+    ],
+    "organizer": "Superteam Balkan",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-balkan-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-georgia-track": {
+    "collected_at": "2026-09-30T05:41:30.813211+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-georgia-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Georgia Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Georgia",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-georgia-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-germany-track": {
+    "collected_at": "2026-09-30T05:41:26.909000+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-germany-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Germany Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Germany",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-germany-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ie-track": {
+    "collected_at": "2026-09-30T05:40:37.317207+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ie-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam IE Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=1"
+    ],
+    "organizer": "Superteam Ireland",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-ie-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-india-track": {
+    "collected_at": "2026-09-30T05:41:43.540675+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-india-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam India Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=6"
+    ],
+    "organizer": "Superteam India",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-india-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-kazakhstan-track": {
+    "collected_at": "2026-09-30T05:41:34.077389+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-kazakhstan-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Kazakhstan Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=3"
+    ],
+    "organizer": "Superteam Kazakhstan",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-kazakhstan-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nepal-track": {
+    "collected_at": "2026-09-30T05:41:31.765500+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nepal-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Nepal Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Nepal",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-nepal-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nigeria-track": {
+    "collected_at": "2026-09-30T05:41:41.116878+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nigeria-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Nigeria Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=4"
+    ],
+    "organizer": "Superteam Nigeria",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-nigeria-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nl-track": {
+    "collected_at": "2026-09-30T05:41:40.100033+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-nl-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam NL Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Netherlands",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-nl-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-poland-track": {
+    "collected_at": "2026-09-30T05:41:35.090479+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-poland-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Poland Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=1"
+    ],
+    "organizer": "Superteam Poland",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-poland-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-singapore-track": {
+    "collected_at": "2026-09-30T05:40:38.773207+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-singapore-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Singapore Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Singapore",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-singapore-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ukraine-track": {
+    "collected_at": "2026-09-30T05:41:28.006046+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-ukraine-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Ukraine Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=2"
+    ],
+    "organizer": "Superteam Ukraine",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-ukraine-track"
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track": {
+    "collected_at": "2026-09-30T05:40:44.381288+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Vietnam Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=16"
+    ],
+    "organizer": "Superteam Vietnam",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track"
+  },
+  "superteam:colosseum-show-us-what-got": {
+    "collected_at": "2026-09-30T05:40:24.213279+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-04T20:59:59.000Z",
+    "id": "superteam:colosseum-show-us-what-got",
+    "mode": "online",
+    "name": "Colosseum: Show Us What You Got",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=3"
+    ],
+    "organizer": "Superteam Netherlands",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "1500 USDG",
+    "prize_usd": 1500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/colosseum-show-us-what-got"
+  },
+  "superteam:create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs": {
+    "collected_at": "2026-09-30T05:40:10.161419+00:00",
+    "collector": "superteam",
+    "deadline": "2026-09-30T22:59:59.000Z",
+    "id": "superteam:create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs",
+    "mode": "online",
+    "name": "Create a Short Video Explainer for Hisa: $5000 up for grabs.",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=91"
+    ],
+    "organizer": "Hisa",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5002 USDG",
+    "prize_usd": 5002,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs"
+  },
+  "superteam:create-twitter-post-about-the-stream-burn": {
+    "collected_at": "2026-09-30T05:40:30.910548+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-09T21:59:59.999Z",
+    "id": "superteam:create-twitter-post-about-the-stream-burn",
+    "mode": "online",
+    "name": "Create twitter Post about the STREAM burn",
+    "notes": [
+      "agentAccess=AGENT_ALLOWED",
+      "submissions=170"
+    ],
+    "organizer": "Streamflow Finance",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDC",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/create-twitter-post-about-the-stream-burn"
+  },
+  "superteam:create-x-content-on-mentioneds-team-trading-competition": {
+    "collected_at": "2026-09-30T05:40:34.219576+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-11T22:59:59.000Z",
+    "id": "superteam:create-x-content-on-mentioneds-team-trading-competition",
+    "mode": "online",
+    "name": "Create X content on Mentioned's Team Trading Competition",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=6"
+    ],
+    "organizer": "Superteam Ireland",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDG",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/create-x-content-on-mentioneds-team-trading-competition"
+  },
+  "superteam:drive-attention-to-segmento-projects": {
+    "collected_at": "2026-09-30T05:41:46.696361+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-14T21:59:59.000Z",
+    "id": "superteam:drive-attention-to-segmento-projects",
+    "mode": "online",
+    "name": "Drive Attention to Segmento Projects",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Balkan",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDG",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/drive-attention-to-segmento-projects"
+  },
+  "superteam:explain-market-tokenization-in-your-country": {
+    "collected_at": "2026-09-30T05:40:19.224435+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T18:29:59.999Z",
+    "id": "superteam:explain-market-tokenization-in-your-country",
+    "mode": "online",
+    "name": "Explain Market Tokenization in Your Country",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=47"
+    ],
+    "organizer": "Superteam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5500 USDC",
+    "prize_usd": 5500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/explain-market-tokenization-in-your-country"
+  },
+  "superteam:explain-tokenization-supercycle-for-an-asset-category": {
+    "collected_at": "2026-09-30T05:40:16.144978+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T18:29:59.999Z",
+    "id": "superteam:explain-tokenization-supercycle-for-an-asset-category",
+    "mode": "online",
+    "name": "Explain Tokenization Supercycle for an Asset Category",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=54"
+    ],
+    "organizer": "Superteam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5500 USDC",
+    "prize_usd": 5500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/explain-tokenization-supercycle-for-an-asset-category"
+  },
+  "superteam:grow-rewards-make-your-first-move": {
+    "collected_at": "2026-09-30T05:41:51.982846+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-17T06:59:59.000Z",
+    "id": "superteam:grow-rewards-make-your-first-move",
+    "mode": "online",
+    "name": "Grow Rewards: Make Your First Move",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Grow",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDG",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/grow-rewards-make-your-first-move"
+  },
+  "superteam:hype-video-for-breakpoint-london": {
+    "collected_at": "2026-09-30T05:40:20.155531+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T18:29:59.999Z",
+    "id": "superteam:hype-video-for-breakpoint-london",
+    "mode": "online",
+    "name": "Hype Video for Breakpoint London",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=12"
+    ],
+    "organizer": "Superteam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5500 USDC",
+    "prize_usd": 5500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/hype-video-for-breakpoint-london"
+  },
+  "superteam:introduce-web3-projects-to-segmento": {
+    "collected_at": "2026-09-30T05:40:28.529468+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-06T21:59:59.999Z",
+    "id": "superteam:introduce-web3-projects-to-segmento",
+    "mode": "online",
+    "name": "Introduce Web3 Projects to Segmento",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=5"
+    ],
+    "organizer": "Segmento",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "300 USDC",
+    "prize_usd": 300,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/introduce-web3-projects-to-segmento"
+  },
+  "superteam:kriptok-league-trading-content-partner": {
+    "collected_at": "2026-09-30T05:40:13.206333+00:00",
+    "collector": "superteam",
+    "deadline": "2026-09-30T20:59:59.000Z",
+    "id": "superteam:kriptok-league-trading-content-partner",
+    "mode": "online",
+    "name": "Trading Content Partner for KriptoK League | 2-Month Project",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=95"
+    ],
+    "organizer": "KriptoK",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "None USDC",
+    "prize_usd": null,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "project"
+    ],
+    "url": "https://earn.superteam.fun/listing/kriptok-league-trading-content-partner"
+  },
+  "superteam:launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market": {
+    "collected_at": "2026-09-30T05:41:53.000278+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-23T21:59:59.000Z",
+    "id": "superteam:launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market",
+    "mode": "online",
+    "name": "Launch & Trade on Daejin: Write a Twitter Thread and Create a Market",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Daejin",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "620 USDC",
+    "prize_usd": 620,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market"
+  },
+  "superteam:marketing-task-for-solana-startup-terminal-student-projects": {
+    "collected_at": "2026-09-30T05:40:27.488290+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-06T21:59:59.999Z",
+    "id": "superteam:marketing-task-for-solana-startup-terminal-student-projects",
+    "mode": "online",
+    "name": "Marketing task for Solana Startup Terminal  Student Projects",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Ukraine",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "280 USDG",
+    "prize_usd": 280,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/marketing-task-for-solana-startup-terminal-student-projects"
+  },
+  "superteam:meteora-dbc": {
+    "collected_at": "2026-09-30T05:40:47.930927+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:meteora-dbc",
+    "mode": "online",
+    "name": "Best use of Meteora's Dynamic Bonding Curve (DBC)",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=14"
+    ],
+    "organizer": "Meteora",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "20000 USDC",
+    "prize_usd": 20000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/meteora-dbc"
+  },
+  "superteam:moonyfoundationtipcards": {
+    "collected_at": "2026-09-30T05:40:15.174400+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T06:59:59.000Z",
+    "id": "superteam:moonyfoundationtipcards",
+    "mode": "online",
+    "name": "Create X Thread About Moony Tips With Flipcash",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=191"
+    ],
+    "organizer": "Moony Foundation Inc.",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "300 USDC",
+    "prize_usd": 300,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/moonyfoundationtipcards"
+  },
+  "superteam:panta-api-side-track": {
+    "collected_at": "2026-09-30T05:41:39.108787+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:panta-api-side-track",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Panta API Sidetrack",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=7"
+    ],
+    "organizer": "Panta ",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/panta-api-side-track"
+  },
+  "superteam:pitch-and-demo-your-product-at-online-demo-day": {
+    "collected_at": "2026-09-30T05:41:48.715861+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-15T20:59:59.000Z",
+    "id": "superteam:pitch-and-demo-your-product-at-online-demo-day",
+    "mode": "online",
+    "name": "Pitch & Demo Your Product at Online Demo Day",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=8"
+    ],
+    "organizer": "Superteam Ukraine",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "800 USDG",
+    "prize_usd": 800,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/pitch-and-demo-your-product-at-online-demo-day"
+  },
+  "superteam:pitch-and-demo-your-project-at-demo-day-in-kyiv": {
+    "collected_at": "2026-09-30T05:41:49.891240+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-15T20:59:59.000Z",
+    "id": "superteam:pitch-and-demo-your-project-at-demo-day-in-kyiv",
+    "mode": "online",
+    "name": "Pitch & Demo Your Project at Demo Day in Kyiv",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=3"
+    ],
+    "organizer": "Superteam Ukraine",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "1700 USDG",
+    "prize_usd": 1700,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/pitch-and-demo-your-project-at-demo-day-in-kyiv"
+  },
+  "superteam:pre-audit-credits-adevarlabs": {
+    "collected_at": "2026-09-30T05:41:44.564515+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:pre-audit-credits-adevarlabs",
+    "mode": "online",
+    "name": "$20,000 in Pre-Audit Credits for Colosseum’s Crypto World's Fair Hackathon",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=6"
+    ],
+    "organizer": "Adevar Labs Inc.",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "20000 USDC",
+    "prize_usd": 20000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/pre-audit-credits-adevarlabs"
+  },
+  "superteam:present-your-ux-at-roast-your-ux": {
+    "collected_at": "2026-09-30T05:40:25.213604+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-05T20:59:59.000Z",
+    "id": "superteam:present-your-ux-at-roast-your-ux",
+    "mode": "online",
+    "name": "Present Your UX at “Roast Your UX”",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=3"
+    ],
+    "organizer": "Superteam Ukraine",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "150 USDG",
+    "prize_usd": 150,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/present-your-ux-at-roast-your-ux"
+  },
+  "superteam:road-to-colosseum-builders-reflect-and-share": {
+    "collected_at": "2026-09-30T05:40:35.244836+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-12T16:59:00.000Z",
+    "id": "superteam:road-to-colosseum-builders-reflect-and-share",
+    "mode": "online",
+    "name": "Road to Colosseum | Builders Reflect & Share",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=46"
+    ],
+    "organizer": "Superteam Vietnam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "1000 USDC",
+    "prize_usd": 1000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/road-to-colosseum-builders-reflect-and-share"
+  },
+  "superteam:road-to-colosseum-hackathon-build-your-mvp": {
+    "collected_at": "2026-09-30T05:40:11.141867+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-05T21:59:59.000Z",
+    "id": "superteam:road-to-colosseum-hackathon-build-your-mvp",
+    "mode": "online",
+    "name": "Road to Colosseum Hackathon: Build your MVP",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=8"
+    ],
+    "organizer": "Superteam Germany",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "8000 USDG",
+    "prize_usd": 8000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/road-to-colosseum-hackathon-build-your-mvp"
+  },
+  "superteam:share-your-most-memorable-solana-breakpoint-moment-on-x": {
+    "collected_at": "2026-09-30T05:40:17.258649+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T18:29:59.999Z",
+    "id": "superteam:share-your-most-memorable-solana-breakpoint-moment-on-x",
+    "mode": "online",
+    "name": "Share Your Most Memorable Solana Breakpoint Moment on X",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=24"
+    ],
+    "organizer": "Superteam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5500 USDC",
+    "prize_usd": 5500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/share-your-most-memorable-solana-breakpoint-moment-on-x"
+  },
+  "superteam:show-tokenization-in-2050-via-x-post-thread-or-short-video": {
+    "collected_at": "2026-09-30T05:40:18.258030+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T18:29:59.999Z",
+    "id": "superteam:show-tokenization-in-2050-via-x-post-thread-or-short-video",
+    "mode": "online",
+    "name": "Show Tokenization in 2050 via X Post, Thread, or Short Video",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=45"
+    ],
+    "organizer": "Superteam",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5500 USDC",
+    "prize_usd": 5500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/show-tokenization-in-2050-via-x-post-thread-or-short-video"
+  },
+  "superteam:side-track-superteam-brasil": {
+    "collected_at": "2026-09-30T05:41:22.901828+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:side-track-superteam-brasil",
+    "mode": "online",
+    "name": "Side Track Superteam Brasil",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=2"
+    ],
+    "organizer": "Superteam Brasil",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/side-track-superteam-brasil"
+  },
+  "superteam:solana-summit-canada-creator-challenge-part-2": {
+    "collected_at": "2026-09-30T05:40:14.201094+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T03:59:59.000Z",
+    "id": "superteam:solana-summit-canada-creator-challenge-part-2",
+    "mode": "online",
+    "name": "Solana Summit Canada Creator Challenge - part 2",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=66"
+    ],
+    "organizer": "Superteam Canada",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/solana-summit-canada-creator-challenge-part-2"
+  },
+  "superteam:stealf-bounty": {
+    "collected_at": "2026-09-30T05:40:23.214182+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-02T21:59:59.000Z",
+    "id": "superteam:stealf-bounty",
+    "mode": "online",
+    "name": "Create a post about Stealf",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=424"
+    ],
+    "organizer": "Stealf",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDC",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/stealf-bounty"
+  },
+  "superteam:steve-agent-arena-launch-your-agent-and-win-500-usdc": {
+    "collected_at": "2026-09-30T05:40:22.204101+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-01T21:59:59.000Z",
+    "id": "superteam:steve-agent-arena-launch-your-agent-and-win-500-usdc",
+    "mode": "online",
+    "name": "Steve Agent Arena: Launch Your Agent & Win 500 USDC",
+    "notes": [
+      "agentAccess=AGENT_ALLOWED",
+      "submissions=55"
+    ],
+    "organizer": "OOBE Protocol",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "500 USDC",
+    "prize_usd": 500,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty",
+      "ai-relevant"
+    ],
+    "url": "https://earn.superteam.fun/listing/steve-agent-arena-launch-your-agent-and-win-500-usdc"
+  },
+  "superteam:submit-crypto-worlds-fair-project-for-turkish-builders": {
+    "collected_at": "2026-09-30T05:41:42.158539+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:submit-crypto-worlds-fair-project-for-turkish-builders",
+    "mode": "online",
+    "name": "Colosseum Crypto World’s Fair: Superteam Türkiye Local Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=4"
+    ],
+    "organizer": "Superteam Turkey",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "10000 USDG",
+    "prize_usd": 10000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/submit-crypto-worlds-fair-project-for-turkish-builders"
+  },
+  "superteam:submit-project-for-certik-security-audit-credits": {
+    "collected_at": "2026-09-30T05:40:40.789247+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:submit-project-for-certik-security-audit-credits",
+    "mode": "online",
+    "name": "Submit Project for CertiK Security Audit Credits",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "CertiK",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "100000 USDG",
+    "prize_usd": 100000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/submit-project-for-certik-security-audit-credits"
+  },
+  "superteam:submit-solana-project-to-build-for-breakpoint-track": {
+    "collected_at": "2026-09-30T05:41:23.988585+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:submit-solana-project-to-build-for-breakpoint-track",
+    "mode": "online",
+    "name": "Submit Solana Project to Build for Breakpoint Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam UK",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/submit-solana-project-to-build-for-breakpoint-track"
+  },
+  "superteam:superteam-japan-x-enxross-by-tokyo-dome-side-track": {
+    "collected_at": "2026-09-30T05:41:20.792681+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:superteam-japan-x-enxross-by-tokyo-dome-side-track",
+    "mode": "online",
+    "name": "Superteam Japan x enXross by Tokyo Dome Side Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Japan",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/superteam-japan-x-enxross-by-tokyo-dome-side-track"
+  },
+  "superteam:superteam-kazakhstan-x-idos-games-side-track": {
+    "collected_at": "2026-09-30T05:40:46.733961+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:superteam-kazakhstan-x-idos-games-side-track",
+    "mode": "online",
+    "name": "Superteam Kazakhstan x iDos Games Side Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Kazakhstan",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/superteam-kazakhstan-x-idos-games-side-track"
+  },
+  "superteam:superteam-kazakhstan-x-kase-side-track-corporate-actions-on-blockchain": {
+    "collected_at": "2026-09-30T05:41:36.060437+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:superteam-kazakhstan-x-kase-side-track-corporate-actions-on-blockchain",
+    "mode": "online",
+    "name": "Superteam Kazakhstan x KASE Side Track: Corporate Actions on Blockchain",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Kazakhstan",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "2000 USDG",
+    "prize_usd": 2000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/superteam-kazakhstan-x-kase-side-track-corporate-actions-on-blockchain"
+  },
+  "superteam:superteam-my-x-solami-build-global-buatan-malaysia": {
+    "collected_at": "2026-09-30T05:40:45.428111+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:superteam-my-x-solami-build-global-buatan-malaysia",
+    "mode": "online",
+    "name": "Superteam MY x Solami Build Global, Buatan Malaysia",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Malaysia",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "2000 USDG",
+    "prize_usd": 2000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/superteam-my-x-solami-build-global-buatan-malaysia"
+  },
+  "superteam:superteam-my-x-superscrypt-build-global-buatan-malaysia": {
+    "collected_at": "2026-09-30T05:41:25.083579+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:superteam-my-x-superscrypt-build-global-buatan-malaysia",
+    "mode": "online",
+    "name": "Superteam MY x Superscrypt Build Global, Buatan Malaysia ($7,000)",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam Malaysia",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/superteam-my-x-superscrypt-build-global-buatan-malaysia"
+  },
+  "superteam:superteamuae-sidetrack-colosseum": {
+    "collected_at": "2026-09-30T05:41:38.108407+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:superteamuae-sidetrack-colosseum",
+    "mode": "online",
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam UAE Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Superteam UAE",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/superteamuae-sidetrack-colosseum"
+  },
+  "superteam:try-a-solana-project-and-give-useful-feedback-tokengems": {
+    "collected_at": "2026-09-30T05:41:50.967458+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-17T06:59:59.000Z",
+    "id": "superteam:try-a-solana-project-and-give-useful-feedback-tokengems",
+    "mode": "online",
+    "name": "Try a Solana Project and Give Useful Feedback | TokenGems",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=25"
+    ],
+    "organizer": "TokenGems",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "350 USDC",
+    "prize_usd": 350,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/try-a-solana-project-and-give-useful-feedback-tokengems"
+  },
+  "superteam:video-editing-challenge": {
+    "collected_at": "2026-09-30T05:40:26.441868+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-06T20:59:59.000Z",
+    "id": "superteam:video-editing-challenge",
+    "mode": "online",
+    "name": "Video Editing Challenge",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=0"
+    ],
+    "organizer": "Era Wallet",
+    "payout": "on-chain USDC (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "150 USDC",
+    "prize_usd": 150,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "bounty"
+    ],
+    "url": "https://earn.superteam.fun/listing/video-editing-challenge"
+  },
+  "superteam:worlds-fair-canada": {
+    "collected_at": "2026-09-30T05:41:21.889666+00:00",
+    "collector": "superteam",
+    "deadline": "2026-10-13T06:59:00.000Z",
+    "id": "superteam:worlds-fair-canada",
+    "mode": "online",
+    "name": "Canada Prize Track",
+    "notes": [
+      "agentAccess=HUMAN_ONLY",
+      "submissions=1"
+    ],
+    "organizer": "Superteam Canada",
+    "payout": "on-chain USDG (Solana)",
+    "platform": "Superteam Earn",
+    "prize_text": "5000 USDG",
+    "prize_usd": 5000,
+    "rules_url": null,
+    "source_evidence": "earn.superteam.fun/api/listings?tab=open",
+    "start": null,
+    "tags": [
+      "hackathon"
+    ],
+    "url": "https://earn.superteam.fun/listing/worlds-fair-canada"
+  }
+}

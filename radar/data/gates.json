@@ -1,0 +1,930 @@
+{
+  "genai:open-agent-2026": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "e aged 16 or older at the start of the build window. - Employees of the organizer and of judging sponsors may participate but are not eligible for cash prizes. - One account per participant. Duplicate accounts disqualify the whole team. ## 2. Teams - Teams of one to five",
+          "- Building starts 15 October 2026 at 00:00 UTC and ends 20 October 2026 at 23:45 UTC. - Work committed before the window opens is not eligible, except for clearly declared pre-existing components. - Time zones do not extend the window; all deadlines are UTC. ## 5. What yo"
+        ],
+        "positive_evidence": [
+          "## 1. Eligibility - Open worldwide to anyone aged 16 or older at the start of the build window. - Employees of the organizer and of judging sponsors may participate"
+        ],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "r solo and use Team Finder on the platform; most teams form during the first evening. You can also compete alone. Q: Is it really fully online? A: Yes. Kickoff, office hours, judging and results all happen online in Discord and on the platform. No travel, no local chapter"
+        ],
+        "positive_evidence": [],
+        "verdict": "PASS"
+      },
+      "paid_action": {
+        "evidence": [
+          "lts all happen online in Discord and on the platform. No travel, no local chapter required. Q: Can I use closed-source models and paid APIs? A: Yes, including sponsor credits. Just declare anything pre-existing in your submission so judges can see what you built durin"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "payout": {
+        "evidence": [
+          "r at the start of the build window. - Employees of the organizer and of judging sponsors may participate but are not eligible for cash prizes. - One account per participant. Duplicate accounts disqualify the whole team. ## 2. Teams - Teams of one to five people. Solo en",
+          "all deadlines are UTC. ## 5. What you can use - Any language, framework, model or cloud, including closed-source APIs and sponsor credits. - Pre-existing open-source libraries are fine. Pre-existing product code must be declared in the submission form. - Generated co",
+          "unties are decided by that sponsor's panel. - Ties are resolved on the Impact score, then on submission timestamp. ## 8. Prizes - Prize pool up to $20,000, paid by bank transfer within 30 days of the results announcement. - Cash prizes are split equally among team membe"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [
+          "rd server and community updates. You land in your hackathon workspace with the schedule, resources and submission form. Q: How do students take part as a group? A: University organisers can request a cohort code so every registration from a campus is grouped together"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      }
+    },
+    "name": "Open Agent Hackathon 2026",
+    "text_chars": 4047
+  },
+  "lablab:ai-genesis-2026": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "athon that brings AI builders together from around the world, starting online and culminating live. Online Build & Collaboration: On-site Build Day in Dubai: Date TBA, for selected participants Live Pitching & Winners Announcement: Date TBA, at the /function1 Confere",
+          "ays, then showcase your work during the conference alongside the ecosystem shaping the future of AI. Whether you join remotely or on-site, AI Genesis is where ideas turn into real demos on a global stage. In this new edition, participants are challenged to go beyond"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "student": {
+        "evidence": [
+          "am. when someone you invite submits a project. You also get Conference & Exhibition founders, developers, researchers, investors, students, and policymakers from across the AI ecosystem. Built around the belief that AI should be accessible and impactful, /function1 ex"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      }
+    },
+    "name": "AI GENESIS",
+    "text_chars": 4762
+  },
+  "lablab:amd-developer-hackathon-act-iii": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [
+          "agents and high-performance AI applications on AMD GPUs in the cloud I Prize Pool $6,000+ 🌎 Hybrid Hackathon | 💻 Online Build: 12-18 October 2026 | On-site phase: 17-18 October 2026 in Rome, Milan, and Imperia To participate in the hackathon, simply click Sign u"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "country": {
+        "evidence": [
+          "team + 500,000 bonus credits 3 months of the Evolus Developer plan for the team + 250,000 bonus credits Values at list price, VAT excluded: the Evolus Developer plan costs €29 per month and bonus credits are valued at €0.23 per 1,000. Please note: participation in lab",
+          "Evolus) AMD tech cards sourced from the ACT I/ACT II \"Technology & Access\" sections and AMD's own developer pages. Deliberately EXCLUDED per brief: all credit amounts, model/API partners (Fireworks, Gemma, Hugging Face, Qwen, Native.Builder), DeepLearning.AI perk. E"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "rformance AI applications on AMD GPUs in the cloud I Prize Pool $6,000+ 🌎 Hybrid Hackathon | 💻 Online Build: 12-18 October 2026 | On-site phase: 17-18 October 2026 in Rome, Milan, and Imperia To participate in the hackathon, simply click Sign up with AMD. If you are",
+          "developers, founders, engineers and builders who want to push what’s possible with AI on real infrastructure. If approved for the on-site experience, you'll also have the opportunity to showcase your project live. Travel and accommodation will not be covered. Unlocki",
+          "tion. One hackathon. Three cities. One special weekend in Italy. This edition of the AMD Developer Hackathon comes with a special on-site experience across three locations in Italy: Rome, Milan, and Imperia The hackathon remains open online throughout the event, whil"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "paid_action": {
+        "evidence": [
+          "t code, shared at kickoff: a free workspace until October 31, 2026, for up to 6 team members, with 50,000 platform credits and no credit card. Connect your model, create an API key and start building. Evolus Studio: download link shared before the kickoff; sign in with y"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "payout": {
+        "evidence": [
+          "thon | lablab.ai AMD Developer Hackathon: ACT III Build AI agents and high-performance AI applications on AMD GPUs in the cloud I Prize Pool $6,000+ 🌎 Hybrid Hackathon | 💻 Online Build: 12-18 October 2026 | On-site phase: 17-18 October 2026 in Rome, Milan, and Imperia T",
+          "ble through the OpenAI-compatible endpoint. Document reading, AI Tools and knowledge indexing run on Evolus and use the workspace credits. Access, free for every participant and sign in with GitHub, Google, Apple or Microsoft. Enter the event code, shared at kickoff:",
+          "Enter the event code, shared at kickoff: a free workspace until October 31, 2026, for up to 6 team members, with 50,000 platform credits and no credit card. Connect your model, create an API key and start building. Evolus Studio: download link shared before the kick"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [
+          "or updates, highlights and future opportunities. [organizer HTML comments] $ /$ $! /$ $! /$ $ /$ $! /$ VENUE LOGOS LINK CAMPUS UNIVERSITY SMARTCITYLAB MILANO IMPERIAWARE AMD DEVELOPER HACKATHON: ACT III â€” 03 CHALLENGE Brief adapted from the ACT I Challenge"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      }
+    },
+    "name": "AMD Developer Hackathon: ACT III",
+    "text_chars": 16835
+  },
+  "lablab:amd-lablab-ai-academy-challenge": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "h blogs and/or tutorials, referring others to the program, and for constructive participation on the LabLab.ai Discord channel. Prize pool $5000, 3 prizes. AMD Certificate of completion. A running challenge, not a one-off event The Lablab x AMD AI Academy Challenge ru",
+          "lls into action at one of our future hackathons, innovating and creating solutions. AMD AI Developer Program members unlock cloud credits, training resources, expert access, and opportunities to get their work recognized — on top of everything you earn through the Ch",
+          "nities to get their work recognized — on top of everything you earn through the Challenge itself. ☁️ $100 AMD Developer Cloud GPU Credits members receive $100 in cloud credits redeemable on AMD Developer Cloud with powerful AMD GPUs to start building. courses, techni"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Lablab x AMD AI Academy Challenge",
+    "text_chars": 30616
+  },
+  "lablab:assemblyai-voice-agent-hackathon": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "ion stays open for the whole build window, so you can start on day one or pick the project up halfway through and still submit. 🌍 Fully online hackathon. Join and build from anywhere in the world. ✉️ Have a company email? If you have a company email, we encourage you to u"
+        ],
+        "positive_evidence": [],
+        "verdict": "PASS"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "ckathon The fastest path to a working voice agent 🌎 Online Hackathon | 💻 Month-long challenge | Dates: Sep 1–30, 2026 | 🏆 $10,000 Prize Pool ($5k cash + $5k in AAI credits) A month-long online challenge run by lablab.ai together with AssemblyAI, the Voice AI infrastruct",
+          "r your voice agent architecture realtime speech-to-text api Sign up for an API account Sign up using this link to claim your free credits. Please make sure to accept cookies during sign-up. If you already have an account, log out first, then use the link above to log",
+          "t cookies during sign-up. If you already have an account, log out first, then use the link above to log back in and activate your credits. GitHub — quickstart guides 5 winners · $1,000 cash + $1,000 in API credits each Five winners will each receive $1,000 in cash an"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "AssemblyAI - Voice Agent Hackathon",
+    "text_chars": 5539
+  },
+  "lablab:techex-amsterdam-hackathon": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "d AI applications across Europe's largest enterprise technology expo 🌎 Hybrid Hackathon | 💻 Online Build: October 16–19, 2026 | 📍 On-site: October 19–20, 2026 The official hackathon of AI & Big Data Expo Europe, organized by TechEx Events and lablab.ai. Build AI appl",
+          "ansformation, and data infrastructure, then showcase your project live at one of Europe's largest enterprise technology events. 📍 On-site Venue (October 19–20): Europaplein 24, 1078 GZ Amsterdam, Netherlands If approved for the on-site experience, you'll also have th",
+          "spanning multiple industries and technology domains. From online building to live demos The hackathon is expected to combine with on-site activities at RAI Amsterdam, allowing teams to build, showcase, and connect with the wider TechEx community. The exact event form"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "TechEx Amsterdam Hackathon - AI & Big Data Expo Europe",
+    "text_chars": 6927
+  },
+  "lablab:vultr-hackathon": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "Hackathon Build AI agents that do real work — safely sandboxed on Vultr. 🌎 Hybrid Hackathon | 💻 Online Build: 3-8 November 2026 | On-site phase: 8 November 2026 📍 If approved for the on-site experience, you'll also have the opportunity to showcase your project live.",
+          "bout this hackathon. Chat with mentors and the team. when someone you invite submits a project. You also get 3 – 8 November, 2026 On-site · Salt Lake City, UT $9,000 + $5,000 in credits Build a web-based agent that performs real work — writing and running code, or op",
+          "e City comes from the original banner, where it was bundled with the KubeCon dates — re-confirm it still holds for the 8 November on-site day. Venue unknown. Year assumed 2026. Prize pool line is VULTR HACKATHON — 03 CHALLENGE Everything in this section comes from"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "eam. when someone you invite submits a project. You also get 3 – 8 November, 2026 On-site · Salt Lake City, UT $9,000 + $5,000 in credits Build a web-based agent that performs real work — writing and running code, or operating a real browser — with every action conta",
+          "Containment-first is required. An agent that only chats is a demo; an agent that executes safely is a product. $200 in free Vultr credits Blast Radius Zero: Safe Agent Execution on Vultr Build a web-based agent that performs real work — writing and running code, or o",
+          "on code is still to be confirmed and will be published here before the kickoff. Walk through redemption step by step in the Vultr credits redemption video Serverless Inference docs Technology partners will be listed here before the kickoff. To be eligible for partner"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Vultr: Agent Rush Hackathon",
+    "text_chars": 10777
+  },
+  "lablab:wearedevelopers-hackathon": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "x BAND present AI Dark Factory (hackathon edition) Sep 26 – Oct 5, 2026 Kickoff 09:00 PDT · Close 23:59 PDT Fully online · 1 week Open to everyone, anywhere Build a software factory in BAND Desktop: a band of coding agents that plans work, implements it, hands off evidence and checks i",
+          "tracks, four graded stages, one week to build. What you submit is the factory, the run that produced the result, and the result. Open to everyone, anywhere in the world. There is no on-site coding room. 🎟️ Sign up for the hackathon and you are eligible for a free ticket to WeAreDevelopers World Co"
+        ],
+        "positive_evidence": [],
+        "verdict": "PASS"
+      },
+      "kyc": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "onsite": {
+        "evidence": [
+          "you submit is the factory, the run that produced the result, and the result. Open to everyone, anywhere in the world. There is no on-site coding room. 🎟️ Sign up for the hackathon and you are eligible for a free ticket to WeAreDevelopers World Congress North America",
+          "ates, format, pool and the ticket perk are copied from the doc; \"eligible for\" is deliberate — do not change it to \"you get\". \"No on-site coding room\" is from Hack Details → Format. .dfk-top-sub.full-row { grid-column: 1 / -1; min-height: auto; } <span class=\"dfk",
+          "span class=\"dfk-top-ed\">(hackathon edition)</span> <p>🌍 <strong> .</strong> Open to everyone, anywhere in the world. There is no on-site coding room.</p> <h3>Four stages</h3> <p>You build against a written specification released at kickoff. Both tracks follow the"
+        ],
+        "positive_evidence": [
+          "o get WeAreDevelopers x BAND present AI Dark Factory (hackathon edition) Sep 26 – Oct 5, 2026 Kickoff 09:00 PDT · Close 23:59 PDT Fully online · 1 week Open to everyone, anywhere Build a software factory in BAND Desktop: a band of coding agents that plans work, implements",
+          "AND account The official hackathon of WeAreDevelopers World Congress North America San Jose, Sep 23–25. The hackathon itself runs fully online, and every hackathon sign-up is eligible for a free ticket to the congress. BAND has a booth there, and a surprise is waiting for"
+        ],
+        "verdict": "RISK"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "A restaurant reservation system, like OpenTable a table must never be double-booked, under concurrency, retries and time zones. A wallet and payments app, like Venmo money must never be created, destroyed or spent twice, under concurrent transfers, retries and round",
+          "-source model inference to agent workflows Power reasoning, generation and specialized-model use cases $25 of Feather Per-Request credits per participant — no model size limit, context up to 256K up to 1,000 participants, first come, first served the promo code and s",
+          "p takes a card. If you do not plan to keep using Featherless after the hackathon, cancel before the next billing cycle. 💡 Partner credits, promo codes and setup guides are provided directly by each technology partner and may depend on availability, eligibility and pl"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "WeAreDevelopers x BAND present: Dark Factory (hackathon edition)",
+    "text_chars": 19223
+  },
+  "superteam:build-and-demo-a-mermail-agent-skill": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "Build and Demo a Mermail Agent Skill What Is Mermail? Mermail gives AI agents their own inbox and a user-controlled Agent Wallet through MCP. It provides a foundation for builders and creators to develop new agent skills, workflows, and experiences. What yo",
+          "ld a reusable Mermail Agent Skill and create a 2–5 minute video proving that it works. Your skill may use Mermail’s inbox, Agent Wallet, or both. We encourage original ideas that expand what AI agents can accomplish with Mermail. What to Build Create a well-docum",
+          "duce the demonstrated workflow. Innovation: Introduces a creative or valuable agent capability. Prize Structure A total of 500 USDC in prizes: 1st Place: 250 USDC 2nd Place: 100 USDC 3rd Place: 50 USDC Most Innovative Skill: 50 USDC Best Video Demonstratio"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Build and Demo a Mermail Agent Skill",
+    "text_chars": 2233
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-rpc-fast-infrastructure-sidetrack": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [
+          "About RPC Fast RPC Fast provides high-performance Solana mainnet RPC and data streaming infrastructure , from lightweight endpoints for early-stage development to production-grade infrastructure",
+          "engagement will be rewarded with 1-2 months of low latency RPC and gRPC infrastructure access. Note: RPC Fast currently provides mainnet endpoints only, with infrastructure hosted in Frankfurt (FRA). Offer period: September 15 – November 15. This timeline is for R"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "payout": {
+        "evidence": [
+          "h the community. Ready to build? Let's support each other. Reward Structure Total reward pool: ~$10,500 in RPC infrastructure credits distributed across 21 selected teams. Each team is eligible for an equivalent of ~$500 prize. Each selected team receives one o",
+          "xclusively in the form of RPC Fast subscription plans assigned to the selected teams. Prizes are not paid or transferred as cash, cryptocurrency, or other monetary funds. Prize activation Prize subscriptions will be assigned to selected teams within two (2) weeks after th",
+          "It is the participant's responsibility to use the awarded subscription during its assigned period. Unused subscription time, CU credits, or other included resources cannot be carried over, rescheduled, extended, or exchanged for cash, cryptocurrency, or any other m"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Colosseum Crypto World's Fair Hackathon | RPC Fast Infrastructure Sidetrack",
+    "text_chars": 4765
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-solanacze-track": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "uilder community in Czechia, connecting developers, students, founders and teams across the Czech Republic and Slovakia. For the Crypto World's Fair Hackathon, we're bringing builders together through our Zero to Hero 2.0 initiative, including university and commun",
+          "y and community events across Czechia and Slovakia and our five-day Build Station in Prague. This track provides a $10,000 local prize pool for the strongest eligible projects from our community competing in the global Colosseum Crypto World's Fair Hackathon. Track Sc",
+          "gible projects from our community competing in the global Colosseum Crypto World's Fair Hackathon. Track Scope This is a local prize pool for Czech and Slovak teams participating in Colosseum's Crypto World's Fair Hackathon. You build your project for the global hac"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [
+          "About SolanaCZE SolanaCZE is the local Solana builder community in Czechia, connecting developers, students, founders and teams across the Czech Republic and Slovakia. For the Crypto World's Fair Hackathon, we're bringing builders toget",
+          "akia. For the Crypto World's Fair Hackathon, we're bringing builders together through our Zero to Hero 2.0 initiative, including university and community events across Czechia and Slovakia and our five-day Build Station in Prague. This track provides a $10,000 local p",
+          "s 🥇 1st Place - $4,000 🥈 2nd Place - $2,500 🥉 3rd Place - $1,500 4th Place - $750 5th Place - $250 Special Awards 🎓 Best Student Team - $500 🎤 Best Demo Day Pitch - $500 Total Prize Pool: $10,000 Special awards are cumulative: a project may win a main pl"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      }
+    },
+    "name": "Colosseum Crypto World's Fair Hackathon | SolanaCZE Track",
+    "text_chars": 6461
+  },
+  "superteam:colosseum-crypto-worlds-fair-hackathon-superteam-vietnam-track": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] Listing is Solana-Foundation-paid (isFndnPaying=true). FAQ: 'the winner needs to complete KYC to receive money for Superteam / Solana-sponsored listings.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "FAIL"
+      },
+      "onsite": {
+        "evidence": [
+          "osystem, this is your chance to build something real — and take it further. Here’s what you can expect: We will run workshops in person alongside online. Our mentor pool includes local and international experts. Pitch day is in person, but teams unable to travel ca"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "workshops, mentorship, ecosystem resources, and direct feedback from experienced builders and industry leaders. With a $10,000 cash prize pool , infrastructure credits, and access to the wider Solana builder ecosystem, this is your chance to build something real — an",
+          "Pitch your product in front of the judging panel, get real feedback, and show what you’ve built. Infrastructure Support: Access credits, discounts, and developer resources from infrastructure partners across wallets, RPCs, security, data, payments, and more. Priz",
+          "ers across wallets, RPCs, security, data, payments, and more. Prizes & Builder Resources Road to Colosseum features a $10,000 cash prize pool , plus infrastructure credits, mentorship, security, and go-to-market support from ecosystem partners and innovation centers"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Colosseum Crypto World's Fair Hackathon | Superteam Vietnam Track",
+    "text_chars": 4177
+  },
+  "superteam:launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "owned prediction market network built on Solana and part of the Superteam ecosystem. Launch a market on any real-world outcome — crypto prices, sports, culture. Take a position on Yes or No — prices move in real time with the crowd's conviction. Trust the result",
+          "ition stays yours: if your call is right, you earn from the market on top of any bounty prize. Step by Step Connect your Solana wallet at daejin.xyz . Take a position (min. $5) in one of the featured markets. Take a screenshot and note why you picked Yes or No.",
+          "rom steps 2–4. Tag @Daejinxyz and @Superteam, then publish. Submit your thread link on Earn, plus the link to your market. Your wallet address is collected with the submission, so don't post it in the thread. Eligibility A thread is judged only if it meets all o"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Launch & Trade on Daejin: Write a Twitter Thread and Create a Market",
+    "text_chars": 3332
+  },
+  "superteam:meteora-dbc": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [
+          "Impact potential : Could this scale and create a new class of assets? Traction/Volume : We prefer projects who have gone live on mainnet and have people actively using their product NOTE: For projects that are close-sourced, please add Github ID dannxbt in with Rea"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "payout": {
+        "evidence": [
+          ": https://t.me/meteora_dev Discretionary Grants For Builders To further empower Solana builders during Stocklana and Colosseum Crypto World’s Fair, select qualified teams and hackathon winners building innovative AI or RWA use cases with Meteora DBC during this p"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Best use of Meteora's Dynamic Bonding Curve (DBC)",
+    "text_chars": 3326
+  },
+  "superteam:panta-api-side-track": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "on market functionality including market discovery, market data, market creation, trading, positions, and claims. For Colosseum Crypto World's Fair, we are offering a $5,000 USDG Sidetrack prize pool for builders who use Panta API to explore what prediction market",
+          "applications, and experiences beyond a traditional prediction market platform. Submit your project to both the official Colosseum Crypto World's Fair hackathon and the Panta Sidetrack on Superteam Earn. Submitting to the Panta Sidetrack does not replace your offi",
+          "that help users understand and interact with prediction markets. Sports & Events: Build products around sports, entertainment, crypto, elections, news, or other real-world events. Social Prediction: Build social products where communities can create, discover,"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Colosseum Crypto World's Fair Hackathon | Panta API Sidetrack",
+    "text_chars": 5565
+  },
+  "superteam:pre-audit-credits-adevarlabs": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "payout": {
+        "evidence": [
+          "Audit in-kind security services ($4,000 pre-audit value each across 5 teams) to Solana/Rust projects participating in Colosseum's Crypto World's Fair hackathon. Apply, answer a few questions, and tweet about it for a chance to receive a comprehensive pre-audit revie",
+          "ce to receive a comprehensive pre-audit review from a SEAL-Certified audit firm. Eligibility Must have submitted to Colosseum Crypto World’s Fair Open to any eligible Solana/Rust submission to Colosseum Crypto World's Fair Solana/Rust submissions only How it",
+          "bs on X. Suggested copy: “ Just submitted our project to the @AdevarLabs Security Sidetrack on @superteamearn for @Colosseum’s Crypto World’s Fair Hackathon Excited for the chance to receive a full security Pre-Audit for our project. [project link] ” Reward:"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "$20,000 in Pre-Audit Credits for Colosseum’s Crypto World's Fair Hackathon",
+    "text_chars": 3044
+  },
+  "superteam:steve-agent-arena-launch-your-agent-and-win-500-usdc": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "ompleted before the competition closes Wash trading and self-dealing are prohibited Artificial transaction or XP farming may be excluded Trades must come from your Steve Agent wallet Each listed ecosystem bonus can only be earned once per agent OOBE Protocol may"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [
+          "ns, social and creator activity, and optional ecosystem actions. Your XP and leaderboard position are tracked automatically. 4. Complete at Least 5 Trades Execute at least 5 qualifying trades through your Steve Agent on Solana Mainnet. Eligible activity includes: Adrena perps Phoenix perps Jupiter or Magicblock swap",
+          "Rewards will be distributed in USDC on Solana. Get Started Go to steve.oobeprotocol.ai Create your Steve Agent Connect X Complete at least 5 qualifying trades Reach 2,000 Arena XP Explore bonus missions and climb the Arena Submit your entry through Superteam Earn Use the Sponsored Fr"
+        ],
+        "positive_evidence": [],
+        "verdict": "FAIL"
+      },
+      "payout": {
+        "evidence": [
+          "Steve Agent Arena: Compete for 500 USDC About the Steve Agent Arena Bounty Create your own agent, put it to work across Solana, earn XP and compete for the top of the",
+          "your own agent, put it to work across Solana, earn XP and compete for the top of the Arena. Your agent comes with its own Solana wallet and access to 400+ tools for trading, market data, swaps, risk management, automation, payments and more. Your agent, your wallet",
+          "ve Agent on Solana Mainnet. Eligible activity includes: Adrena perps Phoenix perps Jupiter or Magicblock swaps of at least 20 USDC Trades must be executed through your agent wallet. Wash trading, self-dealing and artificial transaction loops do not count. Y"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Steve Agent Arena: Launch Your Agent & Win 500 USDC",
+    "text_chars": 7464
+  },
+  "superteam:submit-project-for-certik-security-audit-credits": {
+    "fetch_status": 200,
+    "gates": {
+      "age": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "country": {
+        "evidence": [
+          "[platform policy] Colosseum ToS excludes residents/nationals of Crimea, Cuba, Iran, North Korea, Syria + any US/UK/EU-sanctioned country. (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "kyc": {
+        "evidence": [
+          "[platform policy] Colosseum ToS: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent.' (src: https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf)",
+          "[platform policy] External-sponsor listing: paid to your Superteam Earn wallet, but FAQ: 'Occasionally, some sponsors might ask for invoices, KYC, etc.' (src: https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq)"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "onsite": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      },
+      "paid_action": {
+        "evidence": [
+          "rojects emerging from the Crypto World's Fair hackathon by providing critical security audits, helping them launch confidently on mainnet, and attracting further investment. Hackathon Track Scope This track is for any team submitting a project to the Crypto World's",
+          "ckathon Track Scope This track is for any team submitting a project to the Crypto World's Fair hackathon that plans to launch on mainnet and raise capital post-hackathon. We're looking for projects building for the long run, especially those handling user funds or o",
+          "es, and your target users. Details on the programs/contracts you want audited, including approximate line count, and your target mainnet launch date. Your 6–12 month roadmap, covering planned product releases, integrations, and key milestones (like token launches,"
+        ],
+        "positive_evidence": [],
+        "verdict": "RISK"
+      },
+      "payout": {
+        "evidence": [
+          "in the blockchain security space, combining academic expertise with enterprise-grade solutions to protect the web3 world. For the Crypto World's Fair hackathon, we're excited to support builders by providing essential security resources. Mission Our goal is to bac",
+          "to support builders by providing essential security resources. Mission Our goal is to back promising projects emerging from the Crypto World's Fair hackathon by providing critical security audits, helping them launch confidently on mainnet, and attracting further",
+          "tly on mainnet, and attracting further investment. Hackathon Track Scope This track is for any team submitting a project to the Crypto World's Fair hackathon that plans to launch on mainnet and raise capital post-hackathon. We're looking for projects building for"
+        ],
+        "positive_evidence": [],
+        "verdict": "INFO"
+      },
+      "student": {
+        "evidence": [],
+        "positive_evidence": [],
+        "verdict": "UNKNOWN"
+      }
+    },
+    "name": "Submit Project for CertiK Security Audit Credits",
+    "text_chars": 3264
+  }
+}

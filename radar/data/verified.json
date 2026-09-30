@@ -1,0 +1,483 @@
+{
+  "genai:open-agent-2026": {
+    "name": "Open Agent Hackathon 2026",
+    "organizer": "GenAI Works (sponsors: NVIDIA, Zetaris)",
+    "url": "https://hackathon.genai.works/event/open-agent-hackathon-2026",
+    "tier": "A",
+    "status": "SHORTLIST",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "registration_closes": "2026-10-13T00:00:00Z",
+      "build_window": "2026-10-15T00:00:00Z -> 2026-10-20T23:45:00Z",
+      "results": "2026-10-30T16:00:00Z"
+    },
+    "prize": {
+      "text": "Up to $20,000",
+      "distribution": "UNKNOWN (only 'up to'; per-track split not published)",
+      "payout": "bank transfer within 30 days of results",
+      "currency_crypto": false
+    },
+    "gates": {
+      "remote": {
+        "v": "PASS",
+        "ev": "Fully online. 'No travel, no local chapter required.'",
+        "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
+      },
+      "country": {
+        "v": "PASS(as stated)",
+        "ev": "'Open worldwide to anyone aged 16 or older at the start of the build window.' No exclusion list. Caveat: sanctions law can still block bank payout; not addressed in rules.",
+        "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "No KYC/ID/tax wording anywhere in rules or FAQ (absence of evidence, NOT a pass). Bank-transfer payout implies bank-side checks.",
+        "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
+      },
+      "payout": {
+        "v": "RISK",
+        "ev": "'Prize pool up to $20,000, paid by bank transfer within 30 days of the results announcement.' 'Taxes and any local charges are the recipient's responsibility.' No crypto option stated.",
+        "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
+      },
+      "paid_actions": {
+        "v": "PASS",
+        "ev": "'Does it cost anything to enter? No. Registration, the platform workspace, mentor office hours and submission are all free.' Paid APIs allowed but not required. Submission may be a container image + one-command run (no paid hosting needed).",
+        "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
+      },
+      "student": {
+        "v": "PASS",
+        "ev": "Open to 'students to senior engineers'; solo allowed and competes in same pool.",
+        "src": "https://hackathon.genai.works/event/open-agent-hackathon-2026"
+      }
+    },
+    "competition": {
+      "registered": "1,200 at fetch time, 12 days before registration closes",
+      "note": "Registration != submission; conversion unknown. 4 tracks + bonus Tinkerer track."
+    },
+    "judging": "Impact 30, Technical 20, Innovation 15, Demo 15, Product&UX 10, Sponsor tech 10 (+ up to 30 bonus for open-sourcing, shipping evals, documenting failure modes)",
+    "build_fit": {
+      "ai_assisted": "High: 'Generated code is allowed and expected'",
+      "mvp_days": "2-3 of the 6-day window",
+      "polish_days": "all 6",
+      "difficulty": "medium"
+    },
+    "submission": [
+      "public repo (or private with access grant)",
+      "running deployment OR container image + one-command run",
+      "demo video <=3 min",
+      "written failure-modes description"
+    ],
+    "reuse": "High (reusable agent + evals + writeup); strong X proof-of-work (bonus points reward publishing evals/failure modes)",
+    "risks": [
+      "Prize 'up to' -> real amounts may be much lower",
+      "Bank-transfer payout rail unverified for Saleh's country",
+      "KYC at payout UNKNOWN",
+      "Tracks lean to data/knowledge-graph/context; sponsor tech may matter for score",
+      "1,200+ registrants"
+    ],
+    "unresolved": [
+      "Payout alternatives (USDC/PayPal/Payoneer)?",
+      "Any ID/tax forms at payout?",
+      "Per-track prize amounts",
+      "What datasets/sponsor APIs are provided at kickoff"
+    ],
+    "next": [
+      "Send payout/KYC email (draft in radar/outreach/genai-works.md)",
+      "Register before Oct 13 00:00 UTC (free; needs no card per FAQ)"
+    ]
+  },
+  "lablab:wearedevelopers-hackathon": {
+    "name": "Dark Factory (WeAreDevelopers x BAND) - lablab.ai",
+    "organizer": "BAND + WeAreDevelopers, run on lablab.ai",
+    "url": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon",
+    "tier": "A",
+    "status": "SHORTLIST-URGENT",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-09-26T16:00:00Z -> 2026-10-06T06:59:00Z (= Oct 5 23:59 PDT)",
+      "results": "TBA"
+    },
+    "prize": {
+      "text": "$6,000 cash pool: per track 1st $1,500 / 2nd $1,000 / 3rd $500 (2 tracks) + $300 Featherless credits",
+      "distribution": "Places awarded only if enough eligible entries: >=1 entry for 1st, >=4 for 2nd, >=6 for 3rd; unawarded prizes NOT redistributed",
+      "payout": "UNKNOWN. Page: 'Prize distribution may take up to 90 days.' Organizer HTML comment: 'Payout path (BAND vs lablab) not on the page - internal.'",
+      "currency_crypto": null
+    },
+    "prize_evidence": "Amount is NOT in the visible page text; it comes from an organizer HTML comment in the page payload, corroborated by public search-result text (per-track 1500/1000/500, '$6,000+').",
+    "gates": {
+      "remote": {
+        "v": "PASS",
+        "ev": "'The hackathon is fully online and open to everyone, anywhere in the world.' 'There is no on-site coding room.'",
+        "src": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
+      },
+      "country": {
+        "v": "PASS(as stated)",
+        "ev": "'Open to everyone, anywhere in the world.' lablab platform Terms/Rule Book NOT readable (client-rendered) -> platform-level exclusions UNKNOWN.",
+        "src": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "Nothing on page. lablab Rule Book + Terms of Use could not be fetched (JS-rendered, Builder.io returned empty). Prize path unknown.",
+        "src": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
+      },
+      "payout": {
+        "v": "UNKNOWN",
+        "ev": "See prize.payout. Rule-book text via search: 'organizers contact winning teams to gather delivery details'; 'up to 90 days'.",
+        "src": "https://lablab.ai/hackathon-rules (via search snippet)"
+      },
+      "paid_actions": {
+        "v": "PASS(conditional)",
+        "ev": "'Create your free BAND account (no card needed)'. Models: 'use your Featherless credits or bring your own model-provider access' (Featherless 'signup takes a card' - optional). Cost = your own existing LLM/coding-agent usage.",
+        "src": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
+      },
+      "student": {
+        "v": "PASS",
+        "ev": "Open to everyone; teams 1-6 (solo allowed).",
+        "src": "https://lablab.ai/ai-hackathons/wearedevelopers-hackathon"
+      }
+    },
+    "competition": {
+      "known_public_repos": [
+        "metismuse/dark-factory",
+        "Alejdro83/pocketful",
+        "Ccyclop/pocketful-dark-factory"
+      ],
+      "note": "Featherless credit cap of 1,000 participants suggests ~1,000-scale signups (inference). Low placement bar: 1st place needs only 1 eligible entry."
+    },
+    "judging": "60/100 = the factory itself (generic reusable mandates, how far through 4 stages, docs); 40/100 = what it shipped. Harness-scored + judges.",
+    "build_fit": {
+      "ai_assisted": "Native: the task IS orchestrating coding agents",
+      "mvp_days": "stage 1 in ~2 days if spec is clear",
+      "polish_days": "~5.5 days remain",
+      "difficulty": "medium-high (new tool BAND Desktop, strict harness)"
+    },
+    "submission": [
+      "3 distinct coding-agent seats in BAND Desktop with generic mandate files",
+      "one folder per completed stage (min: complete stage 1)",
+      "BAND room export + video WITH room recording",
+      "must build/serve from clean container with NO outbound network"
+    ],
+    "disqualifiers": [
+      "mandate naming track-specific detail",
+      "video without BAND room recording",
+      "service that does not start from a clean container"
+    ],
+    "reuse": "High: reusable multi-agent software factory; excellent X content (build-in-public, harness results)",
+    "risks": [
+      "Only ~5.7 days left; spec released Sep 26 (already running)",
+      "Payout path/KYC unknown",
+      "New platform (BAND Desktop) learning curve",
+      "Deployment/outbound-network constraints"
+    ],
+    "unresolved": [
+      "Who pays (BAND vs lablab), in what currency?",
+      "ID/tax forms?",
+      "Kickoff spec + harness details (need registration to see)"
+    ],
+    "next": [
+      "Decide go/no-go TODAY (deadline Oct 5 23:59 PDT)",
+      "Send payout/KYC email (radar/outreach/lablab-band.md)",
+      "Register on lablab + BAND (free, no card)"
+    ]
+  },
+  "lablab:vultr-hackathon": {
+    "name": "Vultr: Agent Rush Hackathon",
+    "url": "https://lablab.ai/ai-hackathons/vultr-hackathon",
+    "tier": "B",
+    "status": "HOLD-CONDITIONAL",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-11-03 -> 2026-11-08"
+    },
+    "prize": {
+      "text": "$9,000 cash + $5,000 credits (+$3,000 & $1,000 Vultr credits)",
+      "payout": "UNKNOWN; 'up to 90 days'"
+    },
+    "gates": {
+      "remote": {
+        "v": "PASS(likely)",
+        "ev": "'Hybrid'. On-site 8 Nov Salt Lake City is 'if approved... opportunity to showcase'; 'Travel and accommodation will not be covered.' Need confirmation prizes don't require on-site.",
+        "src": "https://lablab.ai/ai-hackathons/vultr-hackathon"
+      },
+      "paid_actions": {
+        "v": "RISK",
+        "ev": "REQUIRED: 'Vultr VM backend deployment, with agent LLM calls through Vultr Serverless Inference.' Vultr gives '$200 in free Vultr credits'; coupon 'still to be confirmed'. Unknown whether Vultr signup needs a card.",
+        "src": "https://lablab.ai/ai-hackathons/vultr-hackathon"
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "not stated",
+        "src": ""
+      },
+      "country": {
+        "v": "UNKNOWN",
+        "ev": "not stated on page",
+        "src": ""
+      }
+    },
+    "risks": [
+      "Mandatory Vultr infra = possible out-of-pocket / card requirement",
+      "Payout unknown"
+    ],
+    "next": [
+      "Re-check when coupon + rules are published before Nov 3",
+      "Test whether Vultr account can be created and credits redeemed without a card (do NOT enter card)"
+    ]
+  },
+  "lablab:amd-developer-hackathon-act-iii": {
+    "name": "AMD Developer Hackathon: ACT III",
+    "url": "https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii",
+    "tier": "B",
+    "status": "HOLD",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-10-12 -> 2026-10-18"
+    },
+    "prize": {
+      "text": "$5,000 from AMD ('$6,000+' in header); distribution 'announced soon'",
+      "payout": "UNKNOWN; 'up to 90 days'"
+    },
+    "gates": {
+      "remote": {
+        "v": "PASS(likely)",
+        "ev": "Hybrid; on-site phase Oct 17-18 in Rome/Milan/Imperia 'if approved'; travel not covered",
+        "src": ""
+      },
+      "paid_actions": {
+        "v": "PASS(likely)",
+        "ev": "AMD Developer Cloud platform credits 'and no credit card' (page text)",
+        "src": ""
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "not stated",
+        "src": ""
+      },
+      "country": {
+        "v": "UNKNOWN",
+        "ev": "not stated",
+        "src": ""
+      }
+    },
+    "risks": [
+      "Prize small and split across tracks",
+      "On-site prizes possible"
+    ],
+    "next": [
+      "Read full track/prize table before Oct 12"
+    ]
+  },
+  "lablab:amd-lablab-ai-academy-challenge": {
+    "name": "Lablab x AMD AI Academy Challenge",
+    "url": "https://lablab.ai/ai-hackathons/amd-lablab-ai-academy-challenge",
+    "tier": "C",
+    "status": "WATCH",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-09-01 -> 2026-12-01"
+    },
+    "prize": {
+      "text": "$5,000 pool, 3 prizes; 'cash prize pool decided at the end of the 3-month program'",
+      "payout": "UNKNOWN"
+    },
+    "gates": {
+      "remote": {
+        "v": "PASS",
+        "ev": "online, individual participation only",
+        "src": ""
+      },
+      "kyc": {
+        "v": "UNKNOWN",
+        "ev": "not stated",
+        "src": ""
+      }
+    },
+    "risks": [
+      "3-month program; effort/prize ratio poor; scoring includes Discord participation"
+    ],
+    "next": [
+      "Low priority; consider only as X proof-of-work"
+    ]
+  },
+  "lablab:ai-genesis-2026": {
+    "name": "AI GENESIS (lablab, /function1)",
+    "url": "https://lablab.ai/ai-hackathons/ai-genesis-2026",
+    "tier": "C",
+    "status": "HOLD",
+    "checked": "2026-09-30",
+    "prize": {
+      "text": "UNKNOWN",
+      "payout": "UNKNOWN"
+    },
+    "deadlines": {
+      "build": "2026-10-26 -> 2026-11-02 (dates 'TBA' on page)"
+    },
+    "gates": {
+      "remote": {
+        "v": "RISK",
+        "ev": "'On-site Build Day in Dubai... for selected participants'; live pitching at conference",
+        "src": ""
+      }
+    },
+    "risks": [
+      "No prize info",
+      "on-site component"
+    ],
+    "next": [
+      "re-check when dates/prizes published"
+    ]
+  },
+  "lablab:techex-amsterdam-hackathon": {
+    "name": "TechEx Amsterdam Hackathon",
+    "url": "https://lablab.ai/ai-hackathons/techex-amsterdam-hackathon",
+    "tier": "C",
+    "status": "LOW",
+    "checked": "2026-09-30",
+    "prize": {
+      "text": "UNKNOWN",
+      "payout": "UNKNOWN"
+    },
+    "deadlines": {
+      "build": "2026-10-16 -> 2026-10-19; on-site Oct 19-20"
+    },
+    "gates": {
+      "remote": {
+        "v": "RISK",
+        "ev": "hybrid; on-site Amsterdam",
+        "src": ""
+      }
+    },
+    "risks": [
+      "no prize info; on-site"
+    ],
+    "next": [
+      "skip unless prizes are online-eligible"
+    ]
+  },
+  "lablab:assemblyai-voice-agent-hackathon": {
+    "name": "AssemblyAI Voice Agent Hackathon",
+    "url": "https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon",
+    "tier": "X",
+    "status": "CLOSING-TODAY",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-09-01 -> 2026-09-30T15:00Z"
+    },
+    "prize": {
+      "text": "$10,000 ($5k cash + $5k credits): 5 winners x $1,000 cash + $1,000 credits",
+      "payout": "UNKNOWN"
+    },
+    "gates": {},
+    "risks": [
+      "ends today 15:00 UTC; not enough time for a competitive build"
+    ],
+    "next": [
+      "pattern only (voice-agent prize structure)"
+    ]
+  },
+  "superteam:colosseum-crypto-worlds-fair": {
+    "name": "Colosseum Crypto World's Fair + Superteam 'Global' side tracks (Meteora DBC $20k, Panta $5k, RPC Fast $10k, SolanaCZE/Vietnam $10k...)",
+    "url": "https://colosseum.com/hackathon",
+    "tier": "X",
+    "status": "REJECT (KYC risk under current rules)",
+    "checked": "2026-09-30",
+    "deadlines": {
+      "build": "2026-09-14 -> 2026-10-12/13"
+    },
+    "prize": {
+      "text": "Many tracks, $2k-$20k; USDC/USDG",
+      "payout": "on-chain USDC/USDG; but see KYC"
+    },
+    "gates": {
+      "kyc": {
+        "v": "RISK/FAIL-for-strict",
+        "ev": "Colosseum Terms of Service: 'the operator and its partners may perform Know Your Customer (KYC) procedures... You consent to such KYC procedures.' + Background Checks clause. Superteam FAQ: 'the winner needs to complete KYC to receive money for Superteam / Solana-sponsored listings'; external sponsors 'occasionally... invoices, KYC'. isFndnPaying=True on the regional tracks (API).",
+        "src": "https://colosseum.com/legal/Colosseum%20-%20Terms%20of%20Service.pdf ; https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq"
+      },
+      "country": {
+        "v": "RISK",
+        "ev": "ToS: 'You are not a resident, national, or agent of the Crimea region, Cuba, Iran, North Korea, Syria, or any other country to which the US, UK or EU embargoes goods or imposes similar sanctions.' + sanctions/PEP lists. Many side tracks are country-specific.",
+        "src": "colosseum ToS"
+      },
+      "scope": {
+        "v": "MISMATCH",
+        "ev": "Startup/venture competition (founder-market fit, traction, GTM). 7,467 builders joined; 2,858 projects last spring. Must be crypto product.",
+        "src": "https://colosseum.com/hackathon"
+      }
+    },
+    "risks": [
+      "KYC clause",
+      "Crypto-startup pitch format",
+      "Massive competition"
+    ],
+    "next": [
+      "Do not pursue unless Saleh explicitly accepts possible KYC"
+    ]
+  },
+  "superteam:steve-agent-arena": {
+    "name": "Steve Agent Arena (Superteam Earn, 500 USDC)",
+    "url": "https://earn.superteam.fun/listing/steve-agent-arena-launch-your-agent-and-win-500-usdc",
+    "tier": "X",
+    "status": "REJECT",
+    "checked": "2026-09-30",
+    "gates": {
+      "paid_actions": {
+        "v": "FAIL",
+        "ev": "'Execute at least 5 qualifying trades through your Steve Agent on Solana Mainnet' incl. 'Jupiter or Magicblock swaps of at least 20 USDC'",
+        "src": "Superteam API details"
+      }
+    },
+    "risks": [
+      "requires own funds on mainnet"
+    ],
+    "next": [
+      "none"
+    ]
+  },
+  "devpost:agents-for-humans": {
+    "name": "Agents for Humans (AWS, Devpost) $40k",
+    "url": "https://agentsforhumans.devpost.com/",
+    "tier": "X",
+    "status": "CLOSED + REJECT",
+    "checked": "2026-09-30",
+    "gates": {
+      "kyc": {
+        "v": "FAIL",
+        "ev": "'AWARD OF A PRIZE... IS SUBJECT TO VERIFICATION OF THE IDENTITY... post-competition prize affidavits'; 'residents of other countries may be required to provide a completed W-8BEN'",
+        "src": "https://agentsforhumans.devpost.com/rules"
+      },
+      "country": {
+        "v": "FAIL(for many)",
+        "ev": "Excluded incl. Argentina, Australia, Brazil, Hong Kong, Indonesia, Italy, Malaysia, Philippines, Thailand, Vietnam, Singapore, Belarus, DNR/LNR, UAE, Quebec, Russia, Crimea, Cuba, Iran, North Korea, Syria + OFAC-designated",
+        "src": "rules"
+      },
+      "deadline": {
+        "v": "FAIL",
+        "ev": "Page: 'This hackathon has ended'; rules: Submission Period Aug 10 - Sep 14, 2026 (a search snippet claiming Oct 14 was wrong / winners date)",
+        "src": "https://agentsforhumans.devpost.com/"
+      }
+    },
+    "risks": [
+      "closed"
+    ],
+    "next": [
+      "none; Devpost pattern: W-8BEN + identity affidavit is standard for sponsor-run US contests"
+    ]
+  },
+  "ethglobal:ethonline-2026": {
+    "name": "ETHOnline 2026",
+    "url": "https://ethglobal.com/events/ethonline2026",
+    "tier": "X",
+    "status": "CLOSED",
+    "checked": "2026-09-30",
+    "gates": {
+      "deadline": {
+        "v": "FAIL",
+        "ev": "'September 4 - 16, 2026'",
+        "src": "event page"
+      }
+    },
+    "next": [
+      "monitor ETHGlobal for next online event; KYC/payout still to be researched"
+    ]
+  }
+}

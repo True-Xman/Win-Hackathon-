@@ -10,3 +10,8 @@ Priority: ability to actually receive the prize > how attractive the event looks
 Not promised: winning. Optimize realistic competitive position.
 
 OPEN INPUT NEEDED: Saleh's country of residence/citizenship (only to test eligibility + sanctions/payout rails; never used to disguise anything).
+
+## Added 2026-09-30 (from verification work)
+- Payout-rail gate is separate from KYC: "paid by bank transfer" (e.g. Open Agent Hackathon) is RISK until Saleh's bank/PSP is confirmed able to receive it.
+- Sanctions clauses (Colosseum ToS, Devpost sponsor rules) exclude residents/nationals of specific countries. This is why Saleh's country is needed: to TEST eligibility honestly, never to disguise anything.
+- KYC "may be performed" (discretionary) = RISK; "must/required/affidavit/W-8BEN" = FAIL under the strict rule.

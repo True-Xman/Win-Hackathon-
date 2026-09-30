@@ -1,0 +1,39 @@
+{
+  "devpost": {
+    "note": "403 from site WAF (awselb) on browse + /api/hackathons; use WebSearch or per-page fetch",
+    "ok": false
+  },
+  "dorahacks": {
+    "note": "405 + x-amzn-waf-action: captcha; API not scriptable",
+    "ok": false
+  },
+  "genai_works": {
+    "checked": "2026-09-30T05:41:59.447433+00:00",
+    "n": 1,
+    "ok": true,
+    "status": 200
+  },
+  "github_search": {
+    "note": "BLOCKED by session policy: api.github.com/search returns 403 'sessions are bound to their configured repositories'. Not bypassed.",
+    "ok": false
+  },
+  "hackernews": {
+    "checked": "2026-09-30T05:41:54.665043+00:00",
+    "n": 41,
+    "ok": true,
+    "status": 200
+  },
+  "lablab": {
+    "checked": "2026-09-30T05:41:53.653176+00:00",
+    "n": 7,
+    "ok": true,
+    "status": 200
+  },
+  "superteam": {
+    "checked": "2026-09-30T05:41:53.012774+00:00",
+    "details": 66,
+    "n": 66,
+    "ok": true,
+    "status": 200
+  }
+}
