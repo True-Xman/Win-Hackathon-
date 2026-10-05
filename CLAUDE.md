@@ -1,0 +1,81 @@
+# CLAUDE.md — permanent instructions for this repo
+
+Precedence: this file overrides `radar/constraints.md`, `radar/README.md` and any older note where they conflict
+(e.g. country questions, payout gate). Update those files to match when you next touch them.
+
+## Capability Radar
+Use the Capability Radar only when a meaningful capability gap or phase transition appears. It is event-driven, not per-turn. See radar/CAPABILITY_RADAR.md.
+
+## Project
+Hackathon Opportunity Radar + Execution Partner (`radar/`): discover, verify, shortlist, then build/submit.
+Run: `bash radar/run.sh`. Data: `radar/data/`. Board: `radar/SHORTLIST.md`. Research: `radar/research/`.
+
+## USER OUTPUT + TOKEN EFFICIENCY POLICY
+
+### Language
+All user-facing output is Finglish only (Persian words in Latin script). No Persian script.
+English only for: code, commands, file/paths, technical terms, field names, proper nouns.
+
+### Core rule
+Chat is for the user, not a debug log. Do NOT narrate routine work (testing, retries, regex fixes, reruns,
+collector bugs, file rewrites, searching, test pass/fail) unless it materially affects a
+decision, eligibility, cost, deadline, risk, or final result.
+Raw evidence, debug logs, research notes, test history, source lists, competitor notes and implementation history
+are saved in the repo, never in chat. Expand in chat only when the user asks.
+
+### Default output
+Very concise. Routine update ~50-120 words. Important phase update ~150-250 words.
+Use only the relevant sections:
+- NATIJE: what changed / what was found for the user.
+- STATUS: PASS / FAIL / UNKNOWN or current state.
+- ACTION AZ MAN: only things only the user can do. Drop section if none.
+- BLOCKER: only real blockers. Drop section if none.
+- NEXT: next highest-value action.
+
+### Delta-only
+Report only NEW or materially changed information. Do not re-summarize constraints, architecture, tools,
+previous findings, previous shortlist or completed work unless explicitly asked.
+
+### Work first, report after
+Do everything doable autonomously first. No mid-task status messages, no long "I am going to..." messages.
+Report once, after a meaningful chunk, with only the useful result.
+
+### Token conservation
+Avoid: repetition, tool/debug narration, intro/conclusion filler, copying data that already lives in the repo,
+large tables unless needed for a decision, multiple examples when one is enough, obvious explanations,
+restating the user's instructions.
+Token saving must NEVER reduce research, verification, coding, testing or competitive-analysis quality.
+Do deep work; keep the report short. The user should see DECISIONS + USEFUL RESULTS, not the work diary.
+
+### User action requests
+No long explanations. Say only: 1) where to go, 2) what to click/type, 3) what to send back or what result to look for.
+If unsure about a UI/path, say explicitly that you are uncertain.
+
+### Model / effort
+Suggest a model/effort change only when it is materially worth it, never per small task. If truly needed, give only:
+MODEL:
+EFFORT:
+CHAT: stay / new
+WHY: one sentence
+
+## Privacy / jurisdiction
+The user does not share country, citizenship or residency. Do NOT ask for them and do NOT infer them.
+Only use this fact: "User has jurisdiction and payment restrictions."
+If eligibility can only be decided by knowing the exact country: country eligibility = UNKNOWN,
+record the reason in the repo, and deprioritize the candidate — unless the official rules are clearly
+global/worldwide with no relevant restriction.
+Never recommend: fake country, fake residency, fake identity, VPN eligibility bypass, misrepresentation.
+
+## Opportunity hard gates (serious opportunities)
+Each must hold; evidence required (PASS needs explicit text; absence = UNKNOWN, never PASS):
+- remote/online
+- no mandatory KYC at: registration, participation, submission, winner verification, payout
+- no mandatory out-of-pocket spending; no fake-eligibility workaround
+
+PAYOUT (separate hard gate from no-KYC; BOTH must pass):
+The user can receive prize money ONLY via crypto. Crypto payout is a HARD requirement, not a preference.
+- Acceptable: USDT, USDC, reputable liquid crypto, direct wallet/on-chain payout.
+- FAIL: fiat-only, bank-only, PayPal-only, Stripe-only, Wise-only, any mandatory identity-verified payout provider.
+- Crypto payout stated but KYC unclear = UNKNOWN.
+- Payout method not stated = UNKNOWN (and deprioritize).
+Record the reason per candidate in `radar/data/verified.json` / `radar/SHORTLIST.md`.
