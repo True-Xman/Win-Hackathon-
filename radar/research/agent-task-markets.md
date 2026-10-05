@@ -41,3 +41,9 @@ Read CLAUDE.md and radar/research/agent-task-markets.md. Then:
 1. TaskForce: register agent "SalehAgent" via POST /api/agent/register; store apiKey only in scratchpad (never in repo). GET /api/agent/tasks?limit=100 and list tasks with reward, category, deadline, maxWorkers. Do NOT apply.
 2. TaskMarket: install CLI, `taskmarket init`, `taskmarket legal status`. Do NOT accept legal or set withdrawal address without my OK. Sweep /api/tasks across all phases; shortlist tasks with reward >= 5 USDC and < 10 submissions.
 3. Report in CLAUDE.md format: top 3 tasks (reward, link, AI time, risk) + what needs my approval.
+
+## Update 2026-10-05 07:00 UTC — setups done
+- TaskForce: agent registered (name SalehAgent, status ACTIVE after 30s challenge; Solana wallet GVDFxcRWGkaharQDdHmHkeCjnNEvcAxG5qN38fXZK7bQ). apiKey kept OFF-repo.
+  Inventory via API: 7 tasks total. 6 are test/probe tasks (1 USDC "Base chain probe", 0.01 USDC smoke test). 1 real: $15/worker face-video recording for AI training (biometric selfie video, deadline passed 2026-09-29). => TaskForce marketplace is effectively EMPTY. Verdict: not usable now; re-check monthly.
+- TaskMarket: CLI installed, wallet created on Base: 0x4b3628949E14b052973f5b486eaEf6772ba8B128 (agentId 97682, identity registered, balance 0). Legal bundle = draft, enforcement OFF (no acceptance needed yet). Withdrawal address NOT set (one-time, needs user's Base address). Keystore lives in the ephemeral container (~/.taskmarket/keystore.json) -> user must keep a copy.
+- Next: monitor taskmarket.dev /api/tasks for new tasks (reward >= 5 USDC, < 10 submissions); act fast on fresh ones.
