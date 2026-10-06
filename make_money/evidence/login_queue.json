@@ -1,0 +1,14 @@
+{
+  "note": "valuable leads whose rules need a manual login (user does it, not Hunter)",
+  "queue": [
+    {
+      "title": "Monad Metropolis Hackathon",
+      "lane": "BUILD",
+      "url": "https://www.risein.com/monad/monad-metropolis-hackathon",
+      "rules_url": "https://hackathon.monad.xyz/",
+      "reward_usd": 250000.0,
+      "deadline": "2026-10-12T23:59:00+00:00",
+      "score": 24.0
+    }
+  ]
+}

@@ -95,6 +95,13 @@ def test_per_opportunity_claim_does_not_leak_to_other_items():
     b = hunt.verify(hunt.normalize({"source": "s", "native_id": "/b", "title": "b", "text": "x"}, "f"))
     assert a["gates"]["kyc"] == "FAIL" and b["gates"]["kyc"] != "FAIL"
 
+def test_login_wall_marked_not_rejected():
+    import hunt as h
+    h.rules_text = lambda url: ("Continue with GitHub\nContinue with Google", "static")
+    it = {"kind": "task", "lane": "BUILD", "title": "gated", "rules_url": "https://x", "reward_usd": 50000, "deadline": "2999-01-01T00:00:00Z", "text": "Build an AI app demo."}
+    c = run([it])[0]
+    assert c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and c["gates"]["payout"] != "PASS"
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

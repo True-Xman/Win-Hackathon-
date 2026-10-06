@@ -73,6 +73,7 @@ def load_claims():
     return out
 
 
+LOGIN_WALL = re.compile(r"continue with (github|google|discord|email)|sign in to (continue|view|see)|log ?in to (continue|view|see)|sign up to (view|see)", re.I)
 EVID = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "evidence")
 RULES_TTL_DAYS = 7
 
@@ -101,6 +102,7 @@ def rules_text(url):
 def verify(c):
     rules, how = (rules_text(c["rules_url"]) if c["rules_url"] else ("", None))
     c["rules_read"] = {"url": c["rules_url"], "how": how, "chars": len(rules)}
+    c["login_required"] = bool(c["rules_url"]) and len(rules) < 2500 and bool(LOGIN_WALL.search(rules))
     c["_blob"] = f"{c['discovery_text']}\n{c['text']}\n{rules}"[:60000]
     g = analyze(c["text"] + "\n" + rules, c["url"] or c["title"])["gates"]
     if c["discovery_text"]:  # listing text is the platform's claim: it may only ADD a FAIL, never a PASS
@@ -131,6 +133,8 @@ def status(c):
         fails.append("expired")
     if fails:
         return "REJECTED", fails
+    if c.get("login_required") and not (v["payout"] == "PASS" and v["paid_action"] == "PASS"):
+        return "LOGIN-REQUIRED-FOR-VERIFY", ["rules behind login (not read; login is never done by Hunter)"]
     unk = [k for k in ("kyc", "country", "paid_action", "onsite", "payout") if v[k] != "PASS"]
     return ("VERIFIED" if not unk else "NEEDS_CHECK"), unk  # RISK/INFO/UNKNOWN all count as unverified
 
@@ -174,12 +178,15 @@ def score(c):
     return round(s, 1)
 
 
+def worthy(c):
+    return (sum(c.get("build", {}).values()) >= 15) if c["lane"] == "BUILD" else (c["reward_usd"] or 0) >= 1
+
+
 def qualified(c):
     """Shortlist bar: no FAIL; crypto payout PASS and zero-spend (paid_action) PASS, each from explicit text; onsite not RISK.
     KYC/country UNKNOWN is allowed (absence of a clause is neither PASS nor FAIL) but is flagged and must be user-checked."""
     v = c["gates"]
-    worth = (sum(c.get("build", {}).values()) >= 15) if c["lane"] == "BUILD" else (c["reward_usd"] or 0) >= 1  # weak value never shortlisted
-    return worth and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] == "PASS" and v["onsite"] != "RISK"
+    return worthy(c) and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] == "PASS" and v["onsite"] != "RISK"
 
 
 def run(inbox, live=None, health=None):
@@ -191,6 +198,10 @@ def run(inbox, live=None, health=None):
         c["status"], c["why"] = status(c)
         c["score"] = score(c)
     cands.sort(key=lambda c: (c["status"] != "VERIFIED", c["status"] == "REJECTED", -c["score"]))
+    queue = [{"title": c["title"], "lane": c["lane"], "url": c["url"], "rules_url": c["rules_url"], "reward_usd": c["reward_usd"],
+              "deadline": c["deadline"], "score": c["score"]} for c in cands if c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and worthy(c)]
+    json.dump({"note": "valuable leads whose rules need a manual login (user does it, not Hunter)", "queue": queue},
+              open(os.path.join(EVID, "login_queue.json"), "w"), indent=2)
     top = [c for c in cands if qualified(c)][:3]  # weak candidates are never forced in
     for c in cands:
         c.pop("_blob", None)
