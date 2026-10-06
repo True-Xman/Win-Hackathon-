@@ -6,7 +6,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import fetch_json, html_to_text, now_utc  # noqa: E402
+from common import fetch, fetch_json, html_to_text, now_utc  # noqa: E402
 
 TM = "https://taskmarket.dev"
 PAY_WORDS = re.compile(r"i(?:'| wi)ll pay|we(?:'| wi)ll pay|paid (gig|work|project|bounty)|looking for (a |an )?(freelance|contract|developer|engineer)|need (a|an|someone)[^.]{0,40}(build|develop|script|automat)|\bbounty (of|for)|budget (of|is)|\$\s?\d{2,}\s?(/|for|per)", re.I)
@@ -128,7 +128,67 @@ def gigs_discovery():
     return [], {"ok": True, "platforms": len(rows), "claimed_no_kyc_crypto": len(keep)}
 
 
-COLLECTORS = {"taskmarket": taskmarket, "agenthansa": agenthansa, "hn": hn_signals, "github": github_bounties, "gigs": gigs_discovery}
+RISE = "https://www.risein.com"
+RISE_TYPES = ("Hackathon", "Bounty", "Bounties", "Grant", "Challenge", "Competition")  # jobs/courses/events are not money-for-work opportunities here
+_NOISE = (".gov/", "risein", "schema.org", "w3.org", "googletagmanager", "linkedin.com", "instagram.com", "facebook.com", "twitter.com", "x.com", "youtube.com", "lu.ma/riseincom", "files.risein")
+
+
+def _txt(h):
+    h = re.sub(r"(?s)<(script|style|svg)[^>]*>.*?</\1>", " ", h)
+    return re.sub(r"[ \t]*\n[ \t\n]*", "\n", re.sub(r"<[^>]+>", "\n", h))
+
+
+def risein(max_detail=40):
+    """Rise In /earn = DISCOVERY ONLY (listing is the platform's claim, never gate evidence). Each opportunity gets its own sponsor
+    `rules_url` (external link in the detail page); gates are verified from that sponsor text. Rise In card text is used only to
+    catch FAIL clauses (discovery_text)."""
+    st, h = fetch("%s/earn" % RISE)
+    if st != 200:
+        return [], {"ok": False, "status": st, "note": "/earn unreadable"}
+    seg = h[h.find("Ecosystem opportunities"):]
+    items, seen, n_cards = [], set(), 0
+    for href, body in re.findall(r'<a href="(/[a-z0-9_-]+/[a-z0-9_-]+)"[^>]*>(.*?)</a>', seg, flags=re.S):
+        n_cards += 1
+        spans = [s.strip() for s in re.findall(r"<span[^>]*>([^<]*)</span>", body)]
+        typ = next((s for s in spans if s in RISE_TYPES + ("Job", "Course", "Event")), None)
+        if typ not in RISE_TYPES or href in seen or "Open" not in body:
+            continue
+        seen.add(href)
+        if len(items) >= max_detail:
+            break
+        st2, d = fetch(RISE + href)
+        if st2 != 200:
+            continue
+        t = _txt(d)
+        title = (re.search(r"<h1[^>]*>([^<]+)</h1>", d) or re.search(r"<title>([^<|]+)", d))
+        title = html_to_text(title.group(1)).strip() if title else href
+        def after(label):
+            m = re.search(r"\n%s\n([^\n]+)" % label, t)
+            return m.group(1).strip() if m else None
+        ext = [u for u in re.findall(r'https?://[A-Za-z0-9./_#?=&%~:+-]+', d) if not any(n in u for n in _NOISE)]
+        prize = after("Prize pool")
+        usd = None
+        if prize and re.search(r"\d", prize):
+            usd = float(re.sub(r"[^\d.]", "", prize.replace(",", "")) or 0) or None
+        deadline = after("Deadline")
+        dl_iso = None
+        try:
+            dl_iso = dt.datetime.strptime(deadline, "%b %d, %Y").replace(tzinfo=dt.timezone.utc, hour=23, minute=59).isoformat()
+        except Exception:  # noqa: BLE001
+            pass
+        start = after("Start date")
+        loc = after("Location")
+        about = t[t.find("About this opportunity"): t.find("More ways to")]
+        items.append({"kind": "task", "lane": "BUILD" if typ != "Bounty" and typ != "Bounties" or (usd or 0) >= 1000 else "FAST",
+                      "source": "risein", "native_id": href, "title": title[:120], "url": RISE + href,
+                      "rules_url": ext[0] if ext else None,
+                      "discovery_text": about[:6000] + ("\nIn-person event." if loc and loc.lower() != "online" else ""),
+                      "text": "", "reward_usd": usd, "deadline": dl_iso, "competition": None,
+                      "provenance": {"listing": RISE + "/earn", "type": typ, "location": loc, "start": start, "prize_claim": prize, "sponsor_urls": ext[:3]}})
+    return items, {"ok": True, "cards": n_cards, "kept": len(items), "no_rules_url": sum(1 for i in items if not i["rules_url"])}
+
+
+COLLECTORS = {"risein": risein, "taskmarket": taskmarket, "agenthansa": agenthansa, "hn": hn_signals, "github": github_bounties, "gigs": gigs_discovery}
 
 
 def collect_live(names=None):

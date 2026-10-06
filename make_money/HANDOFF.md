@@ -36,14 +36,14 @@ Facts only; the experiment's actions (wallet, withdrawal address, monitor routin
 - Old 5h monitor routine (trig_0189EEGZDnzqF41Smc8obPzd) belongs to the stale experiment: paused, not deleted, no replacement yet.
 
 ## Current state
-V1 live: `python3 make_money/hunter/hunt.py --live` (stdlib; 8 tests pass). Collectors (hunter/collectors.py): taskmarket, agenthansa (public no-auth bounties/community tasks, X/Twitter items skipped), hn (demand signals), github (stub; 403 in cloud session, skipped), gigs (discovery only -> out/gigs_discovery.json: 16/46 platforms CLAIM no-KYC+crypto, unverified, affects no gate).
-Policy (user, 2026-10-06): any upfront fee/spend, even 0.001 USDC = paid_action FAIL. Historical HANDOFF summary is NOT KYC evidence. KYC/country/payout PASS needs one primary-source check, cached in make_money/evidence/claims.json (url+quote+date+ttl); re-check only when stale/invalid. UNKNOWN entries there mean "already checked, nothing found".
-Shortlist bar: no FAIL + payout PASS + kyc PASS; weak ones never forced in.
-Last live run: 12 collected, 0 qualified, shortlist empty. TaskMarket: all fee-FAIL (>=5 subs), kyc UNKNOWN. Agent Hansa: payout PASS + no-fee PASS (cached), kyc/country UNKNOWN (llms docs silent; /terms JS-rendered). NEAR market: job list needs auth token -> no collector.
+`python3 make_money/hunter/hunt.py --live` (stdlib + node/playwright render for JS pages; 12 tests pass). Collectors: risein (NEW, discovery-only), taskmarket, agenthansa, hn, github (stub, 403), gigs (discovery, unverified claims).
+Lanes: FAST MONEY / BUILD MONEY (build_value in hunt.py: ai_leverage, technical_fit, prize, win_chance, timing, outside_control). Policy now in CLAUDE.md "Lanes + policy update".
+Rise In: /earn cards -> per-opportunity sponsor rules_url -> gates from sponsor text (cached evidence/rules_cache, 7d TTL); Rise In text can only add FAIL. 7 hackathon/bounty/grant found: Monad Metropolis ($250k, ends Oct 12; sponsor site behind login -> UNKNOWN), Agent Visa/Celo ($15k), Granite ($100k), Stellar-OZ bounty, Prezenti Grants, Midnight bounty, Stacks Bug Bounty (explicit "Undergo full KYC" -> FAIL).
+Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not RISK + worth (FAST reward>=$1, BUILD value>=15). KYC/country UNKNOWN allowed but flagged. Last live run: 18 collected, 0 qualified, shortlist empty (nothing forced).
+Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
-Agent Hansa finished: rendered primary source (/terms via Playwright, read-only) has NO explicit no-KYC and NO country clause -> kyc/country stay UNKNOWN (cached in evidence/claims.json, ttl 60d, do not re-research). Also cached UNKNOWN: Stacker News, Dework, TaskMarket, NEAR market. Zero qualified candidates exist.
-Next: only an explicit "no KYC"/"open worldwide" statement can flip a gate. Options: ask user whether "no KYC clause in terms + wallet-only payout" may count as acceptable-risk (policy change, user decides), or verify other gigs.sh-claimed platforms one at a time (clustly, encode-club, ethglobal). Playwright render recipe: node + /opt/node22/lib/node_modules/playwright, executablePath /opt/pw-browsers/chromium, --no-sandbox, GET only.
+Read the real sponsor rules for the best BUILD leads (Agent Visa/Celo, Monad Metropolis rules via official docs/Luma if public, Granite) from official docs and record payout/KYC/country verdicts; or add more Rise In pages (ecosystem pages /earn?filters) if /earn shows only ~7 open money items.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.

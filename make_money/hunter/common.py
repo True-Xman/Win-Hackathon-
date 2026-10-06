@@ -87,3 +87,14 @@ def load(name, default=None):
         return default
     with open(p) as f:
         return json.load(f)
+
+
+def render_text(url, timeout=70):
+    """JS-rendered page text via headless Chromium (GET only, no login/forms). '' on failure."""
+    import subprocess
+    try:
+        r = subprocess.run(["node", os.path.join(os.path.dirname(os.path.abspath(__file__)), "render.js"), url],
+                           capture_output=True, text=True, timeout=timeout)
+        return r.stdout if r.returncode == 0 else ""
+    except Exception:  # noqa: BLE001
+        return ""

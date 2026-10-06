@@ -66,6 +66,10 @@ record the reason in the repo, and deprioritize the candidate — unless the off
 global/worldwide with no relevant restriction.
 Never recommend: fake country, fake residency, fake identity, VPN eligibility bypass, misrepresentation.
 
+## Lanes + policy update (2026-10-06, user)
+Two lanes, label each candidate: FAST MONEY (task/micro-bounty/gig, ~1-3 days preferred) and BUILD MONEY (hackathon/builder challenge/large bounty/grant; 1-3 day rule NOT required; scored by AI leverage, effort, prize, win chance, deadline, competition, fit, outside-control reqs).
+Explicit KYC / applicable sanctions-or-country exclusion / required upfront spend (even 0.001 USDC) = FAIL. Absence of a "no KYC" clause = UNKNOWN (neither PASS nor FAIL): such a candidate may be shortlisted ONLY if payout=PASS and paid_action=PASS from explicit opportunity-level text, flagged "user must check KYC/country". Aggregator listings (Rise In, gigs.sh, etc.) are discovery only: each opportunity is verified from its own sponsor rules; listing text may add a FAIL, never a PASS.
+
 ## Opportunity hard gates (serious opportunities)
 Each must hold; evidence required (PASS needs explicit text; absence = UNKNOWN, never PASS):
 - remote/online

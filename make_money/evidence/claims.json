@@ -83,6 +83,24 @@
       "quote": "rendered /terms and homepage: no readable terms text, 0 KYC mentions. Not verified.",
       "checked_at": "2026-10-06",
       "ttl_days": 60
+    },
+    {
+      "source": "risein",
+      "gate": "platform",
+      "verdict": "UNKNOWN",
+      "url": "https://www.risein.com/earn",
+      "quote": "Rise In /earn = discovery only (server-rendered cards, ~7 hackathon/bounty/grant of 231 listings, rest jobs/courses). Platform is never a gate PASS/FAIL; every opportunity is verified from its own sponsor rules_url. Listing text may only add FAIL.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
+    },
+    {
+      "source": "risein:monad-metropolis-hackathon",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://hackathon.monad.xyz/",
+      "quote": "sponsor site is a GitHub/Google/Discord sign-in wall; /prizes renders same wall (418 chars); /rules,/faq 404. Rules not readable without login (login = forbidden) -> kyc/country/payout UNKNOWN. Deadline 2026-10-12/13.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 7
     }
   ]
 }

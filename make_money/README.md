@@ -4,3 +4,5 @@ Pipeline: inbox/*.json (tasks + signals) -> normalize -> gates (hunter/gates.py,
 VERIFIED = all of kyc/country/paid_action/onsite/payout explicit PASS; anything else = NEEDS_CHECK (UNKNOWN never PASS). Signals: payout always UNKNOWN until crypto agreed.
 Live: `python3 hunter/hunt.py --live` runs hunter/collectors.py (taskmarket public /api/tasks, HN Algolia signals, github stub: 403 in cloud session -> skipped, no workaround). Shortlist bar = no FAIL + payout PASS + kyc PASS; dupes merged by URL; every item keeps `provenance`.
 Never submits/spends/contacts. Add a source = drop a JSON file in inbox/ (schema in hunt.py docstring).
+
+Lanes: FAST/BUILD (see CLAUDE.md). Rise In = discovery only; rules cache in evidence/rules_cache; render.js = read-only headless GET for JS pages.

@@ -23,7 +23,7 @@ def test_expired_rejected():
 
 def test_top3_cap():
     d = tempfile.mkdtemp()
-    json.dump([{"kind": "task", "title": f"t{i}", "text": "Prizes paid in USDC. No KYC required."} for i in range(6)], open(d + "/s.json", "w"))
+    json.dump([{"kind": "task", "title": f"t{i}", "reward_usd": 5, "text": "Prizes paid in USDC. No KYC required. Free to enter."} for i in range(6)], open(d + "/s.json", "w"))
     assert len(hunt.run(d)[1]) == 3
 
 def test_dedupe_keeps_provenance():
@@ -61,6 +61,33 @@ def test_claim_applies_but_never_overrides_fail_and_stale_ignored():
 def test_dedupe_by_native_id_across_urls():
     it = {"kind": "task", "source": "s", "native_id": "7", "title": "t", "url": "https://x/a", "text": "x"}
     assert len(run([it, dict(it, url="https://x/b")])) == 1
+
+def test_build_lane_labels_and_weak_not_forced():
+    good = {"kind": "task", "lane": "BUILD", "title": "AI agent hackathon", "reward_usd": 20000, "deadline": "2999-01-01T00:00:00Z",
+            "text": "Build an AI agent demo. Free to enter. Prizes paid in USDC to your wallet. Fully online."}
+    weak = dict(good, title="tiny", reward_usd=10, text="Build a thing. Free to enter. Prizes paid in USDC to your wallet.")
+
+    top = hunt.run(__import__("tempfile").mkdtemp(), [good, weak])[1]
+    assert [c["title"] for c in top] == ["AI agent hackathon"] and top[0]["lane"] == "BUILD" and top[0]["build"]["prize"] > 0
+
+def test_listing_text_can_only_add_fail():
+    it = {"kind": "task", "lane": "BUILD", "title": "t", "text": "", "discovery_text": "Winners must complete identity verification. Prizes paid in USDC. No KYC required."}
+    c = run([it])[0]
+    assert c["gates"]["kyc"] == "FAIL" and c["gates"]["payout"] != "PASS"
+
+def test_risein_listing_parse_and_rules_url():
+    import collectors
+    card = '<a href="/eco/hack"><span>Online</span><span><span></span>Open</span><span>Eco</span><span>Hackathon</span></a>'
+    detail = ('<h1>Hack</h1><div>Prize pool</div><div>$5,000</div>Deadline</div><div>Oct 12, 2999</div>'
+              '<a href="https://sponsor.example/rules">r</a><a href="https://www.linkedin.com/x">l</a>')
+    page = "<h3>Ecosystem opportunities</h3>" + card
+    old = collectors.fetch
+    collectors.fetch = lambda u, **k: (200, page if u.endswith("/earn") else detail)
+    try:
+        items, h = collectors.risein()
+    finally:
+        collectors.fetch = old
+    assert len(items) == 1 and items[0]["rules_url"] == "https://sponsor.example/rules" and items[0]["lane"] == "BUILD" and items[0]["text"] == ""
 
 if __name__ == "__main__":
     for n, f in list(globals().items()):
