@@ -58,6 +58,10 @@ def test_claim_applies_but_never_overrides_fail_and_stale_ignored():
     hunt.CLAIMS = {k: dict(v, stale=True) for k, v in hunt.load_claims().items()}
     assert hunt.verify(hunt.normalize(items[0], "x"))["gates"]["payout"] != "PASS"
 
+def test_dedupe_by_native_id_across_urls():
+    it = {"kind": "task", "source": "s", "native_id": "7", "title": "t", "url": "https://x/a", "text": "x"}
+    assert len(run([it, dict(it, url="https://x/b")])) == 1
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

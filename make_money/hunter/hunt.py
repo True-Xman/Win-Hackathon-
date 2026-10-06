@@ -28,7 +28,7 @@ def normalize(raw, src_file):
             "text": raw.get("text") or "", "rules_url": raw.get("rules_url"),
             "reward_usd": raw.get("reward_usd"), "deadline": raw.get("deadline"),
             "competition": raw.get("competition"), "signal": raw.get("signal") or {},
-            "provenance": raw.get("provenance") or {"file": src_file}}
+            "native_id": raw.get("native_id"), "provenance": raw.get("provenance") or {"file": src_file}}
 
 
 def collect(inbox):
@@ -45,7 +45,7 @@ def dedupe(cands):
     """Same URL (or same source+native title) twice -> keep first. Provenance of dropped dupes is merged in."""
     seen, out = {}, []
     for c in cands:
-        k = (c["url"] or "").rstrip("/").lower() or c["id"]
+        k = f"{c['source']}#{c['native_id']}" if c.get("native_id") else (c["url"] or "").rstrip("/").lower() or c["id"]
         if k in seen:
             seen[k]["provenance"].setdefault("duplicates", []).append(c["provenance"])
             continue
