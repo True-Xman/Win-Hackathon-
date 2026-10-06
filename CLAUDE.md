@@ -79,3 +79,12 @@ The user can receive prize money ONLY via crypto. Crypto payout is a HARD requir
 - Crypto payout stated but KYC unclear = UNKNOWN.
 - Payout method not stated = UNKNOWN (and deprioritize).
 Record the reason per candidate in `radar/data/verified.json` / `radar/SHORTLIST.md`.
+
+## Session & Token Discipline
+- Before every substantial task decide: CONTINUE CURRENT SESSION or NEW SESSION. If the session holds much old or unrelated context, prefer NEW SESSION.
+- Before recommending NEW SESSION, update make_money/HANDOFF.md (rewrite as a current snapshot, not a log).
+- For every substantial new task recommend the most appropriate currently available Claude model: strong reasoning only when genuinely needed, balanced coding model for normal implementation, cheapest suitable model for simple edits, tests, formatting, mechanical work.
+- A fresh session reads make_money/HANDOFF.md first, then make_money/INDEX.md if needed, then ONLY the source-of-truth files the task requires. Do not reread all docs by default and do not reconstruct old chat.
+- Repository files are durable memory; chat context is temporary working memory.
+- User-facing output defaults to ONLY: RESULT / BLOCKER / NEXT ACTION (language rule above still applies). No tool-by-tool logs, long narratives, repeated architecture explanations, or unrequested summaries.
+- If more context is needed, load it selectively from the repo instead of asking for old conversation to be replayed.
