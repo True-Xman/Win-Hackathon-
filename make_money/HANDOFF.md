@@ -43,6 +43,7 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
+AUTONOMOUS: routine trig_01D9natm5LxyaumoWCpEiTvH "Money Hunter (6h)" (cron 26 */6 * * *, fresh session each run, Haiku 4.5, push notify only on promising/blocker/login-queue/action). Each run pulls branch ccr-9e2308e2-f6k942, runs hunt.py --live, commits+pushes make_money/evidence. Old trig_0189... (TaskMarket monitor) stays disabled. Pause/resume via update_trigger enabled flag.
 Gas budget (user-reported, evidence/wallet_budget.json): Base ~0.0000399 ETH, Arbitrum ~0.0000207 ETH; ignore ETH mainnet dust + USDT BEP20. GAS-ONLY is not a PASS. hunt.py gas_assess (generic 150k x gasPrice) is a PRE-FILTER only -> GAS-PREFILTER-OK (not qualifying). GAS-COVERED needs a tx-specific read-only estimate (item field gas_tx {network,to,data[,from]}: eth_estimateGas + gasPrice + Base L1 data fee via GasPriceOracle, x1.5, balance >= 3x); simulation failure = UNKNOWN. Other fee/stake/deposit = FAIL. Hunter never signs/sends; every tx needs user approval.
 FAST worthiness = reward-to-hassle (hunt.py fast_value, MIN_EV_PER_HOUR=2), no dollar floor.
 Cooldown live: a source with no usable candidate (qualified or valuable login-queue lead) 3 runs in a row sleeps 7 days (evidence/source_state.json; `--force` ignores). gigs/github exempt.
