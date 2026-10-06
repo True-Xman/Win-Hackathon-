@@ -37,7 +37,7 @@ Facts only; the experiment's actions (wallet, withdrawal address, monitor routin
 
 ## Current state
 V1 live: `python3 make_money/hunter/hunt.py --live` (stdlib; 7 tests pass). Collectors (hunter/collectors.py): taskmarket (public /api/tasks, verified), hn (HN Algolia Ask HN demand signals), github (stub; api.github.com search = 403 in cloud session, skipped, no workaround).
-Shortlist bar: no FAIL + payout PASS + kyc PASS. Last live run (2026-10-06): 11 collected, 0 qualified, shortlist empty (correct, nothing forced).
+Shortlist bar: no FAIL + payout PASS + kyc PASS. Last live run (2026-10-06): 10 collected (10 TaskMarket, 0 HN), 0 qualified, shortlist empty (correct, nothing forced).
 Why 0: TaskMarket public docs have no KYC/country text -> UNKNOWN; all open tasks have >=5 submissions -> 0.001 USDC fee -> paid_action FAIL (strict hard gate). HN signals have no payout rail -> UNKNOWN.
 
 ## Next task
