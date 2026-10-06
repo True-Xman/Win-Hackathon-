@@ -89,6 +89,12 @@ def test_risein_listing_parse_and_rules_url():
         collectors.fetch = old
     assert len(items) == 1 and items[0]["rules_url"] == "https://sponsor.example/rules" and items[0]["lane"] == "BUILD" and items[0]["text"] == ""
 
+def test_per_opportunity_claim_does_not_leak_to_other_items():
+    hunt.CLAIMS = {("s:/a", "kyc"): {"verdict": "FAIL", "stale": False, "quote": "q", "url": "u", "checked_at": "2026-10-06"}}
+    a = hunt.verify(hunt.normalize({"source": "s", "native_id": "/a", "title": "a", "text": "x"}, "f"))
+    b = hunt.verify(hunt.normalize({"source": "s", "native_id": "/b", "title": "b", "text": "x"}, "f"))
+    assert a["gates"]["kyc"] == "FAIL" and b["gates"]["kyc"] != "FAIL"
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

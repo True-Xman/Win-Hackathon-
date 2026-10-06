@@ -43,7 +43,8 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
-Read the real sponsor rules for the best BUILD leads (Agent Visa/Celo, Monad Metropolis rules via official docs/Luma if public, Granite) from official docs and record payout/KYC/country verdicts; or add more Rise In pages (ecosystem pages /earn?filters) if /earn shows only ~7 open money items.
+Rise In leads checked (per-opportunity claims in evidence/claims.json): Midnight Content Bounty = KYC FAIL (terms 5.2) + round ended ~May 2026 + AI-generated content disqualified; Stacks Bug Bounty = KYC FAIL; Agent Visa (Celo) = not a cash prize; Granite = security bug bounty (USDC, KYC unread, low fit); Monad Metropolis ($250k, ends Oct 12-13) = rules behind login -> UNKNOWN; Prezenti/Stellar-OZ = payout/spend unproven.
+Next: official public rules for Monad Metropolis (Luma/docs/Discord-free sources) if any; otherwise widen discovery (other hackathon sources: lablab, Devpost, DoraHacks, Superteam-like pages with plain rules) via the same per-opportunity verification.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.

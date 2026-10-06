@@ -110,7 +110,7 @@ def verify(c):
     v = {k: g[k]["verdict"] for k in (*HARD, "student")}
     ev = {k: g[k]["evidence"][:2] + g[k]["positive_evidence"][:1] for k in v if g[k]["evidence"] or g[k]["positive_evidence"]}
     for gate in v:  # cached primary-source claims: PASS never overrides a FAIL found in the item text itself
-        cl = CLAIMS.get((c["source"], gate))
+        cl = CLAIMS.get((f"{c['source']}:{c['native_id']}", gate)) or CLAIMS.get((c["source"], gate))  # per-opportunity claim wins
         if not cl or cl["stale"] or cl["verdict"] not in ("PASS", "FAIL"):
             continue
         if cl["verdict"] == "FAIL" or v[gate] != "FAIL":

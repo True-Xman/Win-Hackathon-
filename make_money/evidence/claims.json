@@ -94,13 +94,52 @@
       "ttl_days": 30
     },
     {
-      "source": "risein:monad-metropolis-hackathon",
+      "source": "risein:/monad/monad-metropolis-hackathon",
       "gate": "kyc",
       "verdict": "UNKNOWN",
       "url": "https://hackathon.monad.xyz/",
       "quote": "sponsor site is a GitHub/Google/Discord sign-in wall; /prizes renders same wall (418 chars); /rules,/faq 404. Rules not readable without login (login = forbidden) -> kyc/country/payout UNKNOWN. Deadline 2026-10-12/13.",
       "checked_at": "2026-10-06",
       "ttl_days": 7
+    },
+    {
+      "source": "risein:/midnight/midnight-content-bounty-program-eclipse",
+      "gate": "kyc",
+      "verdict": "FAIL",
+      "url": "https://mpc.midnight.network/hubfs/Content%20Bounty%20Program%20legalese.pdf",
+      "field": "5.2 KYC Requirement",
+      "quote": "You must complete identity verification (KYC) through the Foundation's designated provider before receiving any token payment.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 90
+    },
+    {
+      "source": "risein:/midnight/midnight-content-bounty-program-eclipse",
+      "gate": "payout",
+      "verdict": "PASS",
+      "url": "https://forum.midnight.network/t/midnight-content-bounty-program-eclipse/1148",
+      "field": "Effort Tiers",
+      "quote": "Payout ranges are denominated in USD but paid in NIGHT tokens ($300-$1,000/bounty). AI-generated content is disqualified.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 90
+    },
+    {
+      "source": "risein:/stacks/granite-protocol",
+      "gate": "payout",
+      "verdict": "PASS",
+      "url": "https://www.risein.com/stacks/granite-protocol",
+      "field": "Reward Payment Terms (listing quotes Immunefi-style program)",
+      "quote": "payments are done in USDC on Ethereum or USDCx on Stacks. Security bug bounty (critical 25k-100k); not a build task; KYC not read.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
+    },
+    {
+      "source": "risein:/stacks/agent-visa",
+      "gate": "payout",
+      "verdict": "UNKNOWN",
+      "url": "https://celo.org/agent-visa",
+      "quote": "Agent Visa = tiered ecosystem program (liquidity/DeFi incentives/grants for top tier), NOT a cash prize; Rise In '$15,000' is a volume threshold. Not a money opportunity.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 90
     }
   ]
 }
