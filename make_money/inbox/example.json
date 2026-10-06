@@ -1,0 +1,8 @@
+[
+ {"kind":"task","source":"example","title":"EXAMPLE crypto bounty","url":"https://example.invalid/1","reward_usd":100,"competition":3,
+  "text":"Open worldwide. Prizes paid in USDC to your wallet. No KYC required. Free to enter. Fully online."},
+ {"kind":"task","source":"example","title":"EXAMPLE fiat bounty","url":"https://example.invalid/2","reward_usd":500,
+  "text":"Winners must complete identity verification. Prize paid by bank transfer."},
+ {"kind":"signal","source":"example","title":"EXAMPLE public problem signal","url":"https://example.invalid/3",
+  "text":"Maintainer asks for a script to convert CSV to JSON, will pay.","signal":{"budget_mentioned":true,"contact_public":true}}
+]

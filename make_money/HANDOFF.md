@@ -1,5 +1,5 @@
 # HANDOFF (current snapshot, rewrite in place, do not append history)
-Updated: 2026-10-06 | Branch: ccr-32759f1a-q5cwr5
+Updated: 2026-10-06 | Branch: ccr-9e2308e2-f6k942
 
 ## Project
 Money Hunter = discovery + verification engine. NOT an income lane, NOT an executor.
@@ -35,8 +35,12 @@ Facts only; the experiment's actions (wallet, withdrawal address, monitor routin
 - Full detail (if it exists): radar/research/agent-task-markets.md on branch origin/ccr-ac2b1e05-n02epk.
 - Old 5h monitor routine (trig_0189EEGZDnzqF41Smc8obPzd) belongs to the stale experiment: paused, not deleted, no replacement yet.
 
+## Current state
+V1 core DONE: make_money/hunter/{hunt,gates,common}.py (stdlib, tests pass), inbox/*.json -> out/shortlist.md (max 3). See make_money/README.md.
+Gates code reused from radar v0.1 (origin/ccr-a4c88237-l58vyu). No approved-design doc exists in repo; V1 follows the HANDOFF Job section.
+
 ## Next task
-Implement the minimal Money Hunter V1 from the existing approved design and source-of-truth, without redoing architecture research. Selectively load only the exact existing files needed for implementation.
+Add 1-2 live collectors (public read-only APIs/pages) that write inbox JSON; verify endpoints really exist first. Source ideas: TaskMarket (one source only), GitHub issues with bounty labels (signals). No Agent Reach, no X.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.
