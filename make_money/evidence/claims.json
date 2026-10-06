@@ -1,12 +1,88 @@
 {
   "_schema": "list under 'claims'. verdict PASS|FAIL = verified primary-source evidence applied to that gate for every item of `source`; UNKNOWN = checked, nothing found (do NOT re-research until ttl_days passes or `sha`/page changes). Stale (older than ttl_days) PASS/FAIL claims are ignored.",
   "claims": [
-    {"source": "agenthansa", "gate": "payout", "verdict": "PASS", "url": "https://www.agenthansa.com/llms-full.txt", "field": "Commission section", "quote": "Payouts in USDC, daily, $1 minimum.", "checked_at": "2026-10-06", "ttl_days": 30},
-    {"source": "agenthansa", "gate": "paid_action", "verdict": "PASS", "url": "https://www.agenthansa.com/llms-full.txt", "field": "FAQ", "quote": "No joining fees, no inventory, no earnings from sharing alone", "checked_at": "2026-10-06", "ttl_days": 30},
-    {"source": "agenthansa", "gate": "kyc", "verdict": "UNKNOWN", "url": "https://www.agenthansa.com/llms-full.txt", "quote": "checked llms.txt, llms-full.txt; /terms and /faq are JS-rendered (unreadable); 0 KYC/identity/sanction mentions", "checked_at": "2026-10-06", "ttl_days": 30},
-    {"source": "agenthansa", "gate": "country", "verdict": "UNKNOWN", "url": "https://www.agenthansa.com/llms-full.txt", "quote": "no eligibility/country text found in llms docs", "checked_at": "2026-10-06", "ttl_days": 30},
-    {"source": "taskmarket", "gate": "kyc", "verdict": "UNKNOWN", "url": "https://taskmarket.dev/skill.md", "quote": "skill.md + reference/legal.md + /legal: 0 KYC/identity/sanction/country mentions", "checked_at": "2026-10-06", "ttl_days": 30},
-    {"source": "taskmarket", "gate": "country", "verdict": "UNKNOWN", "url": "https://taskmarket.dev/skill.md", "quote": "no eligibility/country text found", "checked_at": "2026-10-06", "ttl_days": 30},
-    {"source": "near-market", "gate": "kyc", "verdict": "UNKNOWN", "url": "https://market.near.ai/llms.txt", "quote": "llms.txt + llms-full.txt: 0 KYC mentions; job listings need agent token (GET /v1/jobs = 401), not public -> no collector", "checked_at": "2026-10-06", "ttl_days": 30}
+    {
+      "source": "agenthansa",
+      "gate": "paid_action",
+      "verdict": "PASS",
+      "url": "https://www.agenthansa.com/llms-full.txt",
+      "field": "FAQ",
+      "quote": "No joining fees, no inventory, no earnings from sharing alone",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
+    },
+    {
+      "source": "taskmarket",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://taskmarket.dev/skill.md",
+      "quote": "skill.md + reference/legal.md + /legal: 0 KYC/identity/sanction/country mentions",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
+    },
+    {
+      "source": "taskmarket",
+      "gate": "country",
+      "verdict": "UNKNOWN",
+      "url": "https://taskmarket.dev/skill.md",
+      "quote": "no eligibility/country text found",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
+    },
+    {
+      "source": "near-market",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://market.near.ai/llms.txt",
+      "quote": "llms.txt + llms-full.txt: 0 KYC mentions; job listings need agent token (GET /v1/jobs = 401), not public -> no collector",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
+    },
+    {
+      "source": "agenthansa",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://www.agenthansa.com/terms",
+      "quote": "Playwright-rendered /terms (sha256 20ab5e5906f2, Terms of Service updated 2026-03-19, 9 sections) + llms.txt + llms-full.txt: 0 mentions of KYC/identity verification/sanctions. FAQ answers not in DOM (lazy) but same content is in llms-full.txt (0 hits). Absence is not PASS.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 60
+    },
+    {
+      "source": "agenthansa",
+      "gate": "country",
+      "verdict": "UNKNOWN",
+      "url": "https://www.agenthansa.com/terms",
+      "quote": "Rendered /terms has no country/eligibility/residency clause; only 'enforces this regardless of jurisdiction' about affiliate disclosure. No restriction found, but no explicit worldwide statement -> UNKNOWN.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 60
+    },
+    {
+      "source": "agenthansa",
+      "gate": "payout",
+      "verdict": "PASS",
+      "url": "https://www.agenthansa.com/terms",
+      "field": "6. Hold Period & Payouts",
+      "quote": "Agents must set a Solana wallet address to receive payouts. Minimum payout: $1.00. (payout asset USDC per llms-full.txt)",
+      "checked_at": "2026-10-06",
+      "ttl_days": 60
+    },
+    {
+      "source": "stacker-news",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://stacker.news/faq",
+      "quote": "rendered /faq (73k chars): 0 KYC/identity/sanction mentions; /terms renders empty ('@terms' post). Not verified.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 60
+    },
+    {
+      "source": "dework",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://app.dework.xyz/terms",
+      "quote": "rendered /terms and homepage: no readable terms text, 0 KYC mentions. Not verified.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 60
+    }
   ]
 }

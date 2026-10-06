@@ -42,7 +42,8 @@ Shortlist bar: no FAIL + payout PASS + kyc PASS; weak ones never forced in.
 Last live run: 12 collected, 0 qualified, shortlist empty. TaskMarket: all fee-FAIL (>=5 subs), kyc UNKNOWN. Agent Hansa: payout PASS + no-fee PASS (cached), kyc/country UNKNOWN (llms docs silent; /terms JS-rendered). NEAR market: job list needs auth token -> no collector.
 
 ## Next task
-Find a primary-source that states "no KYC" explicitly (needs readable terms/FAQ: browser render via Playwright, or a source with plain-text terms) for Agent Hansa/TaskMarket, or verify other gigs.sh claimed platforms (dework, stacker-news, encode-club, ethglobal, clustly) one at a time and cache results.
+Agent Hansa finished: rendered primary source (/terms via Playwright, read-only) has NO explicit no-KYC and NO country clause -> kyc/country stay UNKNOWN (cached in evidence/claims.json, ttl 60d, do not re-research). Also cached UNKNOWN: Stacker News, Dework, TaskMarket, NEAR market. Zero qualified candidates exist.
+Next: only an explicit "no KYC"/"open worldwide" statement can flip a gate. Options: ask user whether "no KYC clause in terms + wallet-only payout" may count as acceptable-risk (policy change, user decides), or verify other gigs.sh-claimed platforms one at a time (clustly, encode-club, ethglobal). Playwright render recipe: node + /opt/node22/lib/node_modules/playwright, executablePath /opt/pw-browsers/chromium, --no-sandbox, GET only.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.
