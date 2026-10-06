@@ -43,9 +43,8 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
-Scanned 2026-10-06: Devpost (17 open online >=$2k, public API + /rules) and lablab (12 upcoming): 0 state a crypto payout in rules (fiat/credits/unstated) -> payout not PASS, none shortlisted. DoraHacks API = bot-verification wall (405) -> skipped, no bypass. Collectors devpost/lablab stay in --live (cheap, rules cached 7d).
-Monad Metropolis stays LOGIN-REQUIRED-FOR-VERIFY (evidence/login_queue.json) until user logs in manually on PC.
-Next: only a source/opportunity that explicitly pays crypto is worth more scanning (Superteam/DoraHacks-type hackathons need KYC or login); otherwise wait for new FAST tasks (TaskMarket <5 subs) via periodic --live runs.
+Policy (user): TaskMarket kept only if fee=0 + crypto payout + acceptable competition; if still fee-required, don't spend time. 2026-10-06 run: 10 open tasks, all >=18 submissions (fee) -> 0 kept. BUILD MONEY: continue only for sources whose crypto/token payout is verifiable from primary source (Devpost/lablab scanned: none). Monad stays LOGIN-REQUIRED-FOR-VERIFY (evidence/login_queue.json).
+Next: re-run `hunt.py --live` periodically for new TaskMarket tasks (<5 subs); look for crypto-native BUILD sources (token/on-chain hackathons with public rules).
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.
