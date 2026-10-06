@@ -1,20 +1,25 @@
 {
   "devpost": {
-    "empty_runs": 2
+    "empty_runs": 0,
+    "cooldown_until": "2026-10-13"
   },
   "lablab": {
-    "empty_runs": 2
+    "empty_runs": 0,
+    "cooldown_until": "2026-10-13"
   },
   "risein": {
     "empty_runs": 0
   },
   "taskmarket": {
-    "empty_runs": 2
+    "empty_runs": 0,
+    "cooldown_until": "2026-10-13"
   },
   "agenthansa": {
-    "empty_runs": 2
+    "empty_runs": 0,
+    "cooldown_until": "2026-10-13"
   },
   "hn": {
-    "empty_runs": 2
+    "empty_runs": 0,
+    "cooldown_until": "2026-10-13"
   }
 }

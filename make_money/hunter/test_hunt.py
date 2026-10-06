@@ -113,6 +113,13 @@ def test_cooldown_after_three_empty_runs(tmp=None):
     hunt.update_state(st, ["x"], cands)
     assert st["x"]["empty_runs"] == 0
 
+def test_small_reward_ok_if_low_hassle_but_crowded_or_heavy_is_not():
+    base = {"kind": "task", "reward_usd": 2, "text": "Post one link. Prizes paid in USDC to your wallet. No KYC required. Free to enter.", "competition": 1}
+    easy = hunt.run(__import__("tempfile").mkdtemp(), [dict(base, title="easy")])[1]
+    crowd = hunt.run(__import__("tempfile").mkdtemp(), [dict(base, title="crowd", competition=500)])[1]
+    heavy = hunt.run(__import__("tempfile").mkdtemp(), [dict(base, title="heavy", text=base["text"] + " Build and code a full prototype. " * 80)])[1]
+    assert [c["title"] for c in easy] == ["easy"] and crowd == [] and heavy == []
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

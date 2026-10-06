@@ -169,17 +169,36 @@ def score(c):
     if c["lane"] == "BUILD":
         c["build"] = build_value(c)
         return round(s + sum(c["build"].values()), 1)
-    s += min(r, 500) / 50
-    if c["kind"] == "task" and c["competition"] is not None:
-        s -= min(c["competition"], 100) / 10
+    if c["kind"] == "task":
+        s += min(15, 5 * math.log10(1 + fast_value(c)["ev_per_hour"]))  # reward-to-hassle, not raw dollars
     if c["kind"] == "signal":
         sg = c["signal"]
         s += 4 * bool(sg.get("budget_mentioned")) + 3 * bool(sg.get("contact_public")) + 2 * bool(sg.get("urgency"))
     return round(s, 1)
 
 
+MIN_EV_PER_HOUR = 2.0  # expected USD per hour of effort*friction; no minimum dollar amount (a $2 task with ~no hassle is fine)
+
+
+def fast_value(c):
+    """Reward-to-hassle for FAST tasks. p_win falls with competition (unknown -> 0.3, never optimistic); effort_hours is a text-size/keyword
+    estimate; friction grows with unverified KYC/country and unclear payout path. ev_per_hour = reward*p_win / (hours*friction)."""
+    t = c.get("_blob") or (c.get("text") or "")
+    comp = c.get("competition")
+    p = 0.3 if comp is None else 1 / (1 + comp / 3)
+    hours = max(0.25, len(t) / 1500)
+    hours *= 2 if re.search(r"\b(video|design|logo|illustrat|animation|research|build|prototype|code|script)\b", t, re.I) else 1
+    v = c["gates"]
+    friction = 1 + 0.4 * sum(v[k] not in ("PASS",) for k in ("kyc", "country")) + (0.5 if v["payout"] != "PASS" else 0) + (0.5 if v["onsite"] == "RISK" else 0)
+    ev = (c["reward_usd"] or 0) * p / (hours * friction)
+    return {"p_win": round(p, 2), "hours": round(hours, 2), "friction": round(friction, 2), "ev_per_hour": round(ev, 2)}
+
+
 def worthy(c):
-    return (sum(c.get("build", {}).values()) >= 15) if c["lane"] == "BUILD" else (c["reward_usd"] or 0) >= 1
+    if c["lane"] == "BUILD":
+        return sum(c.get("build", {}).values()) >= 15
+    c["hassle"] = fast_value(c)
+    return (c["reward_usd"] or 0) > 0 and c["hassle"]["ev_per_hour"] >= MIN_EV_PER_HOUR
 
 
 def qualified(c):

@@ -70,6 +70,8 @@ Never recommend: fake country, fake residency, fake identity, VPN eligibility by
 Two lanes, label each candidate: FAST MONEY (task/micro-bounty/gig, ~1-3 days preferred) and BUILD MONEY (hackathon/builder challenge/large bounty/grant; 1-3 day rule NOT required; scored by AI leverage, effort, prize, win chance, deadline, competition, fit, outside-control reqs).
 Explicit KYC / applicable sanctions-or-country exclusion / required upfront spend (even 0.001 USDC) = FAIL. Absence of a "no KYC" clause = UNKNOWN (neither PASS nor FAIL): such a candidate may be shortlisted ONLY if payout=PASS and paid_action=PASS from explicit opportunity-level text, flagged "user must check KYC/country". Aggregator listings (Rise In, gigs.sh, etc.) are discovery only: each opportunity is verified from its own sponsor rules; listing text may add a FAIL, never a PASS.
 
+FAST scoring (user, 2026-10-06): no minimum dollar amount. Rank/qualify by reward-to-hassle (expected USD per hour = reward*p_win/(effort*friction), threshold 2): even $2 is fine if no KYC, no fee, crypto payout, remote, low effort, low competition, simple payout path. <$5 is rejected only when value does not justify effort/friction.
+
 ## Opportunity hard gates (serious opportunities)
 Each must hold; evidence required (PASS needs explicit text; absence = UNKNOWN, never PASS):
 - remote/online

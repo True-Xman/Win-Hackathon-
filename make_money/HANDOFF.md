@@ -43,6 +43,7 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
+FAST worthiness = reward-to-hassle (hunt.py fast_value, MIN_EV_PER_HOUR=2), no dollar floor.
 Cooldown live: a source with no usable candidate (qualified or valuable login-queue lead) 3 runs in a row sleeps 7 days (evidence/source_state.json; `--force` ignores). gigs/github exempt.
 Crypto-native checks 2026-10-06: Stacker News bounties (sats, public GraphQL) = FAIL spend (comments cost sats) + tiny; ETHGlobal = Cloudflare wall (skipped); DoraHacks = bot wall. Monad stays in login_queue.
 Next: only report on a promising candidate / real blocker / user action. Periodic `hunt.py --live`.
