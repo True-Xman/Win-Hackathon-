@@ -120,16 +120,26 @@ def test_small_reward_ok_if_low_hassle_but_crowded_or_heavy_is_not():
     heavy = hunt.run(__import__("tempfile").mkdtemp(), [dict(base, title="heavy", text=base["text"] + " Build and code a full prototype. " * 80)])[1]
     assert [c["title"] for c in easy] == ["easy"] and crowd == [] and heavy == []
 
-def test_gas_assess_network_balance_and_other_fees():
-    hunt.rpc_gas_price_wei = lambda n: 6_000_000 if n == "base" else 20_000_000
+def test_gas_prefilter_never_covers_only_tx_specific_does():
+    hunt.rpc_gas_price_wei = lambda n: 6_000_000
     base = "Prizes paid in USDC to your wallet. No KYC required. Participants must pay network gas for the claim transaction on Base."
     a = run([{"kind": "task", "reward_usd": 20, "competition": 1, "text": base, "title": "a"}])[0]
-    assert a["gates"]["paid_action"] == "GAS-COVERED" and a["gas"]["network"] == "base" and a["gas"]["margin_x"] >= 3
+    assert a["gates"]["paid_action"] == "GAS-PREFILTER-OK" and "need" in a["gas"]
+    assert hunt.qualified(a) is False
+    calls = {"eth_estimateGas": hex(60000), "eth_gasPrice": hex(6_000_000), "eth_call": hex(5_000_000_000)}
+    hunt._rpc = lambda net, m, p: calls[m]
+    spec = {"network": "base", "to": "0x" + "11" * 20, "data": "0xa9059cbb"}
+    b = run([{"kind": "task", "reward_usd": 20, "competition": 1, "text": base, "title": "b", "gas_tx": spec}])[0]
+    assert b["gates"]["paid_action"] == "GAS-COVERED" and b["gas"]["basis"] == "tx-specific" and b["gas"]["l1_fee_wei"] == 5_000_000_000
+    calls["eth_estimateGas"] = hex(10**11)  # huge tx -> balance cannot cover with margin
+    c = run([{"kind": "task", "reward_usd": 20, "competition": 1, "text": base, "title": "c", "gas_tx": spec}])[0]
+    assert c["gates"]["paid_action"] == "FAIL"
+    def boom(*a): raise RuntimeError("execution reverted")
+    hunt._rpc = boom
+    d = run([{"kind": "task", "reward_usd": 20, "competition": 1, "text": base, "title": "d", "gas_tx": spec}])[0]
+    assert d["gates"]["paid_action"] == "UNKNOWN"
     nonet = run([{"kind": "task", "reward_usd": 20, "text": base.replace(" on Base", ""), "title": "n"}])[0]
     assert nonet["gates"]["paid_action"] == "UNKNOWN"
-    hunt.rpc_gas_price_wei = lambda n: 10**12  # absurd gas price -> balance cannot cover with margin
-    poor = run([{"kind": "task", "reward_usd": 20, "text": base, "title": "p"}])[0]
-    assert poor["gates"]["paid_action"] == "FAIL"
     fee = run([{"kind": "task", "reward_usd": 20, "text": base + " Also a submission fee of 1 USDC applies on Base.", "title": "f"}])[0]
     assert fee["gates"]["paid_action"] == "FAIL" and not fee["gas_only"]
 

@@ -43,7 +43,7 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
-Gas budget (user-reported, evidence/wallet_budget.json): Base ~0.0000399 ETH, Arbitrum ~0.0000207 ETH; ignore ETH mainnet dust + USDT BEP20. GAS-ONLY is not a PASS: hunt.py gas_assess checks network (Base/Arbitrum only), estimates gas (live read-only eth_gasPrice x txs x150k x2) and needs balance >= 3x -> paid_action=GAS-COVERED (qualifies, flagged) else FAIL/UNKNOWN; other fee/stake/deposit = FAIL. No spend/tx/wallet action without user approval.
+Gas budget (user-reported, evidence/wallet_budget.json): Base ~0.0000399 ETH, Arbitrum ~0.0000207 ETH; ignore ETH mainnet dust + USDT BEP20. GAS-ONLY is not a PASS. hunt.py gas_assess (generic 150k x gasPrice) is a PRE-FILTER only -> GAS-PREFILTER-OK (not qualifying). GAS-COVERED needs a tx-specific read-only estimate (item field gas_tx {network,to,data[,from]}: eth_estimateGas + gasPrice + Base L1 data fee via GasPriceOracle, x1.5, balance >= 3x); simulation failure = UNKNOWN. Other fee/stake/deposit = FAIL. Hunter never signs/sends; every tx needs user approval.
 FAST worthiness = reward-to-hassle (hunt.py fast_value, MIN_EV_PER_HOUR=2), no dollar floor.
 Cooldown live: a source with no usable candidate (qualified or valuable login-queue lead) 3 runs in a row sleeps 7 days (evidence/source_state.json; `--force` ignores). gigs/github exempt.
 Crypto-native checks 2026-10-06: Stacker News bounties (sats, public GraphQL) = FAIL spend (comments cost sats) + tiny; ETHGlobal = Cloudflare wall (skipped); DoraHacks = bot wall. Monad stays in login_queue.

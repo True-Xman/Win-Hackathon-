@@ -32,7 +32,7 @@ def normalize(raw, src_file):
             "text": raw.get("text") or "", "rules_url": raw.get("rules_url"),
             "reward_usd": raw.get("reward_usd"), "deadline": raw.get("deadline"),
             "competition": raw.get("competition"), "signal": raw.get("signal") or {},
-            "native_id": raw.get("native_id"), "discovery_text": raw.get("discovery_text") or "",
+            "native_id": raw.get("native_id"), "gas_tx": raw.get("gas_tx"), "discovery_text": raw.get("discovery_text") or "",
             "lane": raw.get("lane") or "FAST", "provenance": raw.get("provenance") or {"file": src_file}}
 
 
@@ -137,8 +137,42 @@ def gas_assess(text):
         best = best or cur
     if best is None:
         return {"verdict": "UNKNOWN", "why": "gas price unreadable"}
-    best["verdict"] = "GAS-COVERED" if best["ok"] else "FAIL"
+    best["verdict"] = "GAS-PREFILTER-OK" if best["ok"] else "FAIL"  # generic estimate = pre-filter ONLY, never GAS-COVERED
     return best
+
+
+def _rpc(net, method, params):
+    import urllib.request
+    r = urllib.request.Request(RPC[net], json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(),
+                               {"content-type": "application/json", "user-agent": "MoneyHunter/1.0"})
+    d = json.load(urllib.request.urlopen(r, timeout=20))
+    if "error" in d:
+        raise RuntimeError(d["error"].get("message", "rpc error"))
+    return d["result"]
+
+
+def tx_estimate(spec):
+    """Transaction-specific, read-only estimate (eth_estimateGas + gasPrice + L1 data fee on Base via GasPriceOracle.getL1Fee; on Arbitrum the
+    L1 component is already inside estimateGas units). Needs spec {network,to,data[,value,from]}. Safety: total x1.5 (price/size drift),
+    balance must be >= GAS_MARGIN x that. Never signs/sends. -> dict with verdict GAS-COVERED|FAIL|UNKNOWN."""
+    net = (spec or {}).get("network", "").lower()
+    if net not in RPC or not spec.get("to"):
+        return {"verdict": "UNKNOWN", "why": "tx spec missing/unsupported network"}
+    call = {k: spec[k] for k in ("from", "to", "data", "value") if spec.get(k)}
+    try:
+        gas = int(_rpc(net, "eth_estimateGas", [call]), 16)
+        price = int(_rpc(net, "eth_gasPrice", []), 16)
+        l1 = 0
+        if net == "base":
+            raw = bytes.fromhex((spec.get("data") or "0x")[2:]) + b"\x00" * 110  # unsigned-tx envelope padding
+            enc = "49948e0e" + "%064x" % 32 + "%064x" % len(raw) + raw.hex() + "00" * ((32 - len(raw) % 32) % 32)
+            l1 = int(_rpc(net, "eth_call", [{"to": "0x420000000000000000000000000000000000000F", "data": "0x" + enc}, "latest"]), 16)
+    except Exception as e:  # noqa: BLE001 - simulation needs the right sender/state; unknown is the honest answer
+        return {"verdict": "UNKNOWN", "why": f"tx simulation failed: {str(e)[:120]}", "network": net}
+    est = (gas * price + l1) * 1.5 / 1e18
+    bal = json.load(open(GAS_BUDGET_F))["gas_eth"][net]
+    return {"verdict": "GAS-COVERED" if bal >= GAS_MARGIN * est else "FAIL", "network": net, "gas_units": gas, "gas_price_wei": price, "l1_fee_wei": l1,
+            "est_eth": est, "balance_eth": bal, "margin_x": round(bal / est, 1) if est else None, "basis": "tx-specific"}
 
 
 def verify(c):
@@ -170,8 +204,10 @@ def verify(c):
         t = " ".join(ev.get("paid_action", []))
         if re.search(r"\bgas\b", t, re.I) and not re.search(r"entry fee|registration fee|submission fee|stake|deposit|purchase|\bpay\b[^.]{0,40}(USDC|USDT|\$|usd)|\d+(\.\d+)? ?(USDC|USDT|USD)", t, re.I):
             c["gas_only"] = True
-            c["gas"] = gas_assess(c["_blob"])
-            v["paid_action"] = c["gas"]["verdict"]
+            c["gas"] = gas_assess(c["_blob"])  # generic pre-filter
+            if c["gas"]["verdict"] == "GAS-PREFILTER-OK":
+                c["gas"] = tx_estimate(c.get("gas_tx")) if c.get("gas_tx") else dict(c["gas"], need="tx-specific estimate (gas_tx: network,to,data[,from]) before GAS-COVERED")
+            v["paid_action"] = c["gas"]["verdict"] if c["gas"]["verdict"] in ("GAS-COVERED", "FAIL", "UNKNOWN") else "GAS-PREFILTER-OK"
     c["gates"], c["evidence"] = v, ev
     return c
 
@@ -283,7 +319,7 @@ def run(inbox, live=None, health=None):
         lines.append(f"{i}. [{'BUILD MONEY' if c['lane'] == 'BUILD' else 'FAST MONEY'}] {c['title']} - {c['status']} score={c['score']}\n   {c['url']}\n"
                      f"   gates: {c['gates']}\n   unverified (user must check): {c['why'] if c['status'] != 'VERIFIED' else '-'}"
                      + (f"\n   build value: {c['build']}" if c.get('build') else "")
-                     + (f"\n   GAS-COVERED: {c['gas']} -- every tx still needs your approval" if c["gates"]["paid_action"] == "GAS-COVERED" else ""))
+                     + (f"\n   GAS-COVERED (tx-specific): {c['gas']} -- every tx still needs your approval" if c["gates"]["paid_action"] == "GAS-COVERED" else ""))
     if not top:
         lines.append("Hich candidate-e qualified nist (payout=PASS + paid_action=PASS + no FAIL lazem). Leads: out/candidates.json.")
     open(os.path.join(DATA, "shortlist.md"), "w").write("\n".join(lines) + "\n")
