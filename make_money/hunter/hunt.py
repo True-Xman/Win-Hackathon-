@@ -19,7 +19,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DATA, days_left, fetch, html_to_text, load, render_text, save  # noqa: E402
 from gates import analyze, load_text  # noqa: E402
-from collectors import collect_live  # noqa: E402
+from collectors import COLLECTORS, collect_live  # noqa: E402
 
 CLAIMS = {}
 HARD = ("kyc", "country", "paid_action", "onsite", "payout")  # + student (FAIL only)
@@ -219,11 +219,43 @@ def run(inbox, live=None, health=None):
     return cands, top
 
 
+STATE_F = os.path.join(EVID, "source_state.json")
+COOLDOWN_AFTER, COOLDOWN_DAYS, NO_COOLDOWN = 3, 7, ("gigs", "github")  # discovery-only/stub sources never cool down
+
+
+def cooling_down():
+    import datetime as dt
+    st = json.load(open(STATE_F)) if os.path.exists(STATE_F) else {}
+    now = dt.date.today().isoformat()
+    return st, {n for n, v in st.items() if v.get("cooldown_until", "") > now}
+
+
+def update_state(st, ran, cands):
+    """A source with no usable candidate (qualified or valuable login-queue lead) COOLDOWN_AFTER runs in a row sleeps COOLDOWN_DAYS days."""
+    import datetime as dt
+    usable = {c["source"] for c in cands if qualified(c) or (c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and worthy(c))}
+    for n in ran:
+        if n in NO_COOLDOWN:
+            continue
+        v = st.setdefault(n, {})
+        v["empty_runs"] = 0 if n in usable else v.get("empty_runs", 0) + 1
+        if v["empty_runs"] >= COOLDOWN_AFTER:
+            v["cooldown_until"] = (dt.date.today() + dt.timedelta(days=COOLDOWN_DAYS)).isoformat()
+            v["empty_runs"] = 0
+    json.dump(st, open(STATE_F, "w"), indent=2)
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
-    live = "--live" in args
-    args = [a for a in args if a != "--live"]
+    live, force = "--live" in args, "--force" in args
+    args = [a for a in args if not a.startswith("--")]
     inbox = args[0] if args else os.path.join(os.path.dirname(DATA), "inbox")
-    items, health = (collect_live() if live else ([], None))
+    st, cool = ({}, set()) if not live else cooling_down()
+    names = [n for n in COLLECTORS if force or n not in cool]
+    items, health = collect_live(names) if live else ([], None)
+    for n in cool - set(names):
+        health[n] = {"skipped": "cooldown until " + st[n]["cooldown_until"]}
     cands, top = run(inbox, items, health)
-    print(f"{len(cands)} collected, {sum(c['status'] != 'REJECTED' for c in cands)} alive, {sum(qualified(c) for c in cands)} qualified, {len(top)} shortlisted; health={health}")
+    if live:
+        update_state(st, names, cands)
+    print(f"{len(cands)} collected, {sum(c['status'] != 'REJECTED' for c in cands)} alive, {sum(qualified(c) for c in cands)} qualified, {len(top)} shortlisted; cooling={sorted(cool)}")

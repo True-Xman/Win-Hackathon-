@@ -102,6 +102,17 @@ def test_login_wall_marked_not_rejected():
     c = run([it])[0]
     assert c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and c["gates"]["payout"] != "PASS"
 
+def test_cooldown_after_three_empty_runs(tmp=None):
+    import tempfile, json as j
+    hunt.STATE_F = tempfile.mktemp()
+    st = {}
+    for _ in range(3):
+        hunt.update_state(st, ["devpost", "gigs"], [])
+    assert "cooldown_until" in st["devpost"] and "gigs" not in st
+    cands = run([{"kind": "task", "source": "x", "title": "t", "reward_usd": 5, "text": "Prizes paid in USDC. No KYC required. Free to enter."}])
+    hunt.update_state(st, ["x"], cands)
+    assert st["x"]["empty_runs"] == 0
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

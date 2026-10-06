@@ -43,8 +43,9 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
-Policy (user): TaskMarket kept only if fee=0 + crypto payout + acceptable competition; if still fee-required, don't spend time. 2026-10-06 run: 10 open tasks, all >=18 submissions (fee) -> 0 kept. BUILD MONEY: continue only for sources whose crypto/token payout is verifiable from primary source (Devpost/lablab scanned: none). Monad stays LOGIN-REQUIRED-FOR-VERIFY (evidence/login_queue.json).
-Next: re-run `hunt.py --live` periodically for new TaskMarket tasks (<5 subs); look for crypto-native BUILD sources (token/on-chain hackathons with public rules).
+Cooldown live: a source with no usable candidate (qualified or valuable login-queue lead) 3 runs in a row sleeps 7 days (evidence/source_state.json; `--force` ignores). gigs/github exempt.
+Crypto-native checks 2026-10-06: Stacker News bounties (sats, public GraphQL) = FAIL spend (comments cost sats) + tiny; ETHGlobal = Cloudflare wall (skipped); DoraHacks = bot wall. Monad stays in login_queue.
+Next: only report on a promising candidate / real blocker / user action. Periodic `hunt.py --live`.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.

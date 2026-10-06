@@ -140,6 +140,25 @@
       "quote": "Agent Visa = tiered ecosystem program (liquidity/DeFi incentives/grants for top tier), NOT a cash prize; Rise In '$15,000' is a volume threshold. Not a money opportunity.",
       "checked_at": "2026-10-06",
       "ttl_days": 90
+    },
+    {
+      "source": "stacker-news",
+      "gate": "paid_action",
+      "verdict": "FAIL",
+      "url": "https://stacker.news/faq",
+      "field": "FAQ: Do I need bitcoin?",
+      "quote": "Posts and comments incur a small fee to prevent spam (fee varies by territory); CCs earned from zaps can cover it. Bounty answers are comments -> upfront sats spend. Bounties ~1k-5k sats (<$5) except rare big puzzles.",
+      "checked_at": "2026-10-06",
+      "ttl_days": 60
+    },
+    {
+      "source": "ethglobal",
+      "gate": "kyc",
+      "verdict": "UNKNOWN",
+      "url": "https://ethglobal.com/events",
+      "quote": "event pages behind Cloudflare bot check (not bypassed); /terms readable but 0 KYC/payout hits",
+      "checked_at": "2026-10-06",
+      "ttl_days": 30
     }
   ]
 }
