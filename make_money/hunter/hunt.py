@@ -99,6 +99,48 @@ def rules_text(url):
     return d["text"], how
 
 
+GAS_BUDGET_F = os.path.join(EVID, "wallet_budget.json")
+GAS_MARGIN = 3.0  # balance must be >= GAS_MARGIN x estimated cost
+RPC = {"base": "https://mainnet.base.org", "arbitrum": "https://arb1.arbitrum.io/rpc"}
+
+
+def rpc_gas_price_wei(net):
+    """Read-only eth_gasPrice. None on failure."""
+    import urllib.request
+    try:
+        r = urllib.request.Request(RPC[net], json.dumps({"jsonrpc": "2.0", "id": 1, "method": "eth_gasPrice", "params": []}).encode(),
+                                   {"content-type": "application/json", "user-agent": "MoneyHunter/1.0"})
+        return int(json.load(urllib.request.urlopen(r, timeout=15))["result"], 16)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def gas_assess(text):
+    """-> {verdict: GAS-COVERED|FAIL|UNKNOWN, network, txs, est_eth, balance_eth, margin}. Estimate = txs x 150k gas x live gasPrice x 2 (L1 data fee headroom)."""
+    nets = [n for n in ("base", "arbitrum") if re.search(r"\b%s\b" % n, text, re.I)]
+    other = re.search(r"ethereum mainnet|\bmainnet\b(?! (of )?(base|arbitrum))|\bbsc\b|bnb chain|polygon|optimism|solana|avalanche|\bl1\b", text, re.I)
+    if not nets:
+        return {"verdict": "FAIL", "why": "gas on unsupported network (only Base/Arbitrum covered)"} if other else {"verdict": "UNKNOWN", "why": "network not stated"}
+    bal = json.load(open(GAS_BUDGET_F))["gas_eth"]
+    txs = max(1, min(5, len(re.findall(r"\b(transactions?|claim|mint|approve|register|deploy|transfer)\b", text, re.I))))
+    best = None
+    for n in nets:
+        price = rpc_gas_price_wei(n)
+        if price is None:
+            continue
+        est = txs * 150_000 * price * 2 / 1e18
+        ok = bal[n] >= GAS_MARGIN * est
+        cur = {"network": n, "txs": txs, "est_eth": est, "balance_eth": bal[n], "margin_x": round(bal[n] / est, 1) if est else None, "ok": ok}
+        if ok:
+            best = cur
+            break
+        best = best or cur
+    if best is None:
+        return {"verdict": "UNKNOWN", "why": "gas price unreadable"}
+    best["verdict"] = "GAS-COVERED" if best["ok"] else "FAIL"
+    return best
+
+
 def verify(c):
     rules, how = (rules_text(c["rules_url"]) if c["rules_url"] else ("", None))
     c["rules_read"] = {"url": c["rules_url"], "how": how, "chars": len(rules)}
@@ -121,12 +163,15 @@ def verify(c):
     if c["kind"] == "signal" and v["payout"] != "FAIL":
         # a signal has no stated payout rail: crypto must be agreed later -> UNKNOWN, never PASS
         v["payout"] = "PASS" if v["payout"] == "PASS" else "UNKNOWN"
-    # gas-only spend: the only out-of-pocket cost is network gas -> not FAIL, flagged "may be covered by existing balance" (user approval still required)
-    c["gas_only"] = False
+    # gas-only spend: NOT a PASS by itself. Network must be Base/Arbitrum, estimated gas (live eth_gasPrice, read-only RPC) must fit the
+    # user-reported balance with a safety margin; any other fee/stake/deposit stays FAIL. Even when covered, every tx needs user approval.
+    c["gas_only"], c["gas"] = False, None
     if v["paid_action"] == "FAIL":
         t = " ".join(ev.get("paid_action", []))
         if re.search(r"\bgas\b", t, re.I) and not re.search(r"entry fee|registration fee|submission fee|stake|deposit|purchase|\bpay\b[^.]{0,40}(USDC|USDT|\$|usd)|\d+(\.\d+)? ?(USDC|USDT|USD)", t, re.I):
-            v["paid_action"], c["gas_only"] = "GAS-ONLY", True
+            c["gas_only"] = True
+            c["gas"] = gas_assess(c["_blob"])
+            v["paid_action"] = c["gas"]["verdict"]
     c["gates"], c["evidence"] = v, ev
     return c
 
@@ -141,7 +186,7 @@ def status(c):
         return "REJECTED", fails
     if c.get("login_required") and not (v["payout"] == "PASS" and v["paid_action"] == "PASS"):
         return "LOGIN-REQUIRED-FOR-VERIFY", ["rules behind login (not read; login is never done by Hunter)"]
-    unk = [k for k in ("kyc", "country", "paid_action", "onsite", "payout") if v[k] not in ("PASS", "GAS-ONLY")]
+    unk = [k for k in ("kyc", "country", "paid_action", "onsite", "payout") if v[k] not in ("PASS", "GAS-COVERED")]
     return ("VERIFIED" if not unk else "NEEDS_CHECK"), unk  # RISK/INFO/UNKNOWN all count as unverified
 
 
@@ -211,7 +256,7 @@ def qualified(c):
     """Shortlist bar: no FAIL; crypto payout PASS and zero-spend (paid_action) PASS, each from explicit text; onsite not RISK.
     KYC/country UNKNOWN is allowed (absence of a clause is neither PASS nor FAIL) but is flagged and must be user-checked."""
     v = c["gates"]
-    return worthy(c) and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] in ("PASS", "GAS-ONLY") and v["onsite"] != "RISK"
+    return worthy(c) and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] in ("PASS", "GAS-COVERED") and v["onsite"] != "RISK"
 
 
 def run(inbox, live=None, health=None):
@@ -238,7 +283,7 @@ def run(inbox, live=None, health=None):
         lines.append(f"{i}. [{'BUILD MONEY' if c['lane'] == 'BUILD' else 'FAST MONEY'}] {c['title']} - {c['status']} score={c['score']}\n   {c['url']}\n"
                      f"   gates: {c['gates']}\n   unverified (user must check): {c['why'] if c['status'] != 'VERIFIED' else '-'}"
                      + (f"\n   build value: {c['build']}" if c.get('build') else "")
-                     + ("\n   GAS-ONLY: needs only network gas; may be covered by existing balance (see evidence/wallet_budget.json). Needs your approval to spend." if c.get("gas_only") else ""))
+                     + (f"\n   GAS-COVERED: {c['gas']} -- every tx still needs your approval" if c["gates"]["paid_action"] == "GAS-COVERED" else ""))
     if not top:
         lines.append("Hich candidate-e qualified nist (payout=PASS + paid_action=PASS + no FAIL lazem). Leads: out/candidates.json.")
     open(os.path.join(DATA, "shortlist.md"), "w").write("\n".join(lines) + "\n")
