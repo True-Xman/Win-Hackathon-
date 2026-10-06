@@ -36,12 +36,13 @@ Facts only; the experiment's actions (wallet, withdrawal address, monitor routin
 - Old 5h monitor routine (trig_0189EEGZDnzqF41Smc8obPzd) belongs to the stale experiment: paused, not deleted, no replacement yet.
 
 ## Current state
-V1 live: `python3 make_money/hunter/hunt.py --live` (stdlib; 7 tests pass). Collectors (hunter/collectors.py): taskmarket (public /api/tasks, verified), hn (HN Algolia Ask HN demand signals), github (stub; api.github.com search = 403 in cloud session, skipped, no workaround).
-Shortlist bar: no FAIL + payout PASS + kyc PASS. Last live run (2026-10-06): 10 collected (10 TaskMarket, 0 HN), 0 qualified, shortlist empty (correct, nothing forced).
-Why 0: TaskMarket public docs have no KYC/country text -> UNKNOWN; all open tasks have >=5 submissions -> 0.001 USDC fee -> paid_action FAIL (strict hard gate). HN signals have no payout rail -> UNKNOWN.
+V1 live: `python3 make_money/hunter/hunt.py --live` (stdlib; 8 tests pass). Collectors (hunter/collectors.py): taskmarket, agenthansa (public no-auth bounties/community tasks, X/Twitter items skipped), hn (demand signals), github (stub; 403 in cloud session, skipped), gigs (discovery only -> out/gigs_discovery.json: 16/46 platforms CLAIM no-KYC+crypto, unverified, affects no gate).
+Policy (user, 2026-10-06): any upfront fee/spend, even 0.001 USDC = paid_action FAIL. Historical HANDOFF summary is NOT KYC evidence. KYC/country/payout PASS needs one primary-source check, cached in make_money/evidence/claims.json (url+quote+date+ttl); re-check only when stale/invalid. UNKNOWN entries there mean "already checked, nothing found".
+Shortlist bar: no FAIL + payout PASS + kyc PASS; weak ones never forced in.
+Last live run: 12 collected, 0 qualified, shortlist empty. TaskMarket: all fee-FAIL (>=5 subs), kyc UNKNOWN. Agent Hansa: payout PASS + no-fee PASS (cached), kyc/country UNKNOWN (llms docs silent; /terms JS-rendered). NEAR market: job list needs auth token -> no collector.
 
 ## Next task
-Decide with user: (a) accept 0.001 USDC micro-fee as non-blocking? (b) accept platform-level KYC evidence from earlier research for TaskMarket? Else add a source with explicit "no KYC + crypto payout" text (e.g. gigs.sh directory kycRequired=no flag, public API verified 200). GitHub collector works only where api.github.com search is reachable.
+Find a primary-source that states "no KYC" explicitly (needs readable terms/FAQ: browser render via Playwright, or a source with plain-text terms) for Agent Hansa/TaskMarket, or verify other gigs.sh claimed platforms (dework, stacker-news, encode-club, ethglobal, clustly) one at a time and cache results.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.

@@ -17,6 +17,7 @@ from common import DATA, days_left, load, save  # noqa: E402
 from gates import analyze, load_text  # noqa: E402
 from collectors import collect_live  # noqa: E402
 
+CLAIMS = {}
 HARD = ("kyc", "country", "paid_action", "onsite", "payout")  # + student (FAIL only)
 
 
@@ -53,11 +54,32 @@ def dedupe(cands):
     return out
 
 
+def load_claims():
+    """Cached primary-source evidence (make_money/evidence/claims.json) -> {(source, gate): claim}. Stale PASS/FAIL claims are dropped."""
+    import datetime as dt
+    p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "evidence", "claims.json")
+    out = {}
+    if os.path.exists(p):
+        import json
+        for cl in json.load(open(p))["claims"]:
+            age = (dt.date.today() - dt.date.fromisoformat(cl["checked_at"])).days
+            cl["stale"] = age > cl.get("ttl_days", 30)
+            out[(cl["source"], cl["gate"])] = cl
+    return out
+
+
 def verify(c):
     text = c["text"] + ("\n" + load_text(c["rules_url"]) if c["rules_url"] else "")
     g = analyze(text, c["url"] or c["title"])["gates"]
     v = {k: g[k]["verdict"] for k in (*HARD, "student")}
     ev = {k: g[k]["evidence"][:2] + g[k]["positive_evidence"][:1] for k in v if g[k]["evidence"] or g[k]["positive_evidence"]}
+    for gate in v:  # cached primary-source claims: PASS never overrides a FAIL found in the item text itself
+        cl = CLAIMS.get((c["source"], gate))
+        if not cl or cl["stale"] or cl["verdict"] not in ("PASS", "FAIL"):
+            continue
+        if cl["verdict"] == "FAIL" or v[gate] != "FAIL":
+            v[gate] = cl["verdict"]
+            ev.setdefault(gate, []).append(f"[claim {cl['checked_at']}] {cl['quote']} ({cl['url']})")
     if c["kind"] == "signal" and v["payout"] != "FAIL":
         # a signal has no stated payout rail: crypto must be agreed later -> UNKNOWN, never PASS
         v["payout"] = "PASS" if v["payout"] == "PASS" else "UNKNOWN"
@@ -98,6 +120,8 @@ def qualified(c):
 
 
 def run(inbox, live=None, health=None):
+    global CLAIMS
+    CLAIMS = load_claims()
     raw = collect(inbox) if inbox else []
     cands = [verify(c) for c in dedupe(raw + [normalize(r, r.get("source", "live")) for r in (live or [])])]
     for c in cands:

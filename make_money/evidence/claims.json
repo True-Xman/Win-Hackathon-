@@ -1,0 +1,12 @@
+{
+  "_schema": "list under 'claims'. verdict PASS|FAIL = verified primary-source evidence applied to that gate for every item of `source`; UNKNOWN = checked, nothing found (do NOT re-research until ttl_days passes or `sha`/page changes). Stale (older than ttl_days) PASS/FAIL claims are ignored.",
+  "claims": [
+    {"source": "agenthansa", "gate": "payout", "verdict": "PASS", "url": "https://www.agenthansa.com/llms-full.txt", "field": "Commission section", "quote": "Payouts in USDC, daily, $1 minimum.", "checked_at": "2026-10-06", "ttl_days": 30},
+    {"source": "agenthansa", "gate": "paid_action", "verdict": "PASS", "url": "https://www.agenthansa.com/llms-full.txt", "field": "FAQ", "quote": "No joining fees, no inventory, no earnings from sharing alone", "checked_at": "2026-10-06", "ttl_days": 30},
+    {"source": "agenthansa", "gate": "kyc", "verdict": "UNKNOWN", "url": "https://www.agenthansa.com/llms-full.txt", "quote": "checked llms.txt, llms-full.txt; /terms and /faq are JS-rendered (unreadable); 0 KYC/identity/sanction mentions", "checked_at": "2026-10-06", "ttl_days": 30},
+    {"source": "agenthansa", "gate": "country", "verdict": "UNKNOWN", "url": "https://www.agenthansa.com/llms-full.txt", "quote": "no eligibility/country text found in llms docs", "checked_at": "2026-10-06", "ttl_days": 30},
+    {"source": "taskmarket", "gate": "kyc", "verdict": "UNKNOWN", "url": "https://taskmarket.dev/skill.md", "quote": "skill.md + reference/legal.md + /legal: 0 KYC/identity/sanction/country mentions", "checked_at": "2026-10-06", "ttl_days": 30},
+    {"source": "taskmarket", "gate": "country", "verdict": "UNKNOWN", "url": "https://taskmarket.dev/skill.md", "quote": "no eligibility/country text found", "checked_at": "2026-10-06", "ttl_days": 30},
+    {"source": "near-market", "gate": "kyc", "verdict": "UNKNOWN", "url": "https://market.near.ai/llms.txt", "quote": "llms.txt + llms-full.txt: 0 KYC mentions; job listings need agent token (GET /v1/jobs = 401), not public -> no collector", "checked_at": "2026-10-06", "ttl_days": 30}
+  ]
+}

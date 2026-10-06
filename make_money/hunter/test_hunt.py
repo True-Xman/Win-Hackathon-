@@ -49,6 +49,15 @@ def test_taskmarket_normalizes_and_kyc_unknown(monkeypatch=None):
     c = hunt.run(__import__("tempfile").mkdtemp(), items)[0][0]
     assert c["gates"]["payout"] == "PASS" and c["gates"]["kyc"] == "UNKNOWN" and c["status"] == "NEEDS_CHECK"
 
+def test_claim_applies_but_never_overrides_fail_and_stale_ignored():
+    items = [{"kind": "task", "source": "agenthansa", "title": "a", "url": "u1", "text": "Do it."},
+             {"kind": "task", "source": "agenthansa", "title": "b", "url": "u2", "text": "Prize paid by bank transfer."}]
+    a, b = run(items)
+    assert a["gates"]["payout"] == "PASS" and "claim" in a["evidence"]["payout"][-1] and a["gates"]["kyc"] == "UNKNOWN"
+    assert b["gates"]["payout"] == "FAIL"
+    hunt.CLAIMS = {k: dict(v, stale=True) for k, v in hunt.load_claims().items()}
+    assert hunt.verify(hunt.normalize(items[0], "x"))["gates"]["payout"] != "PASS"
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

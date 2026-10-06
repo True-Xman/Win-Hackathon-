@@ -87,7 +87,48 @@ def github_bounties():
     return items, {"ok": True, "kept": len(items)}
 
 
-COLLECTORS = {"taskmarket": taskmarket, "hn": hn_signals, "github": github_bounties}
+HANSA = "https://www.agenthansa.com"
+OUT_OF_SCOPE = re.compile(r"twitter|\bx\.com|tweet|reddit|follower", re.I)  # X/Twitter is out of scope; social-growth tasks need accounts
+
+
+def agenthansa(pages=1):
+    """Public no-auth listings: /api/collective/bounties/public + /api/community/tasks. Reward is split among participants,
+    so reward_usd = reward / max(participants,1) (honest per-head estimate). Currency 'USD' on the API; USDC payout comes from cached docs claim."""
+    items, raw = [], 0
+    for path, key in (("/api/collective/bounties/public", "bounties"), ("/api/community/tasks", "tasks")):
+        u = f"{HANSA}{path}"
+        st, d = fetch_json(u)
+        if not isinstance(d, dict) or key not in d:
+            return items, {"ok": False, "status": st, "note": f"{path} unreadable"}
+        raw += len(d[key])
+        for t in d[key]:
+            if t.get("status") not in ("open", "in_progress", "active") or OUT_OF_SCOPE.search(f"{t.get('title')} {t.get('description')} {' '.join(t.get('tags') or [])}"):
+                continue
+            n = t.get("participant_count") or 0
+            items.append({"kind": "task", "source": "agenthansa", "native_id": t["id"], "title": t["title"], "url": f"{HANSA}{path}#{t['id']}",
+                          "text": f"{t.get('description') or ''}\n{t.get('goal') or ''}\nFully online.",
+                          "reward_usd": round((t.get("reward_amount") or 0) / max(n, 1), 2), "deadline": t.get("deadline"), "competition": n,
+                          "provenance": {"api": u, "total_reward": t.get("reward_amount"), "currency": t.get("currency"), "split": t.get("split_method"), "created_at": t.get("created_at")}})
+    return items, {"ok": True, "raw": raw, "kept": len(items)}
+
+
+def gigs_discovery():
+    """Discovery only: gigs.sh directory -> out/gigs_discovery.json (platforms claiming kycRequired=no + crypto rail). These are CLAIMS,
+    not evidence: nothing here changes any gate. Verify at the primary source, then add to evidence/claims.json."""
+    from common import save
+    rows = []
+    for off in (0, 20, 40):
+        st, d = fetch_json(f"https://gigs.sh/api/v1/gigs?offset={off}")
+        if not isinstance(d, dict):
+            return [], {"ok": False, "status": st, "note": "gigs.sh unreadable"}
+        rows += d.get("results", [])
+    keep = [{k: r.get(k) for k in ("slug", "url", "categories", "paymentRails", "kycRequired", "verifiedAt", "agentAllowed")} for r in rows
+            if r.get("kycRequired") == "no" and any("usdc" in x or "usdt" in x or "btc" in x for x in r.get("paymentRails") or [])]
+    save("gigs_discovery.json", {"claims_unverified": keep, "source": "https://gigs.sh/api/v1/gigs"})
+    return [], {"ok": True, "platforms": len(rows), "claimed_no_kyc_crypto": len(keep)}
+
+
+COLLECTORS = {"taskmarket": taskmarket, "agenthansa": agenthansa, "hn": hn_signals, "github": github_bounties, "gigs": gigs_discovery}
 
 
 def collect_live(names=None):
