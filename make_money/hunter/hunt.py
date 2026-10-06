@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Money Hunter V1: collect -> normalize -> verify -> filter -> rank -> top 1-3. Read-only: never acts.
 
-Usage: python3 hunt.py [inbox_dir]      (default: ../inbox/*.json)
+Usage: python3 hunt.py [inbox_dir] [--live]   (default inbox: ../inbox/*.json; --live adds read-only collectors)
 Sources are plain JSON lists (one file per source). Each item:
   {"kind": "task"|"signal", "source": str, "title": str, "url": str,
    "text": str (rules/description; or "rules_url" to fetch), "reward_usd": num|null,
@@ -15,6 +15,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DATA, days_left, load, save  # noqa: E402
 from gates import analyze, load_text  # noqa: E402
+from collectors import collect_live  # noqa: E402
 
 HARD = ("kyc", "country", "paid_action", "onsite", "payout")  # + student (FAIL only)
 
@@ -25,7 +26,8 @@ def normalize(raw, src_file):
             "source": raw.get("source", src_file), "title": raw.get("title"), "url": raw.get("url"),
             "text": raw.get("text") or "", "rules_url": raw.get("rules_url"),
             "reward_usd": raw.get("reward_usd"), "deadline": raw.get("deadline"),
-            "competition": raw.get("competition"), "signal": raw.get("signal") or {}}
+            "competition": raw.get("competition"), "signal": raw.get("signal") or {},
+            "provenance": raw.get("provenance") or {"file": src_file}}
 
 
 def collect(inbox):
@@ -35,6 +37,19 @@ def collect(inbox):
             import json
             for raw in json.load(open(os.path.join(inbox, f))):
                 out.append(normalize(raw, f[:-5]))
+    return out
+
+
+def dedupe(cands):
+    """Same URL (or same source+native title) twice -> keep first. Provenance of dropped dupes is merged in."""
+    seen, out = {}, []
+    for c in cands:
+        k = (c["url"] or "").rstrip("/").lower() or c["id"]
+        if k in seen:
+            seen[k]["provenance"].setdefault("duplicates", []).append(c["provenance"])
+            continue
+        seen[k] = c
+        out.append(c)
     return out
 
 
@@ -77,25 +92,37 @@ def score(c):
     return round(s, 1)
 
 
-def run(inbox):
-    cands = [verify(c) for c in collect(inbox)]
+def qualified(c):
+    """Shortlist bar: no FAIL, and the two user-critical gates explicitly PASS (crypto payout + no KYC). Others may stay unverified (shown)."""
+    return c["status"] != "REJECTED" and c["gates"]["payout"] == "PASS" and c["gates"]["kyc"] == "PASS"
+
+
+def run(inbox, live=None, health=None):
+    raw = collect(inbox) if inbox else []
+    cands = [verify(c) for c in dedupe(raw + [normalize(r, r.get("source", "live")) for r in (live or [])])]
     for c in cands:
         c["status"], c["why"] = status(c)
         c["score"] = score(c)
     cands.sort(key=lambda c: (c["status"] != "VERIFIED", c["status"] == "REJECTED", -c["score"]))
-    top = [c for c in cands if c["status"] != "REJECTED"][:3]
+    top = [c for c in cands if qualified(c)][:3]  # weak candidates are never forced in
     save("candidates.json", cands)
+    if health is not None:
+        save("source_health.json", health)
     lines = ["# Shortlist (read-only; waits for user approval)\n"]
     for i, c in enumerate(top, 1):
         lines.append(f"{i}. [{c['kind']}] {c['title']} - {c['status']} score={c['score']}\n   {c['url']}\n"
                      f"   gates: {c['gates']}\n   unverified: {c['why'] if c['status'] != 'VERIFIED' else '-'}")
     if not top:
-        lines.append("Hich candidate-e actionable nist.")
+        lines.append("Hich candidate-e qualified nist (payout=PASS + kyc=PASS lazem). Leads: out/candidates.json.")
     open(os.path.join(DATA, "shortlist.md"), "w").write("\n".join(lines) + "\n")
     return cands, top
 
 
 if __name__ == "__main__":
-    inbox = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(DATA), "inbox")
-    cands, top = run(inbox)
-    print(f"{len(cands)} collected, {sum(c['status'] != 'REJECTED' for c in cands)} alive, {len(top)} shortlisted -> make_money/out/shortlist.md")
+    args = sys.argv[1:]
+    live = "--live" in args
+    args = [a for a in args if a != "--live"]
+    inbox = args[0] if args else os.path.join(os.path.dirname(DATA), "inbox")
+    items, health = (collect_live() if live else ([], None))
+    cands, top = run(inbox, items, health)
+    print(f"{len(cands)} collected, {sum(c['status'] != 'REJECTED' for c in cands)} alive, {sum(qualified(c) for c in cands)} qualified, {len(top)} shortlisted; health={health}")

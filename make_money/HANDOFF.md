@@ -36,11 +36,12 @@ Facts only; the experiment's actions (wallet, withdrawal address, monitor routin
 - Old 5h monitor routine (trig_0189EEGZDnzqF41Smc8obPzd) belongs to the stale experiment: paused, not deleted, no replacement yet.
 
 ## Current state
-V1 core DONE: make_money/hunter/{hunt,gates,common}.py (stdlib, tests pass), inbox/*.json -> out/shortlist.md (max 3). See make_money/README.md.
-Gates code reused from radar v0.1 (origin/ccr-a4c88237-l58vyu). No approved-design doc exists in repo; V1 follows the HANDOFF Job section.
+V1 live: `python3 make_money/hunter/hunt.py --live` (stdlib; 7 tests pass). Collectors (hunter/collectors.py): taskmarket (public /api/tasks, verified), hn (HN Algolia Ask HN demand signals), github (stub; api.github.com search = 403 in cloud session, skipped, no workaround).
+Shortlist bar: no FAIL + payout PASS + kyc PASS. Last live run (2026-10-06): 11 collected, 0 qualified, shortlist empty (correct, nothing forced).
+Why 0: TaskMarket public docs have no KYC/country text -> UNKNOWN; all open tasks have >=5 submissions -> 0.001 USDC fee -> paid_action FAIL (strict hard gate). HN signals have no payout rail -> UNKNOWN.
 
 ## Next task
-Add 1-2 live collectors (public read-only APIs/pages) that write inbox JSON; verify endpoints really exist first. Source ideas: TaskMarket (one source only), GitHub issues with bounty labels (signals). No Agent Reach, no X.
+Decide with user: (a) accept 0.001 USDC micro-fee as non-blocking? (b) accept platform-level KYC evidence from earlier research for TaskMarket? Else add a source with explicit "no KYC + crypto payout" text (e.g. gigs.sh directory kycRequired=no flag, public API verified 200). GitHub collector works only where api.github.com search is reachable.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.
