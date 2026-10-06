@@ -33,9 +33,10 @@ Facts only; the experiment's actions (wallet, withdrawal address, monitor routin
 - 2026-10-06 snapshot: 5 USDC x2 (51-57 subs), 2 USDC x3 (13-17 subs), 199 USDC CUDA (needs GPU). All crowded.
 - Platform sweep, KYC/fiat -> FAIL: Superteam, Algora, Opire, Code4rena, Sherlock, Immunefi. Dead/FAIL: Claw Earn (30% stake, 0 tasks), ClawTasks, AgentMarket, BountyBook, AgentPact. Bountycaster needs Farcaster (US phone or $5).
 - Full detail (if it exists): radar/research/agent-task-markets.md on branch origin/ccr-ac2b1e05-n02epk.
+- Old 5h monitor routine (trig_0189EEGZDnzqF41Smc8obPzd) belongs to the stale experiment: paused, not deleted, no replacement yet.
 
 ## Next task
-Define Money Hunter's minimal design (source list, constraint/verification checklist, ranking rubric, output format) before any implementation.
+Implement the minimal Money Hunter V1 from the existing approved design and source-of-truth, without redoing architecture research. Selectively load only the exact existing files needed for implementation.
 
 ## Model
-Opus-class for design/verification logic; Sonnet 5.5 for cheap source scanning later.
+Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.
