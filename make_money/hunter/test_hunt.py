@@ -120,6 +120,13 @@ def test_small_reward_ok_if_low_hassle_but_crowded_or_heavy_is_not():
     heavy = hunt.run(__import__("tempfile").mkdtemp(), [dict(base, title="heavy", text=base["text"] + " Build and code a full prototype. " * 80)])[1]
     assert [c["title"] for c in easy] == ["easy"] and crowd == [] and heavy == []
 
+def test_gas_only_flagged_not_failed_but_fee_still_fails():
+    ok = {"kind": "task", "reward_usd": 20, "competition": 1, "text": "Prizes paid in USDC to your wallet. No KYC required. Participants must pay network gas for the onchain claim."}
+    fee = dict(ok, text="Prizes paid in USDC to your wallet. No KYC required. Participants must pay a submission fee of 1 USDC.")
+    a = run([dict(ok, title="a")])[0]
+    b = run([dict(fee, title="b")])[0]
+    assert a["gates"]["paid_action"] == "GAS-ONLY" and a["gas_only"] and b["gates"]["paid_action"] == "FAIL"
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

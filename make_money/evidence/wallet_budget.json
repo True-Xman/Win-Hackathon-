@@ -1,0 +1,2 @@
+{"note": "User-reported gas balances (no address stored). Hunter never spends/signs; this only flags opportunities that need ONLY tiny gas. Ignore ETH mainnet dust and USDT BEP20 for now.",
+ "reported_at": "2026-10-06", "gas_eth": {"base": 0.0000399, "arbitrum": 0.0000207}, "ignore": ["ethereum-mainnet", "bsc-usdt"]}

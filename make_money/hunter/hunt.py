@@ -121,6 +121,12 @@ def verify(c):
     if c["kind"] == "signal" and v["payout"] != "FAIL":
         # a signal has no stated payout rail: crypto must be agreed later -> UNKNOWN, never PASS
         v["payout"] = "PASS" if v["payout"] == "PASS" else "UNKNOWN"
+    # gas-only spend: the only out-of-pocket cost is network gas -> not FAIL, flagged "may be covered by existing balance" (user approval still required)
+    c["gas_only"] = False
+    if v["paid_action"] == "FAIL":
+        t = " ".join(ev.get("paid_action", []))
+        if re.search(r"\bgas\b", t, re.I) and not re.search(r"entry fee|registration fee|submission fee|stake|deposit|purchase|\bpay\b[^.]{0,40}(USDC|USDT|\$|usd)|\d+(\.\d+)? ?(USDC|USDT|USD)", t, re.I):
+            v["paid_action"], c["gas_only"] = "GAS-ONLY", True
     c["gates"], c["evidence"] = v, ev
     return c
 
@@ -135,7 +141,7 @@ def status(c):
         return "REJECTED", fails
     if c.get("login_required") and not (v["payout"] == "PASS" and v["paid_action"] == "PASS"):
         return "LOGIN-REQUIRED-FOR-VERIFY", ["rules behind login (not read; login is never done by Hunter)"]
-    unk = [k for k in ("kyc", "country", "paid_action", "onsite", "payout") if v[k] != "PASS"]
+    unk = [k for k in ("kyc", "country", "paid_action", "onsite", "payout") if v[k] not in ("PASS", "GAS-ONLY")]
     return ("VERIFIED" if not unk else "NEEDS_CHECK"), unk  # RISK/INFO/UNKNOWN all count as unverified
 
 
@@ -205,7 +211,7 @@ def qualified(c):
     """Shortlist bar: no FAIL; crypto payout PASS and zero-spend (paid_action) PASS, each from explicit text; onsite not RISK.
     KYC/country UNKNOWN is allowed (absence of a clause is neither PASS nor FAIL) but is flagged and must be user-checked."""
     v = c["gates"]
-    return worthy(c) and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] == "PASS" and v["onsite"] != "RISK"
+    return worthy(c) and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] in ("PASS", "GAS-ONLY") and v["onsite"] != "RISK"
 
 
 def run(inbox, live=None, health=None):
@@ -231,7 +237,8 @@ def run(inbox, live=None, health=None):
     for i, c in enumerate(top, 1):
         lines.append(f"{i}. [{'BUILD MONEY' if c['lane'] == 'BUILD' else 'FAST MONEY'}] {c['title']} - {c['status']} score={c['score']}\n   {c['url']}\n"
                      f"   gates: {c['gates']}\n   unverified (user must check): {c['why'] if c['status'] != 'VERIFIED' else '-'}"
-                     + (f"\n   build value: {c['build']}" if c.get('build') else ""))
+                     + (f"\n   build value: {c['build']}" if c.get('build') else "")
+                     + ("\n   GAS-ONLY: needs only network gas; may be covered by existing balance (see evidence/wallet_budget.json). Needs your approval to spend." if c.get("gas_only") else ""))
     if not top:
         lines.append("Hich candidate-e qualified nist (payout=PASS + paid_action=PASS + no FAIL lazem). Leads: out/candidates.json.")
     open(os.path.join(DATA, "shortlist.md"), "w").write("\n".join(lines) + "\n")
