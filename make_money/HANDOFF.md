@@ -43,9 +43,9 @@ Shortlist bar: no FAIL + payout PASS + paid_action PASS (explicit) + onsite not 
 Cached UNKNOWN: Hansa, TaskMarket, NEAR, Stacker News, Dework (see evidence/claims.json).
 
 ## Next task
-Login-gated rules => status LOGIN-REQUIRED-FOR-VERIFY (not rejected, never shortlisted, never blocks). Only valuable ones are kept in evidence/login_queue.json for the user's manual login later. Current queue: Monad Metropolis ($250k, ends 2026-10-12).
-Rise In per-opportunity verdicts: see evidence/claims.json (Midnight/Stacks KYC FAIL, Agent Visa not cash, Granite low fit).
-Next: widen discovery with other hackathon/bounty sources with plain public rules (Devpost, DoraHacks, lablab) via the same per-opportunity verification.
+Scanned 2026-10-06: Devpost (17 open online >=$2k, public API + /rules) and lablab (12 upcoming): 0 state a crypto payout in rules (fiat/credits/unstated) -> payout not PASS, none shortlisted. DoraHacks API = bot-verification wall (405) -> skipped, no bypass. Collectors devpost/lablab stay in --live (cheap, rules cached 7d).
+Monad Metropolis stays LOGIN-REQUIRED-FOR-VERIFY (evidence/login_queue.json) until user logs in manually on PC.
+Next: only a source/opportunity that explicitly pays crypto is worth more scanning (Superteam/DoraHacks-type hackathons need KYC or login); otherwise wait for new FAST tasks (TaskMarket <5 subs) via periodic --live runs.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.

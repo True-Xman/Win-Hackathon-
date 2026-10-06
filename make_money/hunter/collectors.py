@@ -6,7 +6,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import fetch, fetch_json, html_to_text, now_utc  # noqa: E402
+from common import days_left, fetch, fetch_json, html_to_text, now_utc  # noqa: E402
 
 TM = "https://taskmarket.dev"
 PAY_WORDS = re.compile(r"i(?:'| wi)ll pay|we(?:'| wi)ll pay|paid (gig|work|project|bounty)|looking for (a |an )?(freelance|contract|developer|engineer)|need (a|an|someone)[^.]{0,40}(build|develop|script|automat)|\bbounty (of|for)|budget (of|is)|\$\s?\d{2,}\s?(/|for|per)", re.I)
@@ -188,7 +188,53 @@ def risein(max_detail=40):
     return items, {"ok": True, "cards": n_cards, "kept": len(items), "no_rules_url": sum(1 for i in items if not i["rules_url"])}
 
 
-COLLECTORS = {"risein": risein, "taskmarket": taskmarket, "agenthansa": agenthansa, "hn": hn_signals, "github": github_bounties, "gigs": gigs_discovery}
+def _left_days(s):
+    m = re.search(r"(\d+)\s*(hour|day|week|month)", s or "")
+    return None if not m else int(m.group(1)) * {"hour": 1 / 24, "day": 1, "week": 7, "month": 30}[m.group(2)]
+
+
+def devpost(pages=3, min_prize=2000):
+    """Public GET devpost.com/api/hackathons (open, online). Rules = <hackathon>/rules (public HTML), verified per opportunity."""
+    items = []
+    for p in range(1, pages + 1):
+        u = f"https://devpost.com/api/hackathons?status[]=open&order_by=prize-amount&per_page=20&page={p}"
+        st, d = fetch_json(u)
+        if not isinstance(d, dict) or "hackathons" not in d:
+            return items, {"ok": False, "status": st, "note": "devpost api unreadable"}
+        for h in d["hackathons"]:
+            usd = float(re.sub(r"[^\d.]", "", re.sub(r"<[^>]+>", "", h.get("prize_amount") or "").replace(",", "")) or 0)
+            left = _left_days(h.get("time_left_to_submission"))
+            if (h.get("displayed_location") or {}).get("location") != "Online" or usd < min_prize or left is None:
+                continue
+            dl = (now_utc() + dt.timedelta(days=left)).isoformat()
+            items.append({"kind": "task", "lane": "BUILD", "source": "devpost", "native_id": str(h["id"]), "title": h["title"], "url": h["url"],
+                          "rules_url": h["url"].rstrip("/") + "/rules", "reward_usd": usd, "deadline": dl, "competition": h.get("registrations_count"),
+                          "text": "", "discovery_text": "",
+                          "provenance": {"api": u, "prize_raw": h.get("prize_amount"), "themes": [t["name"] for t in h.get("themes", [])], "org": h.get("organization_name")}})
+    return items, {"ok": True, "kept": len(items)}
+
+
+def lablab():
+    """lablab.ai/event page payload (public). Prize unknown from listing; rules page verified per opportunity."""
+    st, h = fetch("https://lablab.ai/event")
+    if st != 200:
+        return [], {"ok": False, "status": st}
+    h = h.replace('\\"', '"').replace("\\u0026", "&")
+    items, seen = [], set()
+    for m in re.finditer(r'"endAt":"([^"]+)","startAt":"([^"]+)"', h):
+        s = re.search(r'"slug":"([a-z0-9\-]+)"', h[m.end():m.end() + 6000])
+        names = re.findall(r'"name":"([^"]+)"', h[max(0, m.start() - 6000):m.start()])
+        if not s or s.group(1) in seen or (days_left(m.group(1)) or -1) < 0 or len(items) >= 12:
+            continue
+        seen.add(s.group(1))
+        u = f"https://lablab.ai/ai-hackathons/{s.group(1)}"
+        items.append({"kind": "task", "lane": "BUILD", "source": "lablab", "native_id": s.group(1), "title": names[-1] if names else s.group(1), "url": u,
+                      "rules_url": u, "deadline": m.group(1), "reward_usd": None, "competition": None, "text": "", "discovery_text": "",
+                      "provenance": {"listing": "https://lablab.ai/event", "start": m.group(2)}})
+    return items, {"ok": True, "kept": len(items)}
+
+
+COLLECTORS = {"devpost": devpost, "lablab": lablab, "risein": risein, "taskmarket": taskmarket, "agenthansa": agenthansa, "hn": hn_signals, "github": github_bounties, "gigs": gigs_discovery}
 
 
 def collect_live(names=None):
