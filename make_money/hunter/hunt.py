@@ -288,11 +288,21 @@ def worthy(c):
     return (c["reward_usd"] or 0) > 0 and c["hassle"]["ev_per_hour"] >= MIN_EV_PER_HOUR
 
 
+def opportunity_tier(c):
+    """Read-only visibility: explicit blockers reject; unanswered gates remain visible.
+
+    VERIFIED requires explicit positive evidence across all relevant gates.
+    PROMISING keeps worthwhile opportunities that still require manual checks.
+    Neither category authorizes participation, financial operations, or claims.
+    """
+    if not worthy(c) or c["status"] == "REJECTED":
+        return None
+    return "VERIFIED" if c["status"] == "VERIFIED" else "PROMISING"
+
+
 def qualified(c):
-    """Shortlist bar: no FAIL; crypto payout PASS and zero-spend (paid_action) PASS, each from explicit text; onsite not RISK.
-    KYC/country UNKNOWN is allowed (absence of a clause is neither PASS nor FAIL) but is flagged and must be user-checked."""
-    v = c["gates"]
-    return worthy(c) and c["status"] != "REJECTED" and v["payout"] == "PASS" and v["paid_action"] in ("PASS", "GAS-COVERED") and v["onsite"] != "RISK"
+    """Eligible for read-only review, NOT cleared for participation."""
+    return opportunity_tier(c) is not None
 
 
 def run(inbox, live=None, health=None):
@@ -303,25 +313,42 @@ def run(inbox, live=None, health=None):
     for c in cands:
         c["status"], c["why"] = status(c)
         c["score"] = score(c)
-    cands.sort(key=lambda c: (c["status"] != "VERIFIED", c["status"] == "REJECTED", -c["score"]))
+        c["tier"] = opportunity_tier(c)
+    priority = {"VERIFIED": 0, "PROMISING": 1, None: 2}
+    cands.sort(key=lambda c: (priority[c["tier"]], c["status"] == "LOGIN-REQUIRED-FOR-VERIFY", -c["score"]))
     queue = [{"title": c["title"], "lane": c["lane"], "url": c["url"], "rules_url": c["rules_url"], "reward_usd": c["reward_usd"],
               "deadline": c["deadline"], "score": c["score"]} for c in cands if c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and worthy(c)]
     json.dump({"note": "valuable leads whose rules need a manual login (user does it, not Hunter)", "queue": queue},
               open(os.path.join(EVID, "login_queue.json"), "w"), indent=2)
-    top = [c for c in cands if qualified(c)][:3]  # weak candidates are never forced in
+    verified = [c for c in cands if c["tier"] == "VERIFIED"]
+    promising = [c for c in cands if c["tier"] == "PROMISING"]
+    # At most three: preserve one discovery slot when both tiers exist.
+    top = (verified[:2] + promising[:1]) if verified and promising else (verified or promising)[:3]
     for c in cands:
         c.pop("_blob", None)
     save("candidates.json", cands)
     if health is not None:
         save("source_health.json", health)
-    lines = ["# Shortlist (read-only; waits for user approval)\n"]
-    for i, c in enumerate(top, 1):
-        lines.append(f"{i}. [{'BUILD MONEY' if c['lane'] == 'BUILD' else 'FAST MONEY'}] {c['title']} - {c['status']} score={c['score']}\n   {c['url']}\n"
-                     f"   gates: {c['gates']}\n   unverified (user must check): {c['why'] if c['status'] != 'VERIFIED' else '-'}"
-                     + (f"\n   build value: {c['build']}" if c.get('build') else "")
-                     + (f"\n   GAS-COVERED (tx-specific): {c['gas']} -- every tx still needs your approval" if c["gates"]["paid_action"] == "GAS-COVERED" else ""))
+    lines = ["# Shortlist (read-only; user approval required)\n",
+             "VERIFIED = all required gates explicitly supported.",
+             "PROMISING = worthwhile without explicit blocker; UNKNOWN/RISK requires checking.",
+             "Neither tier authorizes submission, payment, signing, or claiming.\n"]
+    for tier in ("VERIFIED", "PROMISING"):
+        lines.append(f"## {tier}")
+        group = [c for c in top if c["tier"] == tier]
+        if not group:
+            lines.append("- None selected.")
+        for c in group:
+            pending = [f"{k}={v}" for k, v in c["gates"].items() if v not in ("PASS", "GAS-COVERED")]
+            lines.append(f"- [{'BUILD MONEY' if c['lane'] == 'BUILD' else 'FAST MONEY'}] {c['title']} | score={c['score']} | {c['status']}\n"
+                         f"  {c['url']}\n"
+                         f"  gates: {c['gates']}\n"
+                         f"  check before participation/payout: {', '.join(pending) if pending else '-'}"
+                         + (f"\n  build value: {c['build']}" if c.get("build") else "")
+                         + (f"\n  GAS-COVERED (tx-specific): {c['gas']} -- every tx needs user approval"
+                            if c["gates"]["paid_action"] == "GAS-COVERED" else ""))
     if not top:
-        lines.append("Hich candidate-e qualified nist (payout=PASS + paid_action=PASS + no FAIL lazem). Leads: out/candidates.json.")
+        lines.append("Hich lead-e worthwhile bedune blocker-e confirmed peyda nashod. Details: out/candidates.json.")
     open(os.path.join(DATA, "shortlist.md"), "w").write("\n".join(lines) + "\n")
     return cands, top
 
