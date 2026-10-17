@@ -66,7 +66,10 @@ def snippets(text, pat, n=3, w=130):
 def analyze(text, source=""):
     res = {"source": source, "chars": len(text), "gates": {}}
     for g, p in GATES.items():
-        fail = snippets(text, p["fail"]) if p["fail"] else []
+        # Negated entry-fee phrases must never be treated as mandatory fees.
+        fail_text = (re.sub(r"\b(?:no|zero|without)\s+(?:mandatory\s+)?(?:entry|registration|submission)\s+fees?\b",
+                            " ", text, flags=re.I) if g == "paid_action" else text)
+        fail = snippets(fail_text, p["fail"]) if p["fail"] else []
         pas = snippets(text, p["pass_"], 2) if p["pass_"] else []
         scan = re.sub(p["pass_"], " ", text, flags=re.I) if p["pass_"] else text  # positive phrases don't self-trigger risk
         risk = snippets(scan, p["strong"], 3) if p.get("strong") else []
