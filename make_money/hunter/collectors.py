@@ -6,7 +6,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import days_left, fetch, fetch_json, html_to_text, now_utc  # noqa: E402
+from common import days_left, fetch, fetch_json, html_to_text, now_utc, parse_money  # noqa: E402
 
 TM = "https://taskmarket.dev"
 PAY_WORDS = re.compile(r"i(?:'| wi)ll pay|we(?:'| wi)ll pay|paid (gig|work|project|bounty)|looking for (a |an )?(freelance|contract|developer|engineer)|need (a|an|someone)[^.]{0,40}(build|develop|script|automat)|\bbounty (of|for)|budget (of|is)|\$\s?\d{2,}\s?(/|for|per)", re.I)
@@ -130,7 +130,24 @@ def gigs_discovery():
 
 RISE = "https://www.risein.com"
 RISE_TYPES = ("Hackathon", "Bounty", "Bounties", "Grant", "Challenge", "Competition")  # jobs/courses/events are not money-for-work opportunities here
-_NOISE = (".gov/", "risein", "schema.org", "w3.org", "googletagmanager", "linkedin.com", "instagram.com", "facebook.com", "twitter.com", "x.com", "youtube.com", "lu.ma/riseincom", "files.risein")
+_NOISE = (".gov/", "risein", "schema.org", "w3.org", "googletagmanager", "linkedin.com", "instagram.com", "facebook.com", "twitter.com", "x.com", "youtube.com", "lu.ma/riseincom", "files.risein", "cloudflareinsights", "/audits", ".js", ".css", ".png", ".jpg", ".svg")
+
+
+RULES_HOSTS = re.compile(r"immunefi\.com|hackenproof|cantina\.xyz|sherlock\.xyz|code4rena|codehawks|dorahacks|devpost\.com|gitcoin|superteam|bugcrowd|hackerone|questbook", re.I)
+RULES_PATH = re.compile(r"rules|terms|legal|eligib|guidelines|bug-?bount|program|faq", re.I)
+
+
+def rank_rules_urls(urls, limit=3):
+    """Sponsor links -> distinct, ordered by how likely they carry the binding rules (bounty/hackathon platform, then rules-like path,
+    then page order). Reading only the FIRST link missed e.g. Immunefi's 'KYC required' on Granite (granite.world came first)."""
+    seen, uniq = set(), []
+    for u in urls:
+        k = u.rstrip("/").lower()
+        if k not in seen:
+            seen.add(k)
+            uniq.append(u)
+    order = sorted(range(len(uniq)), key=lambda i: (0 if RULES_HOSTS.search(uniq[i]) else 1 if RULES_PATH.search(uniq[i]) else 2, i))
+    return [uniq[i] for i in order][:limit]
 
 
 def _txt(h):
@@ -167,9 +184,8 @@ def risein(max_detail=40):
             return m.group(1).strip() if m else None
         ext = [u for u in re.findall(r'https?://[A-Za-z0-9./_#?=&%~:+-]+', d) if not any(n in u for n in _NOISE)]
         prize = after("Prize pool")
-        usd = None
-        if prize and re.search(r"\d", prize):
-            usd = float(re.sub(r"[^\d.]", "", prize.replace(",", "")) or 0) or None
+        money = parse_money(prize) if prize else {"usd": None}
+        usd = money["usd"] or None
         deadline = after("Deadline")
         dl_iso = None
         try:
@@ -181,10 +197,10 @@ def risein(max_detail=40):
         about = t[t.find("About this opportunity"): t.find("More ways to")]
         items.append({"kind": "task", "lane": "BUILD" if typ != "Bounty" and typ != "Bounties" or (usd or 0) >= 1000 else "FAST",
                       "source": "risein", "native_id": href, "title": title[:120], "url": RISE + href,
-                      "rules_url": ext[0] if ext else None,
+                      "rules_url": rank_rules_urls(ext)[0] if ext else None, "rules_urls": rank_rules_urls(ext),
                       "discovery_text": about[:6000] + ("\nIn-person event." if loc and loc.lower() != "online" else ""),
                       "text": "", "reward_usd": usd, "deadline": dl_iso, "competition": None,
-                      "provenance": {"listing": RISE + "/earn", "type": typ, "location": loc, "start": start, "prize_claim": prize, "sponsor_urls": ext[:3]}})
+                      "provenance": {"listing": RISE + "/earn", "type": typ, "location": loc, "start": start, "prize_claim": prize, "prize_currency": money.get("currency"), "sponsor_urls": rank_rules_urls(ext)}})
     return items, {"ok": True, "cards": n_cards, "kept": len(items), "no_rules_url": sum(1 for i in items if not i["rules_url"])}
 
 
@@ -202,7 +218,8 @@ def devpost(pages=3, min_prize=2000):
         if not isinstance(d, dict) or "hackathons" not in d:
             return items, {"ok": False, "status": st, "note": "devpost api unreadable"}
         for h in d["hackathons"]:
-            usd = float(re.sub(r"[^\d.]", "", re.sub(r"<[^>]+>", "", h.get("prize_amount") or "").replace(",", "")) or 0)
+            money = parse_money(h.get("prize_amount"))
+            usd = money["usd"] or 0  # INR/EUR/... converted (approx.); unknown currency -> 0 (filtered), never assumed USD
             left = _left_days(h.get("time_left_to_submission"))
             if (h.get("displayed_location") or {}).get("location") != "Online" or usd < min_prize or left is None:
                 continue
@@ -210,7 +227,7 @@ def devpost(pages=3, min_prize=2000):
             items.append({"kind": "task", "lane": "BUILD", "source": "devpost", "native_id": str(h["id"]), "title": h["title"], "url": h["url"],
                           "rules_url": h["url"].rstrip("/") + "/rules", "reward_usd": usd, "deadline": dl, "competition": h.get("registrations_count"),
                           "text": "", "discovery_text": "",
-                          "provenance": {"api": u, "prize_raw": h.get("prize_amount"), "themes": [t["name"] for t in h.get("themes", [])], "org": h.get("organization_name")}})
+                          "provenance": {"api": u, "prize_raw": h.get("prize_amount"), "prize_currency": money["currency"], "prize_amount": money["amount"], "themes": [t["name"] for t in h.get("themes", [])], "org": h.get("organization_name")}})
     return items, {"ok": True, "kept": len(items)}
 
 

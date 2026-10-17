@@ -11,15 +11,15 @@
     "empty_runs": 0
   },
   "taskmarket": {
-    "empty_runs": 0,
+    "empty_runs": 1,
     "cooldown_until": "2026-10-13"
   },
   "agenthansa": {
-    "empty_runs": 0,
+    "empty_runs": 1,
     "cooldown_until": "2026-10-13"
   },
   "hn": {
-    "empty_runs": 0,
+    "empty_runs": 1,
     "cooldown_until": "2026-10-13"
   }
 }

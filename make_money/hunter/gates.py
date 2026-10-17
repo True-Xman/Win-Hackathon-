@@ -23,7 +23,7 @@ GATES = {
     "kyc": dict(
         strong=r"\bKYC\b|know[- ]your[- ](customer|client)|identity verification|verify your identity|government[- ]issued|passport|proof of (identity|residen)|background check|Sumsub|Onfido|W-?8BEN|W-?9\b",
         risk=r"\bKYC\b|know[- ]your[- ](customer|client)|identity verification|verify your identity|government[- ]issued|passport|proof of (identity|residen)|background check|Sumsub|Onfido|Persona\b|W-?8BEN|W-?9\b|tax (form|id|information)|OFAC|sanction|politically exposed",
-        fail=r"(must|shall|will need to|need to|mandatory|is required to|are required to)[^.]{0,80}(KYC|verify your identity|identity verification|government[- ]issued|passport|W-?8BEN|W-?9)|(KYC|identity verification)[^.]{0,40}\b(is|are) (required|mandatory)",
+        fail=r"(must|shall|will need to|need to|mandatory|is required to|are required to)[^.]{0,80}(KYC|verify your identity|identity verification|government[- ]issued|passport|W-?8BEN|W-?9)|(KYC|identity verification)[^.]{0,40}\b(is|are) (required|mandatory)|\bKYC\s+(required|mandatory)\b|\bKYC\b[^.]{0,60}\b(is|are) (a )?requirement\b|\brequires?\s+(full\s+)?(KYC|identity verification)|\bundergo\s+(full\s+)?KYC",
         pass_=r"no KYC|KYC[- ]free|KYC (is )?not (required|needed)|without (KYC|identity verification)"),
     "country": dict(
         strong=r"(not|never) (a )?(resident|national|citizen)|resident of|residents of|national of|only open to|open only to|must (reside|be located)|not eligible|ineligible|excluded|Crimea|Cuba|Iran|North Korea|Syria",
@@ -32,11 +32,11 @@ GATES = {
         pass_=r"open to (developers|builders|participants|anyone|everyone)[^.]{0,40}(worldwide|globally|anywhere|in the world)|open worldwide|open to all countries|open to everyone, anywhere"),
     "student": dict(
         risk=r"\bstudents?\b|university|enrolled",
-        fail=r"(only|exclusively) (for |open to )?(current )?students|must be (a |an )?(current )?(enrolled )?student|students only",
+        fail=r"(only|exclusively) (for |open to )?(current )?students|must be (a |an )?(current )?(enrolled )?student|students only|\b(any|only|all)\s+(currently\s+)?enrolled\s+(\w+\s+(or\s+\w+\s+)?)?students?\b",
         pass_=r"students? (and|to) (professionals|senior)|from students to"),
     "paid_action": dict(
         risk=r"mainnet|entry fee|registration fee|submission fee|purchase|paid (plan|tier|api|subscription)|credit card|must (pay|deposit|stake)|minimum (trade|deposit)|at least \d+ (qualifying )?trades?|swaps? of at least",
-        fail=r"(must|required to|need to)[^.]{0,60}(pay|purchase|deposit|stake|execute[^.]{0,30}(mainnet|trades?))|entry fee|registration fee|submission fee|(execute|make|complete|perform)[^.]{0,30}at least \d+ (qualifying )?(trades?|transactions?|swaps?)|(swaps?|trades?) of at least \d+ ?(USDC|USDT|SOL|ETH|USD)",
+        fail=r"(must|required to|need to)[^.]{0,60}(pay|purchase|deposit|stake|execute[^.]{0,30}(mainnet|trades?))|entry fee|registration fee|submission fee|\bpay\s+(?:[\u20b9$\u20ac\u00a3]|rs\.?|inr|usd|eur)\s?\d|(?:participation|seat|confirmation|enhancement|level \d)\s+fee|(execute|make|complete|perform)[^.]{0,30}at least \d+ (qualifying )?(trades?|transactions?|swaps?)|(swaps?|trades?) of at least \d+ ?(USDC|USDT|SOL|ETH|USD)",
         pass_=r"free to (enter|participate|join)|no (entry|registration) fee"),
     # CLAUDE.md hard gate: crypto payout is REQUIRED. Crypto stated near prize wording = PASS; fiat-only = FAIL; silent = UNKNOWN.
     "payout": dict(
@@ -46,7 +46,7 @@ GATES = {
     "age": dict(risk=r"\b18\b|age of majority|at least \d+ years|minors?", fail=r"", pass_=r""),
     "onsite": dict(
         risk=r"on-?site|in[- ]person|finals? (will be )?(held|at)|attend in",
-        fail=r"(must|required to) (attend|be present)[^.]{0,40}(in person|on-?site|venue)",
+        fail=r"(must|required to) (attend|be present)[^.]{0,40}(in person|on-?site|venue)|\bon-?site,?\s+(and\s+)?residential\b|\bon-?site\s+(build|final|finals|finale|round|hackathon)\b|(finals?|finale|final round|level 2|round 2|48-hour build|build runs)[^.\n]{0,60}\b(on-?site|in[- ]person|on campus)\b",
         pass_=r"fully (online|remote|virtual)|100% (online|remote)|online only|remote only"),
 }
 
@@ -72,7 +72,13 @@ def analyze(text, source=""):
                                " ", text, flags=re.I)
         elif g == "kyc":
             # Do not let "No KYC is required" trigger the generic "KYC is required" substring.
-            fail_text = re.sub(r"\b(?:no|without)\s+KYC\s+(?:is\s+)?(?:required|needed)\b", " ", text, flags=re.I)
+            fail_text = re.sub(r"\b(?:no|without)\s+KYC\s+(?:is\s+)?(?:required|needed)\b|\bKYC\s+(?:is\s+)?not\s+(?:required|needed|mandatory)\b", " ", text, flags=re.I)
+        elif g == "onsite":
+            # hybrid / optional / negated on-site wording is not a mandatory on-site stage
+            fail_text = re.sub(r"\b(?:on-?site|in[- ]person|on campus)\s*(?:,|/|or|and/or)?\s*(?:or\s+)?(?:online|virtual(?:ly)?|remote(?:ly)?)\b"
+                               r"|\b(?:online|virtual|remote)\s*(?:,|/|or|and/or)\s*(?:on-?site|in[- ]person)\b"
+                               r"|\b(?:no|not|without|never)\s+(?:\w+\s+)?(?:on-?site|in[- ]person)\b|\boptional[^.\n]{0,40}(?:on-?site|in[- ]person)\b",
+                               " ", text, flags=re.I)
         else:
             fail_text = text
         fail = snippets(fail_text, p["fail"]) if p["fail"] else []

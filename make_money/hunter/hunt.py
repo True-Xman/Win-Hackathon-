@@ -29,7 +29,7 @@ def normalize(raw, src_file):
     kind = raw.get("kind") if raw.get("kind") in ("task", "signal") else "task"
     return {"id": f"{raw.get('source', src_file)}:{raw.get('title', '')[:60]}", "kind": kind,
             "source": raw.get("source", src_file), "title": raw.get("title"), "url": raw.get("url"),
-            "text": raw.get("text") or "", "rules_url": raw.get("rules_url"),
+            "text": raw.get("text") or "", "rules_url": raw.get("rules_url"), "rules_urls": raw.get("rules_urls") or [],
             "reward_usd": raw.get("reward_usd"), "deadline": raw.get("deadline"),
             "competition": raw.get("competition"), "signal": raw.get("signal") or {},
             "native_id": raw.get("native_id"), "gas_tx": raw.get("gas_tx"), "discovery_text": raw.get("discovery_text") or "",
@@ -73,6 +73,7 @@ def load_claims():
     return out
 
 
+BOT_WALL = re.compile(r"just a moment|checking your browser|verify(ies)? you are (a )?(human|not a bot)|performing security verification|protect against malicious bots|enable javascript and cookies|attention required|cf-challenge", re.I)
 LOGIN_WALL = re.compile(r"continue with (github|google|discord|email)|sign in to (continue|view|see)|log ?in to (continue|view|see)|sign up to (view|see)", re.I)
 EVID = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "evidence")
 RULES_TTL_DAYS = 7
@@ -86,7 +87,10 @@ def rules_text(url):
     f = os.path.join(EVID, "rules_cache", hashlib.sha256(url.encode()).hexdigest()[:16] + ".json")
     if os.path.exists(f):
         d = json.load(open(f))
-        if (dt.date.today() - dt.date.fromisoformat(d["checked_at"])).days <= RULES_TTL_DAYS and d["chars"] > 0:
+        age = (dt.date.today() - dt.date.fromisoformat(d["checked_at"])).days
+        if d["how"] == "blocked" and age < 1:  # anti-bot wall: retry daily, not on every run
+            return "", "blocked+cache"
+        if age <= RULES_TTL_DAYS and d["chars"] > 0 and not (len(d["text"]) < 2500 and BOT_WALL.search(d["text"])):  # a cached anti-bot page is never "rules"
             return d["text"], d["how"] + "+cache"
     st, body = fetch(url)
     text, how = (html_to_text(body) if st == 200 and not body.startswith("%PDF") else ""), "static"
@@ -94,6 +98,8 @@ def rules_text(url):
         r = render_text(url)
         if len(r) > len(text):
             text, how = r, "rendered"
+    if len(text) < 2500 and BOT_WALL.search(text):  # anti-bot challenge page is NOT rules text: unreadable -> UNKNOWN (no bypass attempted)
+        text, how = "", "blocked"
     d = {"url": url, "checked_at": dt.date.today().isoformat(), "how": how, "chars": len(text), "text": text[:40000]}
     json.dump(d, open(f, "w"), ensure_ascii=False)
     return d["text"], how
@@ -176,9 +182,15 @@ def tx_estimate(spec):
 
 
 def verify(c):
-    rules, how = (rules_text(c["rules_url"]) if c["rules_url"] else ("", None))
-    c["rules_read"] = {"url": c["rules_url"], "how": how, "chars": len(rules)}
-    c["login_required"] = bool(c["rules_url"]) and len(rules) < 2500 and bool(LOGIN_WALL.search(rules))
+    # Every ranked sponsor/platform link is read (a bounty platform page can carry the binding KYC clause that the sponsor homepage lacks).
+    urls = list(dict.fromkeys(([c["rules_url"]] if c["rules_url"] else []) + list(c.get("rules_urls") or [])))
+    reads = [(u,) + rules_text(u) for u in urls]
+    reads = [(u, t, "blocked" if h == "blocked+cache" else h) for u, t, h in reads]
+    rules = "\n".join(f"[rules source: {u}]\n{t}" for u, t, _ in reads if t)
+    c["rules_read"] = {"url": c["rules_url"], "how": (reads[0][2] if reads else None), "chars": len(rules),
+                       "sources": [{"url": u, "how": h, "chars": len(t)} for u, t, h in reads]}
+    c["rules_blocked"] = [u for u, t, h in reads if h == "blocked"]
+    c["login_required"] = bool(reads) and len(rules) < 2500 and bool(LOGIN_WALL.search(rules))
     c["_blob"] = f"{c['discovery_text']}\n{c['text']}\n{rules}"[:60000]
     g = analyze(c["text"] + "\n" + rules, c["url"] or c["title"])["gates"]
     if c["discovery_text"]:  # listing text is the platform's claim: it may only ADD a FAIL, never a PASS
@@ -340,6 +352,8 @@ def run(inbox, live=None, health=None):
             lines.append("- None selected.")
         for c in group:
             pending = [f"{k}={v}" for k, v in c["gates"].items() if v not in ("PASS", "GAS-COVERED")]
+            if c.get("rules_blocked"):
+                pending.append("rules UNREADABLE (anti-bot wall): " + ", ".join(c["rules_blocked"]))
             lines.append(f"- [{'BUILD MONEY' if c['lane'] == 'BUILD' else 'FAST MONEY'}] {c['title']} | score={c['score']} | {c['status']}\n"
                          f"  {c['url']}\n"
                          f"  gates: {c['gates']}\n"

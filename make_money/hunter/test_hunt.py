@@ -1,6 +1,7 @@
 import json, os, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hunt
+ORIG_RULES_TEXT = hunt.rules_text  # an earlier test replaces hunt.rules_text for good; keep the real one for the bot-wall test
 
 def run(items):
     d = tempfile.mkdtemp(); json.dump(items, open(d + "/s.json", "w"))
@@ -193,6 +194,99 @@ def test_gas_prefilter_never_covers_only_tx_specific_does():
     assert nonet["gates"]["paid_action"] == "UNKNOWN"
     fee = run([{"kind": "task", "reward_usd": 20, "text": base + " Also a submission fee of 1 USDC applies on Base.", "title": "f"}])[0]
     assert fee["gates"]["paid_action"] == "FAIL" and not fee["gas_only"]
+
+IMMUNEFI = ("Granite Protocol Maximum Bounty $100,000 PoC Required KYC required Submit a Bug Rewards in USDC on Ethereum. "
+            "KYC required The submission of KYC information is a requirement for payout processing.")
+GRANITE_HOME = "Launch App Bitcoin's Liquidity Protocol The safest way to borrow against your Bitcoin"
+ADITYA = ("On-site, residential. The build runs fully on campus at Aditya University for all 48 hours. Free to enter at Level 1. "
+          "Level 02 Pay \u20b9800 per member and upload the required documents. Who can participate? Any currently enrolled college or university student in India. "
+          "Prize pool \u20b95,00,000")
+
+
+def test_kyc_required_phrasings_fail_and_negations_do_not():
+    from gates import analyze
+    for t in ("KYC required", "The submission of KYC information is a requirement for payout processing.", "Winners must undergo full KYC.",
+              "Payout requires identity verification."):
+        assert analyze(t)["gates"]["kyc"]["verdict"] == "FAIL", t
+    for t in ("No KYC required.", "KYC is not required.", "KYC not required for payout.", "Participation is possible without KYC required."):
+        assert analyze(t)["gates"]["kyc"]["verdict"] != "FAIL", t
+    assert analyze("We may ask for KYC in some cases.")["gates"]["kyc"]["verdict"] == "RISK"  # vague mention stays RISK, not FAIL
+    assert analyze("Open worldwide.")["gates"]["kyc"]["verdict"] == "UNKNOWN"  # absence never PASS/FAIL
+
+
+def test_every_sponsor_link_is_read_so_platform_kyc_clause_rejects():
+    import collectors
+    urls = ["https://www.granite.world/", "https://github.com/GraniteProtocol/audits", "https://immunefi.com/bug-bounty/granite-protocol/information/",
+            "https://www.granite.world/", "https://static.cloudflareinsights.com/beacon.min.js/vce70"]
+    ranked = collectors.rank_rules_urls([u for u in urls if "cloudflareinsights" not in u])
+    assert ranked[0].startswith("https://immunefi.com") and len(set(ranked)) == len(ranked)
+    pages = {"https://www.granite.world/": GRANITE_HOME, "https://immunefi.com/bug-bounty/granite-protocol/information/": IMMUNEFI}
+    old = hunt.rules_text
+    hunt.rules_text = lambda u: (pages.get(u, ""), "static")
+    try:
+        it = {"kind": "task", "lane": "BUILD", "source": "risein", "native_id": "/stacks/granite-x", "title": "Granite-like bounty", "reward_usd": 100000,
+              "deadline": "2999-01-01T00:00:00Z", "rules_url": "https://www.granite.world/", "rules_urls": ranked, "discovery_text": "AI bug bounty"}
+        first_only = dict(it, title="first only", native_id="/stacks/granite-y", rules_urls=[])
+        c, f = run([it])[0], run([first_only])[0]
+    finally:
+        hunt.rules_text = old
+    assert c["gates"]["kyc"] == "FAIL" and c["status"] == "REJECTED" and c["tier"] is None
+    assert any("immunefi.com" in e for e in c["evidence"]["kyc"])
+    assert f["gates"]["kyc"] == "UNKNOWN"  # documents the old failure mode: reading only the sponsor homepage finds nothing
+
+
+def test_inr_is_never_treated_as_usd():
+    from common import parse_money
+    m = parse_money('\u20b9 <span data-currency-value>500,000</span>')
+    assert m["currency"] == "INR" and m["amount"] == 500000 and 3000 < m["usd"] < 10000
+    assert parse_money("$25,000")["usd"] == 25000 and parse_money("5 Lakhs INR")["amount"] == 500000
+    assert parse_money("1,000 XYZ")["usd"] is None and parse_money("500,000")["usd"] is None  # unknown currency is never assumed USD
+    import collectors
+    api = {"hackathons": [{"id": 1, "title": "Rupee", "url": "https://r.devpost.com/", "displayed_location": {"location": "Online"},
+                           "time_left_to_submission": "about 1 month left", "prize_amount": '\u20b9 <span data-currency-value>500,000</span>',
+                           "registrations_count": 3, "themes": [], "organization_name": "Org"},
+                          {"id": 2, "title": "Mystery", "url": "https://m.devpost.com/", "displayed_location": {"location": "Online"},
+                           "time_left_to_submission": "about 1 month left", "prize_amount": "500,000 XYZ", "themes": []}]}
+    old = collectors.fetch_json
+    collectors.fetch_json = lambda u, **k: (200, api)
+    try:
+        items, _ = collectors.devpost(pages=1)
+    finally:
+        collectors.fetch_json = old
+    assert [i["title"] for i in items] == ["Rupee"] and items[0]["reward_usd"] < 10000
+    assert items[0]["provenance"]["prize_currency"] == "INR" and items[0]["provenance"]["prize_amount"] == 500000
+
+
+def test_aditya_onsite_fee_student_fail_from_sponsor_text_and_claim():
+    from gates import analyze
+    g = analyze(ADITYA)["gates"]
+    assert g["onsite"]["verdict"] == g["paid_action"]["verdict"] == g["student"]["verdict"] == "FAIL"
+    assert analyze("Finals are in-person or online, your choice. Free to enter.")["gates"]["onsite"]["verdict"] != "FAIL"
+    # Devpost itself is behind an anti-bot wall: the cached sponsor-site claim (evidence/claims.json) rejects it, the blocked page adds nothing
+    old_evid, old_rt, old_fetch, old_render = hunt.EVID, hunt.rules_text, hunt.fetch, hunt.render_text
+    hunt.EVID, hunt.rules_text = tempfile.mkdtemp(), ORIG_RULES_TEXT
+    hunt.fetch, hunt.render_text = (lambda u, **k: (403, "Just a moment...")), (lambda u: "Just a moment... Enable JavaScript and cookies to continue")
+    try:
+        txt, how = hunt.rules_text("https://hackwithaditya.devpost.com/rules")
+        it = {"kind": "task", "lane": "BUILD", "source": "devpost", "native_id": "31737", "title": "HackWithAditya", "reward_usd": 5500,
+              "deadline": "2999-01-01T00:00:00Z", "rules_url": "https://hackwithaditya.devpost.com/rules"}
+        other = dict(it, native_id="99999", title="Other devpost", discovery_text="Build an AI agent demo.")
+        a, b = run([it])[0], run([other])[0]
+    finally:
+        hunt.EVID, hunt.rules_text, hunt.fetch, hunt.render_text = old_evid, old_rt, old_fetch, old_render
+    assert (txt, how) == ("", "blocked")
+    assert a["status"] == "REJECTED" and {a["gates"][k] for k in ("onsite", "paid_action", "student")} == {"FAIL"}
+    assert b["status"] == "NEEDS_CHECK" and b["tier"] == "PROMISING" and b["rules_blocked"]  # blocked wall != FAIL, != PASS
+
+
+def test_agent_visa_stays_needs_check_with_unknown_gates():
+    it = {"kind": "task", "lane": "BUILD", "source": "risein", "native_id": "/stacks/agent-visa", "title": "Agent Visa", "reward_usd": 15000,
+          "deadline": "2999-01-01T00:00:00Z", "discovery_text": "The Celo Agent Visa is a tiered program for AI agents that transact on Celo. Agents qualify for the "
+          "Tourist Visa with one transaction, the Work Visa with Self Agent ID, 1,000+ transactions and/or 5K+ volume."}
+    c = run([it])[0]
+    assert c["status"] == "NEEDS_CHECK" and c["tier"] == "PROMISING" and "FAIL" not in c["gates"].values()
+    assert all(c["gates"][k] != "PASS" for k in ("kyc", "payout", "paid_action"))
+
 
 if __name__ == "__main__":
     for n, f in list(globals().items()):
