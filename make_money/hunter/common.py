@@ -70,6 +70,39 @@ def parse_dt(s):
     return d if d.tzinfo else d.replace(tzinfo=dt.timezone.utc)  # naive stamps are treated as UTC
 
 
+# Static, approximate FX (USD per 1 unit) used ONLY to rank prize size; the original amount/currency always stays in provenance.
+# A currency we cannot identify is never assumed to be USD -> reward_usd=None.
+FX_USD = {"USD": 1.0, "USDC": 1.0, "USDT": 1.0, "INR": 0.011, "EUR": 1.05, "GBP": 1.25, "CAD": 0.72, "AUD": 0.65, "SGD": 0.74, "CHF": 1.1, "JPY": 0.0065, "BRL": 0.18, "NGN": 0.0006}
+_SYMBOLS = (("US$", "USD"), ("A$", "AUD"), ("C$", "CAD"), ("S$", "SGD"), ("\u20b9", "INR"), ("\u20ac", "EUR"), ("\u00a3", "GBP"), ("\u00a5", "JPY"), ("R$", "BRL"), ("\u20a6", "NGN"), ("$", "USD"))
+
+
+def parse_money(raw):
+    """Prize/reward string -> {"amount", "currency", "usd"}. Handles symbols (\u20b9, \u20ac, $...), ISO codes and Indian digit grouping.
+    Unknown currency -> usd None (never silently USD)."""
+    t = re.sub(r"<[^>]+>", "", raw or "").strip()
+    m = re.search(r"\d[\d,]*(?:\.\d+)?", t)
+    if not m:
+        return {"amount": None, "currency": None, "usd": None}
+    amount = float(m.group(0).replace(",", ""))
+    cur = None
+    iso = re.search(r"\b(USDC|USDT|USD|INR|EUR|GBP|CAD|AUD|SGD|CHF|JPY|BRL|NGN)\b", t, re.I)
+    if iso:
+        cur = iso.group(1).upper()
+    else:
+        for sym, code in _SYMBOLS:
+            if sym in t:
+                cur = code
+                break
+    if re.search(r"\d\s*(lakhs?|L)\b", t, re.I):
+        amount *= 100_000
+    elif re.search(r"\d\s*(crores?|cr)\b", t, re.I):
+        amount *= 10_000_000
+    elif re.search(r"\d\s*(k)\b", t, re.I):
+        amount *= 1_000
+    usd = round(amount * FX_USD[cur], 2) if cur in FX_USD else None
+    return {"amount": amount, "currency": cur, "usd": usd}
+
+
 def days_left(s):
     d = parse_dt(s)
     return None if d is None else round((d - now_utc()).total_seconds() / 86400, 1)

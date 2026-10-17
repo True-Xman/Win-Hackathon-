@@ -1,6 +1,36 @@
 import json, os, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import atexit, hashlib, shutil
+import common
 import hunt
+
+# Isolation: tests must never touch the real evidence/ or out/ (the scheduled agent owns them), even when a test fails.
+REAL_EVID, REAL_OUT = hunt.EVID, hunt.DATA
+
+
+def _tree_hash(*roots):
+    h = hashlib.sha256()
+    for root in roots:
+        for d, _, fs in sorted(os.walk(root)):
+            if "__pycache__" in d:
+                continue
+            for f in sorted(fs):
+                h.update(os.path.join(d, f).encode())
+                h.update(open(os.path.join(d, f), "rb").read())
+    return h.hexdigest()
+
+
+REAL_HASH = _tree_hash(REAL_EVID, REAL_OUT) if os.path.isdir(REAL_OUT) else _tree_hash(REAL_EVID)
+_SANDBOX = tempfile.mkdtemp(prefix="hunter_test_")
+atexit.register(shutil.rmtree, _SANDBOX, True)
+shutil.copytree(REAL_EVID, os.path.join(_SANDBOX, "evidence"), ignore=shutil.ignore_patterns("rules_cache"))  # claims/budget are read-only inputs
+os.makedirs(os.path.join(_SANDBOX, "evidence", "rules_cache"), exist_ok=True)
+os.makedirs(os.path.join(_SANDBOX, "out"), exist_ok=True)
+hunt.EVID = os.path.join(_SANDBOX, "evidence")
+hunt.DATA = common.DATA = os.path.join(_SANDBOX, "out")
+hunt.GAS_BUDGET_F = os.path.join(hunt.EVID, "wallet_budget.json")
+hunt.STATE_F = os.path.join(hunt.EVID, "source_state.json")
+ORIG_RULES_TEXT = hunt.rules_text  # an earlier test replaces hunt.rules_text for good; keep the real one for the bot-wall test
 
 def run(items):
     d = tempfile.mkdtemp(); json.dump(items, open(d + "/s.json", "w"))
@@ -34,6 +64,57 @@ def test_dedupe_keeps_provenance():
 def test_unqualified_not_forced_into_shortlist():
     d = tempfile.mkdtemp(); json.dump([{"kind": "task", "title": "t", "text": "Build a thing."}], open(d + "/s.json", "w"))
     assert hunt.run(d)[1] == []
+
+
+def test_missing_kyc_payout_and_fee_is_promising_not_rejected():
+    item = {"kind": "task", "lane": "BUILD", "title": "AI agent hackathon",
+            "reward_usd": 50000, "deadline": "2999-01-01T00:00:00Z",
+            "text": "Build an AI agent demo. Fully online."}
+    cands, top = hunt.run(tempfile.mkdtemp(), [item])
+    c = cands[0]
+    assert c["gates"]["kyc"] == "UNKNOWN"
+    assert c["gates"]["payout"] == "UNKNOWN"
+    assert c["gates"]["paid_action"] == "UNKNOWN"
+    assert c["status"] == "NEEDS_CHECK" and c["tier"] == "PROMISING"
+    assert len(top) == 1 and top[0]["title"] == "AI agent hackathon"
+
+
+def test_explicit_kyc_fiat_or_fee_still_rejected():
+    cases = [
+        ("kyc", "Winners must complete KYC. Prizes paid in USDC. Free to enter."),
+        ("payout", "Prizes paid by bank transfer. Free to enter."),
+        ("paid_action", "Entry fee is $10. Prizes paid in USDC.")
+    ]
+    for gate, txt in cases:
+        c = run([{"kind": "task", "title": gate, "reward_usd": 1000, "text": txt}])[0]
+        assert c["gates"][gate] == "FAIL" and c["tier"] is None
+
+
+def test_verified_and_promising_get_distinct_sections():
+    verified = {"kind": "task", "lane": "BUILD", "title": "Verified AI hackathon",
+                "reward_usd": 10000, "deadline": "2999-01-01T00:00:00Z",
+                "text": "Build an AI agent demo. No KYC required. Open to everyone, anywhere. Free to enter. Fully online. Prizes paid in USDC."}
+    promising = {"kind": "task", "lane": "BUILD", "title": "Promising AI hackathon",
+                 "reward_usd": 50000, "deadline": "2999-01-01T00:00:00Z",
+                 "text": "Build an AI agent demo. Fully online."}
+    _, top = hunt.run(tempfile.mkdtemp(), [promising, verified])
+    assert {c["tier"] for c in top} == {"VERIFIED", "PROMISING"}
+    assert top[0]["tier"] == "VERIFIED"
+    with open(os.path.join(hunt.DATA, "shortlist.md")) as f:
+        summary = f.read()
+    assert "## VERIFIED" in summary and "## PROMISING" in summary
+
+
+def test_no_entry_fee_is_pass_not_fee_fail():
+    from gates import analyze
+    assert analyze("No entry fee. Prizes paid in USDC.")["gates"]["paid_action"]["verdict"] == "PASS"
+    assert analyze("Entry fee is $10. Prizes paid in USDC.")["gates"]["paid_action"]["verdict"] == "FAIL"
+
+
+def test_negated_kyc_is_not_misread_as_mandatory():
+    from gates import analyze
+    assert analyze("No KYC is required.")["gates"]["kyc"]["verdict"] == "PASS"
+    assert analyze("KYC is mandatory.")["gates"]["kyc"]["verdict"] == "FAIL"
 
 def test_taskmarket_normalizes_and_kyc_unknown(monkeypatch=None):
     import collectors
@@ -125,7 +206,7 @@ def test_gas_prefilter_never_covers_only_tx_specific_does():
     base = "Prizes paid in USDC to your wallet. No KYC required. Participants must pay network gas for the claim transaction on Base."
     a = run([{"kind": "task", "reward_usd": 20, "competition": 1, "text": base, "title": "a"}])[0]
     assert a["gates"]["paid_action"] == "GAS-PREFILTER-OK" and "need" in a["gas"]
-    assert hunt.qualified(a) is False
+    assert a["tier"] == "PROMISING" and hunt.qualified(a) is True  # reviewable, NOT tx-cleared
     calls = {"eth_estimateGas": hex(60000), "eth_gasPrice": hex(6_000_000), "eth_call": hex(5_000_000_000)}
     hunt._rpc = lambda net, m, p: calls[m]
     spec = {"network": "base", "to": "0x" + "11" * 20, "data": "0xa9059cbb"}
@@ -142,6 +223,286 @@ def test_gas_prefilter_never_covers_only_tx_specific_does():
     assert nonet["gates"]["paid_action"] == "UNKNOWN"
     fee = run([{"kind": "task", "reward_usd": 20, "text": base + " Also a submission fee of 1 USDC applies on Base.", "title": "f"}])[0]
     assert fee["gates"]["paid_action"] == "FAIL" and not fee["gas_only"]
+
+IMMUNEFI = ("Granite Protocol Maximum Bounty $100,000 PoC Required KYC required Submit a Bug Rewards in USDC on Ethereum. "
+            "KYC required The submission of KYC information is a requirement for payout processing.")
+GRANITE_HOME = "Launch App Bitcoin's Liquidity Protocol The safest way to borrow against your Bitcoin"
+ADITYA = ("On-site, residential. The build runs fully on campus at Aditya University for all 48 hours. Free to enter at Level 1. "
+          "Level 02 Pay \u20b9800 per member and upload the required documents. Who can participate? Any currently enrolled college or university student in India. "
+          "Prize pool \u20b95,00,000")
+
+
+def test_kyc_required_phrasings_fail_and_negations_do_not():
+    from gates import analyze
+    for t in ("KYC required", "The submission of KYC information is a requirement for payout processing.", "Winners must undergo full KYC.",
+              "Payout requires identity verification."):
+        assert analyze(t)["gates"]["kyc"]["verdict"] == "FAIL", t
+    for t in ("No KYC required.", "KYC is not required.", "KYC not required for payout.", "Participation is possible without KYC required."):
+        assert analyze(t)["gates"]["kyc"]["verdict"] != "FAIL", t
+    assert analyze("We may ask for KYC in some cases.")["gates"]["kyc"]["verdict"] == "RISK"  # vague mention stays RISK, not FAIL
+    assert analyze("Open worldwide.")["gates"]["kyc"]["verdict"] == "UNKNOWN"  # absence never PASS/FAIL
+
+
+def test_every_sponsor_link_is_read_so_platform_kyc_clause_rejects():
+    import collectors
+    urls = ["https://www.granite.world/", "https://github.com/GraniteProtocol/audits", "https://immunefi.com/bug-bounty/granite-protocol/information/",
+            "https://www.granite.world/", "https://static.cloudflareinsights.com/beacon.min.js/vce70"]
+    ranked = collectors.rank_rules_urls([u for u in urls if "cloudflareinsights" not in u])
+    assert ranked[0].startswith("https://immunefi.com") and len(set(ranked)) == len(ranked)
+    pages = {"https://www.granite.world/": GRANITE_HOME, "https://immunefi.com/bug-bounty/granite-protocol/information/": IMMUNEFI}
+    old = hunt.rules_text
+    hunt.rules_text = lambda u: (pages.get(u, ""), "static")
+    try:
+        it = {"kind": "task", "lane": "BUILD", "source": "risein", "native_id": "/stacks/granite-x", "title": "Granite-like bounty", "reward_usd": 100000,
+              "deadline": "2999-01-01T00:00:00Z", "rules_url": "https://www.granite.world/", "rules_urls": ranked, "discovery_text": "AI bug bounty"}
+        first_only = dict(it, title="first only", native_id="/stacks/granite-y", rules_urls=[])
+        c, f = run([it])[0], run([first_only])[0]
+    finally:
+        hunt.rules_text = old
+    assert c["gates"]["kyc"] == "FAIL" and c["status"] == "REJECTED" and c["tier"] is None
+    assert any("immunefi.com" in e for e in c["evidence"]["kyc"])
+    assert f["gates"]["kyc"] == "UNKNOWN"  # documents the old failure mode: reading only the sponsor homepage finds nothing
+
+
+def test_inr_is_never_treated_as_usd():
+    from common import parse_money
+    m = parse_money('\u20b9 <span data-currency-value>500,000</span>')
+    assert m["currency"] == "INR" and m["amount"] == 500000 and 3000 < m["usd"] < 10000
+    assert parse_money("$25,000")["usd"] == 25000 and parse_money("5 Lakhs INR")["amount"] == 500000
+    assert parse_money("1,000 XYZ")["usd"] is None and parse_money("500,000")["usd"] is None  # unknown currency is never assumed USD
+    import collectors
+    api = {"hackathons": [{"id": 1, "title": "Rupee", "url": "https://r.devpost.com/", "displayed_location": {"location": "Online"},
+                           "time_left_to_submission": "about 1 month left", "prize_amount": '\u20b9 <span data-currency-value>500,000</span>',
+                           "registrations_count": 3, "themes": [], "organization_name": "Org"},
+                          {"id": 2, "title": "Mystery", "url": "https://m.devpost.com/", "displayed_location": {"location": "Online"},
+                           "time_left_to_submission": "about 1 month left", "prize_amount": "500,000 XYZ", "themes": []}]}
+    old = collectors.fetch_json
+    collectors.fetch_json = lambda u, **k: (200, api)
+    try:
+        items, _ = collectors.devpost(pages=1)
+    finally:
+        collectors.fetch_json = old
+    assert [i["title"] for i in items] == ["Rupee"] and items[0]["reward_usd"] < 10000
+    assert items[0]["provenance"]["prize_currency"] == "INR" and items[0]["provenance"]["prize_amount"] == 500000
+
+
+def test_aditya_onsite_fee_student_fail_from_sponsor_text_and_claim():
+    from gates import analyze
+    g = analyze(ADITYA)["gates"]
+    assert g["onsite"]["verdict"] == g["paid_action"]["verdict"] == g["student"]["verdict"] == "FAIL"
+    assert analyze("Finals are in-person or online, your choice. Free to enter.")["gates"]["onsite"]["verdict"] != "FAIL"
+    # Devpost itself is behind an anti-bot wall: the cached sponsor-site claim (evidence/claims.json) rejects it, the blocked page adds nothing
+    old_evid, old_rt, old_fetch, old_render = hunt.EVID, hunt.rules_text, hunt.fetch, hunt.render_text
+    hunt.EVID, hunt.rules_text = tempfile.mkdtemp(), ORIG_RULES_TEXT
+    hunt.fetch, hunt.render_text = (lambda u, **k: (403, "Just a moment...")), (lambda u: "Just a moment... Enable JavaScript and cookies to continue")
+    try:
+        txt, how = hunt.rules_text("https://hackwithaditya.devpost.com/rules")
+        it = {"kind": "task", "lane": "BUILD", "source": "devpost", "native_id": "31737", "title": "HackWithAditya", "reward_usd": 5500,
+              "deadline": "2999-01-01T00:00:00Z", "rules_url": "https://hackwithaditya.devpost.com/rules"}
+        other = dict(it, native_id="99999", title="Other devpost", discovery_text="Build an AI agent demo.")
+        a, b = run([it])[0], run([other])[0]
+    finally:
+        hunt.EVID, hunt.rules_text, hunt.fetch, hunt.render_text = old_evid, old_rt, old_fetch, old_render
+    assert (txt, how) == ("", "blocked")
+    assert a["status"] == "REJECTED" and {a["gates"][k] for k in ("onsite", "paid_action", "student")} == {"FAIL"}
+    assert b["status"] == "NEEDS_CHECK" and b["tier"] == "PROMISING" and b["rules_blocked"]  # blocked wall != FAIL, != PASS
+
+
+def test_agent_visa_stays_needs_check_with_unknown_gates():
+    it = {"kind": "task", "lane": "BUILD", "source": "risein", "native_id": "/stacks/agent-visa", "title": "Agent Visa", "reward_usd": 15000,
+          "deadline": "2999-01-01T00:00:00Z", "discovery_text": "The Celo Agent Visa is a tiered program for AI agents that transact on Celo. Agents qualify for the "
+          "Tourist Visa with one transaction, the Work Visa with Self Agent ID, 1,000+ transactions and/or 5K+ volume."}
+    c = run([it])[0]
+    assert c["status"] == "NEEDS_CHECK" and c["tier"] == "PROMISING" and "FAIL" not in c["gates"].values()
+    assert all(c["gates"][k] != "PASS" for k in ("kyc", "payout", "paid_action"))
+
+
+def test_force_checks_all_sources_but_never_touches_cooldown_state():
+    import datetime as dt
+    hunt.STATE_F = os.path.join(hunt.EVID, "state_force.json")
+    future = (dt.date.today() + dt.timedelta(days=5)).isoformat()
+    state = {"taskmarket": {"empty_runs": 2, "cooldown_until": future}, "devpost": {"empty_runs": 1}}
+    json.dump(state, open(hunt.STATE_F, "w"), indent=2)
+    before = open(hunt.STATE_F, "rb").read()
+    seen = []
+    old = hunt.collect_live
+    hunt.collect_live = lambda names=None: (seen.append(list(names)) or ([], {n: {"ok": True} for n in names}))
+    inbox = tempfile.mkdtemp()
+    try:
+        hunt.main(["--live", "--force", inbox])
+        assert seen[-1] == list(hunt.COLLECTORS)  # cooled-down taskmarket is checked too
+        assert open(hunt.STATE_F, "rb").read() == before  # empty_runs / cooldown_until untouched
+        hunt.main(["--live", inbox])  # scheduled behaviour: cooldown respected AND state updated
+        assert "taskmarket" not in seen[-1] and "devpost" in seen[-1]
+        after = json.load(open(hunt.STATE_F))
+        assert after["devpost"]["empty_runs"] == 2 and after["taskmarket"]["cooldown_until"] == future
+    finally:
+        hunt.collect_live = old
+
+
+def _bi(native, title="AI agent hackathon", text="Build an AI agent demo. Fully online.", reward=50000, deadline="2999-01-01T00:00:00Z", **kw):
+    return dict({"kind": "task", "lane": "BUILD", "source": "s", "native_id": native, "title": title, "reward_usd": reward, "deadline": deadline,
+                 "text": text, "url": f"https://x/{native}"}, **kw)
+
+
+def _notify_run(items, state):
+    hunt.run(tempfile.mkdtemp(), items, None, state)
+    with open(os.path.join(hunt.DATA, "shortlist.md")) as f:
+        return hunt.LAST_DELTA, f.read()
+
+
+def test_notify_two_identical_runs_notify_once_and_never_hide_candidates():
+    state = {}
+    d1, md1 = _notify_run([_bi("a"), _bi("b", "Other AI hackathon")], state)
+    assert len(d1["new"]) == 2 and md1.startswith("NOTIFY: 2 new")  # ONE consolidated message for both
+    assert md1.count("\nNOTIFY") == 0 and md1.count("- NEW") == 2
+    d2, md2 = _notify_run([_bi("a"), _bi("b", "Other AI hackathon")], state)
+    assert not any(d2.values()) and md2.startswith("NOTIFY: NONE") and "NIST" in md2
+    assert "AI agent hackathon" in md2 and "Other AI hackathon" in md2  # UNKNOWN candidates stay visible, only the notification is suppressed
+
+
+def test_notify_ignores_score_order_title_and_unknown_flips_but_catches_material_changes():
+    state = {}
+    _notify_run([_bi("a"), _bi("b", "Second", reward=20000)], state)
+    # reward/score/order change, retitle, UNKNOWN -> RISK wording: no notification
+    d, _ = _notify_run([_bi("b", "Second", reward=90000), _bi("a", "Renamed title", reward=40000, text="Build an AI agent demo. Fully online. Winners may need to verify country of residence.")], state)
+    assert not any(d.values())
+    # evidence that changes eligibility: payout -> PASS and no fee -> PASS (tier stays PROMISING)
+    d, md = _notify_run([_bi("a", text="Build an AI agent demo. Fully online. Prizes paid in USDC to your wallet. Free to enter.")], state)
+    assert [c["title"] for c in d["changed"]] == ["AI agent hackathon"] and "payout ?->P" in "; ".join(d["changed"][0]["why"]) and not d["new"]
+    # PROMISING -> VERIFIED
+    full = "Build an AI agent demo. No KYC required. Open to everyone, anywhere. Free to enter. Fully online. Prizes paid in USDC."
+    d, md = _notify_run([_bi("a", text=full)], state)
+    assert d["changed"] and "PROMISING->VERIFIED" in d["changed"][0]["why"] and "CHANGED" in md
+    d, _ = _notify_run([_bi("a", text=full)], state)
+    assert not any(d.values())  # and then quiet again
+
+
+def test_notify_identity_is_stable_id_not_title_and_returning_candidate_is_not_renotified():
+    state = {}
+    _notify_run([_bi("a", "Same Title")], state)
+    d, _ = _notify_run([_bi("zzz", "Same Title", url="https://x/zzz")], state)
+    assert len(d["new"]) == 1  # same title, different id -> a different candidate
+    d, _ = _notify_run([_bi("a", "Totally different title")], state)
+    assert not d["new"]  # same id, new title -> same candidate (it dropped out of the top and came back: no repeat)
+    no_id = dict(_bi("q"), native_id=None, url="https://x/page?utm=1#frag")
+    _notify_run([no_id], state)
+    d, _ = _notify_run([dict(no_id, url="https://X/page/", title="retitled")], state)
+    assert not d["new"]  # URL fallback is normalized (query/fragment/slash/case)
+
+
+def test_notify_deadline_critical_once_and_state_survives_new_sessions():
+    import datetime as dt
+    soon = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(days=2)).isoformat()
+    state = {}
+    _notify_run([_bi("a")], state)
+    hunt.save_notify_state(state)
+    state2 = hunt.load_notify_state()  # fresh session: only the file survives
+    assert state2["candidates"] == state["candidates"] and state2["candidates"]["s#a"]["told"]["tier"] == "PROMISING"
+    d, md = _notify_run([_bi("a", deadline=soon)], state2)
+    assert len(d["deadline"]) == 1 and not d["new"] and "DEADLINE" in md
+    d, _ = _notify_run([_bi("a", deadline=soon)], state2)
+    assert d["deadline"] == []  # alerted once only
+    d, _ = _notify_run([_bi("n", deadline=soon)], state2)
+    assert len(d["new"]) == 1 and d["deadline"] == []  # brand-new near-deadline candidate = single "new" line
+
+
+def test_force_run_does_not_consume_notifications():
+    hunt.STATE_F = os.path.join(hunt.EVID, "state_notify.json")
+    if os.path.exists(hunt.notify_path()):
+        os.remove(hunt.notify_path())
+    old = hunt.collect_live
+    hunt.collect_live = lambda names=None: ([_bi("f")], {n: {"ok": True} for n in names})
+    inbox = tempfile.mkdtemp()
+    try:
+        hunt.main(["--live", "--force", inbox])
+        assert not os.path.exists(hunt.notify_path())  # probe: nothing consumed
+        hunt.main(["--live", inbox])
+        assert hunt.LAST_DELTA["new"] and os.path.exists(hunt.notify_path())
+        hunt.main(["--live", inbox])
+        assert not any(hunt.LAST_DELTA.values())  # 2nd scheduled run: nothing repeated
+    finally:
+        hunt.collect_live = old
+
+
+def test_unacknowledged_notification_is_repeated_once_and_ack_settles_it():
+    # legacy (no ack protocol yet): told immediately, never repeated
+    legacy = {}
+    _notify_run([_bi("a")], legacy)
+    assert not any(_notify_run([_bi("a")], legacy)[0].values())
+    # ack protocol: notification failed (no ack) -> repeated as REMINDER, then settled after MAX attempts (bounded, no infinite spam)
+    ns = {"ack_enabled": True}
+    d1, _ = _notify_run([_bi("a")], ns)
+    assert len(d1["new"]) == 1 and not d1["new"][0]["reminder"] and ns["candidates"]["s#a"]["told"] is None
+    d2, md2 = _notify_run([_bi("a")], ns)
+    assert len(d2["new"]) == 1 and d2["new"][0]["reminder"] and "REMINDER" in md2
+    d3, _ = _notify_run([_bi("a")], ns)
+    assert not any(d3.values())  # best-effort cap reached
+    # ack protocol: delivered (agent called --ack-notify before sending) -> never repeated
+    ns = {"ack_enabled": True}
+    _notify_run([_bi("a")], ns)
+    assert hunt.ack_notify(ns) == 1 and ns["candidates"]["s#a"]["pending"] is None and ns["candidates"]["s#a"]["told"]["tier"] == "PROMISING"
+    assert not any(_notify_run([_bi("a")], ns)[0].values())
+    # a material change while a notification is unconfirmed is announced relative to what the user was actually told
+    ns = {"ack_enabled": True}
+    _notify_run([_bi("a")], ns)
+    d, _ = _notify_run([_bi("a", text="Build an AI agent demo. Fully online. Prizes paid in USDC to your wallet.")], ns)
+    assert len(d["new"]) == 1 and not d["changed"]
+
+
+def test_ack_command_enables_protocol_and_persists_acknowledgement():
+    if os.path.exists(hunt.notify_path()):
+        os.remove(hunt.notify_path())
+    ns = hunt.load_notify_state()
+    ns["ack_enabled"] = True
+    _notify_run([_bi("a")], ns)
+    hunt.save_notify_state(ns)
+    hunt.main(["--ack-notify"])
+    after = hunt.load_notify_state()
+    assert after["ack_enabled"] is True and after["candidates"]["s#a"]["pending"] is None and after["candidates"]["s#a"]["told"]["tier"] == "PROMISING"
+    hunt.main(["--ack-notify"])  # idempotent
+    os.remove(hunt.notify_path())
+
+
+def test_told_candidate_that_becomes_rejected_gets_one_correction_but_expiry_is_silent():
+    state = {}
+    _notify_run([_bi("k"), _bi("e", "Will expire")], state)
+    d, md = _notify_run([_bi("k", text="Build an AI agent demo. Winners must complete KYC. Prizes paid in USDC."),
+                         _bi("e", "Will expire", deadline="2020-01-01T00:00:00Z")], state)
+    assert [i["title"] for i in d["rejected"]] == ["AI agent hackathon"] and d["rejected"][0]["why"] == ["kyc"]
+    assert "CORRECTION" in md and "FAIL on kyc" in md and "Will expire" not in md.split("# Shortlist")[0]
+    assert state["candidates"]["s#e"]["told"]["tier"] == "REJECTED"
+    d, md = _notify_run([_bi("k", text="Build an AI agent demo. Winners must complete KYC. Prizes paid in USDC.")], state)
+    assert not any(d.values()) and md.startswith("NOTIFY: NONE")  # correction is sent once
+    # never-told rejected candidates stay silent
+    d, _ = _notify_run([_bi("never", text="Winners must complete KYC. Prizes paid in USDC.")], {})
+    assert not any(d.values())
+
+
+def test_login_queue_lead_notifies_once():
+    old = hunt.rules_text
+    hunt.rules_text = lambda url: ("Continue with GitHub\nContinue with Google", "static")
+    try:
+        it = _bi("gated", "Gated hackathon", rules_url="https://gated.example/rules")
+        state = {}
+        d1, md1 = _notify_run([it], state)
+        assert len(d1["login"]) == 1 and "LOGIN-QUEUE" in md1 and md1.count("NOTIFY:") == 1
+        d2, md2 = _notify_run([it], state)
+        assert not any(d2.values()) and md2.startswith("NOTIFY: NONE")
+        ns = {"ack_enabled": True}
+        _notify_run([it], ns)
+        d, _ = _notify_run([it], ns)
+        assert d["login"][0]["reminder"]  # unconfirmed login lead repeated once, same rule as candidates
+    finally:
+        hunt.rules_text = old
+
+
+def test_tests_ran_in_sandbox_and_real_evidence_is_untouched():
+    assert hunt.EVID.startswith(_SANDBOX) and hunt.DATA.startswith(_SANDBOX) and common.DATA.startswith(_SANDBOX)
+    assert hunt.EVID != REAL_EVID and hunt.DATA != REAL_OUT
+    now = _tree_hash(REAL_EVID, REAL_OUT) if os.path.isdir(REAL_OUT) else _tree_hash(REAL_EVID)
+    assert now == REAL_HASH
+
 
 if __name__ == "__main__":
     for n, f in list(globals().items()):

@@ -159,6 +159,46 @@
       "quote": "event pages behind Cloudflare bot check (not bypassed); /terms readable but 0 KYC/payout hits",
       "checked_at": "2026-10-06",
       "ttl_days": 30
+    },
+    {
+      "source": "risein:/stacks/granite-protocol",
+      "gate": "kyc",
+      "verdict": "FAIL",
+      "url": "https://immunefi.com/bug-bounty/granite-protocol/information/",
+      "field": "Program info",
+      "quote": "KYC required. The submission of KYC information is a requirement for payout processing.",
+      "checked_at": "2026-10-17",
+      "ttl_days": 30
+    },
+    {
+      "source": "devpost:31737",
+      "gate": "onsite",
+      "verdict": "FAIL",
+      "url": "https://codeforge.adityauniversity.in/",
+      "field": "Venue",
+      "quote": "On-site, residential. The build runs fully on campus at Aditya University for all 48 hours.",
+      "checked_at": "2026-10-17",
+      "ttl_days": 30
+    },
+    {
+      "source": "devpost:31737",
+      "gate": "paid_action",
+      "verdict": "FAIL",
+      "url": "https://codeforge.adityauniversity.in/",
+      "field": "Level 2",
+      "quote": "Pay ₹800 per member and upload required documents. (Level 2, shortlisted teams)",
+      "checked_at": "2026-10-17",
+      "ttl_days": 30
+    },
+    {
+      "source": "devpost:31737",
+      "gate": "student",
+      "verdict": "FAIL",
+      "url": "https://codeforge.adityauniversity.in/",
+      "field": "FAQ: Who can participate?",
+      "quote": "Any currently enrolled college or university student in India.",
+      "checked_at": "2026-10-17",
+      "ttl_days": 30
     }
   ]
 }
