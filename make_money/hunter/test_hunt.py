@@ -340,6 +340,91 @@ def test_force_checks_all_sources_but_never_touches_cooldown_state():
         hunt.collect_live = old
 
 
+def _bi(native, title="AI agent hackathon", text="Build an AI agent demo. Fully online.", reward=50000, deadline="2999-01-01T00:00:00Z", **kw):
+    return dict({"kind": "task", "lane": "BUILD", "source": "s", "native_id": native, "title": title, "reward_usd": reward, "deadline": deadline,
+                 "text": text, "url": f"https://x/{native}"}, **kw)
+
+
+def _notify_run(items, state):
+    hunt.run(tempfile.mkdtemp(), items, None, state)
+    with open(os.path.join(hunt.DATA, "shortlist.md")) as f:
+        return hunt.LAST_DELTA, f.read()
+
+
+def test_notify_two_identical_runs_notify_once_and_never_hide_candidates():
+    state = {}
+    d1, md1 = _notify_run([_bi("a"), _bi("b", "Other AI hackathon")], state)
+    assert len(d1["new"]) == 2 and md1.startswith("NOTIFY: 2 new")  # ONE consolidated message for both
+    assert md1.count("\nNOTIFY") == 0 and md1.count("- NEW") == 2
+    d2, md2 = _notify_run([_bi("a"), _bi("b", "Other AI hackathon")], state)
+    assert d2 == {"new": [], "changed": [], "deadline": []} and md2.startswith("NOTIFY: NONE") and "NIST" in md2
+    assert "AI agent hackathon" in md2 and "Other AI hackathon" in md2  # UNKNOWN candidates stay visible, only the notification is suppressed
+
+
+def test_notify_ignores_score_order_title_and_unknown_flips_but_catches_material_changes():
+    state = {}
+    _notify_run([_bi("a"), _bi("b", "Second", reward=20000)], state)
+    # reward/score/order change, retitle, UNKNOWN -> RISK wording: no notification
+    d, _ = _notify_run([_bi("b", "Second", reward=90000), _bi("a", "Renamed title", reward=40000, text="Build an AI agent demo. Fully online. Winners may need to verify country of residence.")], state)
+    assert d == {"new": [], "changed": [], "deadline": []}
+    # evidence that changes eligibility: payout -> PASS and no fee -> PASS (tier stays PROMISING)
+    d, md = _notify_run([_bi("a", text="Build an AI agent demo. Fully online. Prizes paid in USDC to your wallet. Free to enter.")], state)
+    assert [c["title"] for c in d["changed"]] == ["AI agent hackathon"] and "payout ?->P" in "; ".join(d["changed"][0]["why"]) and not d["new"]
+    # PROMISING -> VERIFIED
+    full = "Build an AI agent demo. No KYC required. Open to everyone, anywhere. Free to enter. Fully online. Prizes paid in USDC."
+    d, md = _notify_run([_bi("a", text=full)], state)
+    assert d["changed"] and "PROMISING->VERIFIED" in d["changed"][0]["why"] and "CHANGED" in md
+    d, _ = _notify_run([_bi("a", text=full)], state)
+    assert d == {"new": [], "changed": [], "deadline": []}  # and then quiet again
+
+
+def test_notify_identity_is_stable_id_not_title_and_returning_candidate_is_not_renotified():
+    state = {}
+    _notify_run([_bi("a", "Same Title")], state)
+    d, _ = _notify_run([_bi("zzz", "Same Title", url="https://x/zzz")], state)
+    assert len(d["new"]) == 1  # same title, different id -> a different candidate
+    d, _ = _notify_run([_bi("a", "Totally different title")], state)
+    assert not d["new"]  # same id, new title -> same candidate (it dropped out of the top and came back: no repeat)
+    no_id = dict(_bi("q"), native_id=None, url="https://x/page?utm=1#frag")
+    _notify_run([no_id], state)
+    d, _ = _notify_run([dict(no_id, url="https://X/page/", title="retitled")], state)
+    assert not d["new"]  # URL fallback is normalized (query/fragment/slash/case)
+
+
+def test_notify_deadline_critical_once_and_state_survives_new_sessions():
+    import datetime as dt
+    soon = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(days=2)).isoformat()
+    state = {}
+    _notify_run([_bi("a")], state)
+    hunt.save_notify_state(state)
+    state2 = hunt.load_notify_state()  # fresh session: only the file survives
+    assert state2 == state and state2["s#a"]["tier"] == "PROMISING"
+    d, md = _notify_run([_bi("a", deadline=soon)], state2)
+    assert len(d["deadline"]) == 1 and not d["new"] and "DEADLINE" in md
+    d, _ = _notify_run([_bi("a", deadline=soon)], state2)
+    assert d["deadline"] == []  # alerted once only
+    d, _ = _notify_run([_bi("n", deadline=soon)], state2)
+    assert len(d["new"]) == 1 and d["deadline"] == []  # brand-new near-deadline candidate = single "new" line
+
+
+def test_force_run_does_not_consume_notifications():
+    hunt.STATE_F = os.path.join(hunt.EVID, "state_notify.json")
+    if os.path.exists(hunt.notify_path()):
+        os.remove(hunt.notify_path())
+    old = hunt.collect_live
+    hunt.collect_live = lambda names=None: ([_bi("f")], {n: {"ok": True} for n in names})
+    inbox = tempfile.mkdtemp()
+    try:
+        hunt.main(["--live", "--force", inbox])
+        assert not os.path.exists(hunt.notify_path())  # probe: nothing consumed
+        hunt.main(["--live", inbox])
+        assert hunt.LAST_DELTA["new"] and os.path.exists(hunt.notify_path())
+        hunt.main(["--live", inbox])
+        assert hunt.LAST_DELTA == {"new": [], "changed": [], "deadline": []}  # 2nd scheduled run: nothing repeated
+    finally:
+        hunt.collect_live = old
+
+
 def test_tests_ran_in_sandbox_and_real_evidence_is_untouched():
     assert hunt.EVID.startswith(_SANDBOX) and hunt.DATA.startswith(_SANDBOX) and common.DATA.startswith(_SANDBOX)
     assert hunt.EVID != REAL_EVID and hunt.DATA != REAL_OUT

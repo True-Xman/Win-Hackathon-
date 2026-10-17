@@ -317,8 +317,98 @@ def qualified(c):
     return opportunity_tier(c) is not None
 
 
-def run(inbox, live=None, health=None):
-    global CLAIMS
+CRITICAL_DAYS = 3  # deadline within this many days (once per candidate) counts as a material change
+NOTIFY_KEEP_DAYS = 90
+LAST_DELTA = None
+
+
+def notify_path():
+    return os.path.join(EVID, "notify_state.json")
+
+
+def load_notify_state():
+    """Persistent (committed with evidence/) record of what the user was already told. {key: {title, tier, sig, first_seen, last_seen, deadline_alerted}}"""
+    try:
+        return json.load(open(notify_path()))["candidates"]
+    except (OSError, ValueError, KeyError):
+        return {}
+
+
+def save_notify_state(state):
+    os.makedirs(EVID, exist_ok=True)
+    json.dump({"note": "notification dedupe state: what the user was already told, keyed by stable id (source#native_id or normalized URL, never title)",
+               "candidates": state}, open(notify_path(), "w"), indent=2, sort_keys=True)
+
+
+def stable_key(c):
+    """Same identity rule as dedupe(): source#native_id, else normalized URL, else source:title. Title alone is never the identity when an id/URL exists."""
+    if c.get("native_id"):
+        return f"{c['source']}#{c['native_id']}"
+    u = (c.get("url") or "").split("#")[0].split("?")[0].rstrip("/").lower()
+    return u or c["id"]
+
+
+def _gate_sig(c):
+    """Eligibility signature: only PASS / FAIL / not-yet-known matter. UNKNOWN<->RISK<->INFO flips and repeated UNKNOWN are noise."""
+    f = {"PASS": "PASS", "GAS-COVERED": "PASS", "FAIL": "FAIL"}
+    return "".join(f.get(c["gates"][k], "?")[0] for k in ("kyc", "country", "paid_action", "onsite", "payout", "student"))
+
+
+def notify_delta(top, state, today=None):
+    """Compare the shortlist with what the user was already told. Mutates `state` to the new record and returns
+    {"new": [...], "changed": [...], "deadline": [...]}. Notifies ONLY for: new candidate, tier change (e.g. PROMISING->VERIFIED), a gate flipping to
+    PASS/FAIL (eligibility evidence), or a deadline entering CRITICAL_DAYS. Score / order / repeated UNKNOWN never notify; nothing is dropped
+    from the shortlist (this only controls notifications)."""
+    import datetime as dt
+    today = today or dt.date.today().isoformat()
+    delta = {"new": [], "changed": [], "deadline": []}
+    for c in top:
+        k, sig, dl = stable_key(c), _gate_sig(c), days_left(c["deadline"])
+        crit = dl is not None and 0 <= dl <= CRITICAL_DAYS
+        item = {"key": k, "title": c["title"], "lane": c["lane"], "tier": c["tier"], "url": c["url"], "reward_usd": c["reward_usd"], "deadline": c["deadline"],
+                "pending": [g for g, v in c["gates"].items() if v not in ("PASS", "GAS-COVERED")]}
+        prev = state.get(k)
+        alerted = bool(prev and prev.get("deadline_alerted"))
+        if prev is None:
+            delta["new"].append(item)
+            alerted = crit  # a brand-new candidate already near its deadline is covered by its "new" line
+        else:
+            why = []
+            if prev["tier"] != c["tier"]:
+                why.append(f"{prev['tier']}->{c['tier']}")
+            if prev["sig"] != sig:
+                names = ("kyc", "country", "paid_action", "onsite", "payout", "student")
+                why += [f"{n} {prev['sig'][i]}->{sig[i]}" for i, n in enumerate(names) if prev["sig"][i] != sig[i]]
+            if why:
+                delta["changed"].append(dict(item, why=why))
+            if crit and not alerted:
+                delta["deadline"].append(dict(item, days_left=dl))
+                alerted = True
+        state[k] = {"title": c["title"], "tier": c["tier"], "sig": sig, "first_seen": (prev or {}).get("first_seen", today),
+                    "last_seen": today, "deadline_alerted": alerted}
+    cutoff = (dt.date.fromisoformat(today) - dt.timedelta(days=NOTIFY_KEEP_DAYS)).isoformat()
+    for k in [k for k, v in state.items() if v["last_seen"] < cutoff]:
+        del state[k]
+    return delta
+
+
+def notify_lines(delta):
+    """Header for shortlist.md: ONE consolidated message or an explicit NONE (agent ends with NIST for this part)."""
+    n = len(delta["new"]) + len(delta["changed"]) + len(delta["deadline"])
+    if not n:
+        return ["NOTIFY: NONE (no new or materially changed candidate since the last notification) -> end the run with NIST.",
+                "The lists below are reference only: do NOT notify for already-notified candidates.", ""]
+    tag = lambda i: f"[{'BUILD' if i['lane'] == 'BUILD' else 'FAST'}] {i['title']} ({i['tier']}, ${i['reward_usd']:,.0f})" if i.get("reward_usd") else f"[{i['lane']}] {i['title']} ({i['tier']})"
+    lines = [f"NOTIFY: {len(delta['new'])} new, {len(delta['changed'])} changed, {len(delta['deadline'])} deadline -> send ONE short consolidated message (no per-candidate messages):"]
+    lines += [f"- NEW {tag(i)} | check: {','.join(i['pending']) or '-'} | {i['url']}" for i in delta["new"]]
+    lines += [f"- CHANGED {tag(i)} | {'; '.join(i['why'])} | {i['url']}" for i in delta["changed"]]
+    lines += [f"- DEADLINE <={CRITICAL_DAYS}d ({i['days_left']}d left) {tag(i)} | {i['url']}" for i in delta["deadline"]]
+    return lines + [""]
+
+
+def run(inbox, live=None, health=None, notify=None):
+    """notify = persistent notification state dict (mutated in place) or None (no dedupe header)."""
+    global CLAIMS, LAST_DELTA
     CLAIMS = load_claims()
     raw = collect(inbox) if inbox else []
     cands = [verify(c) for c in dedupe(raw + [normalize(r, r.get("source", "live")) for r in (live or [])])]
@@ -341,7 +431,8 @@ def run(inbox, live=None, health=None):
     save("candidates.json", cands)
     if health is not None:
         save("source_health.json", health)
-    lines = ["# Shortlist (read-only; user approval required)\n",
+    LAST_DELTA = notify_delta(top, notify) if notify is not None else None
+    lines = (notify_lines(LAST_DELTA) if LAST_DELTA is not None else []) + ["# Shortlist (read-only; user approval required)\n",
              "VERIFIED = all required gates explicitly supported.",
              "PROMISING = worthwhile without explicit blocker; UNKNOWN/RISK requires checking.",
              "Neither tier authorizes submission, payment, signing, or claiming.\n"]
@@ -404,9 +495,13 @@ def main(args):
     items, health = collect_live(names) if live else ([], None)
     for n in cool - set(names):
         health[n] = {"skipped": "cooldown until " + st[n]["cooldown_until"]}
-    cands, top = run(inbox, items, health)
-    if live and not force:
+    nstate = load_notify_state() if live else None
+    cands, top = run(inbox, items, health, nstate)
+    if live and not force:  # --force is a manual probe: it must not consume notifications or touch cooldown state
         update_state(st, names, cands)
+        save_notify_state(nstate)
+    if LAST_DELTA is not None:
+        print("\n".join(notify_lines(LAST_DELTA)[:-1]))
     print(f"{len(cands)} collected, {sum(c['status'] != 'REJECTED' for c in cands)} alive, {sum(qualified(c) for c in cands)} qualified, {len(top)} shortlisted; cooling={sorted(cool)}")
     return cands, top
 

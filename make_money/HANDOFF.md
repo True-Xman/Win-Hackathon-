@@ -49,6 +49,7 @@ FAST worthiness = reward-to-hassle (hunt.py fast_value, MIN_EV_PER_HOUR=2), no d
 Cooldown live: a source with no usable candidate (qualified or valuable login-queue lead) 3 runs in a row sleeps 7 days (evidence/source_state.json; `--force` ignores). gigs/github exempt.
 Crypto-native checks 2026-10-06: Stacker News bounties (sats, public GraphQL) = FAIL spend (comments cost sats) + tiny; ETHGlobal = Cloudflare wall (skipped); DoraHacks = bot wall. Monad stays in login_queue.
 Next: only report on a promising candidate / real blocker / user action. Periodic `hunt.py --live`.
+Notification dedupe: hunt.py compares the shortlist with evidence/notify_state.json (commit it with evidence/). Notify ONLY if out/shortlist.md starts with `NOTIFY: <n> new...` (one consolidated message); `NOTIFY: NONE` => end with NIST even if PROMISING items are listed. Material = new candidate, tier change, a gate flipping to PASS/FAIL, deadline <=3d (once). Score/order/repeated UNKNOWN never notify. `--force` never consumes notifications.
 
 ## Model
 Sonnet 5.5 for implementation; escalate only if verification logic proves unreliable.
