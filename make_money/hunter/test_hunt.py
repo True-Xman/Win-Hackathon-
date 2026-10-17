@@ -80,6 +80,12 @@ def test_no_entry_fee_is_pass_not_fee_fail():
     assert analyze("No entry fee. Prizes paid in USDC.")["gates"]["paid_action"]["verdict"] == "PASS"
     assert analyze("Entry fee is $10. Prizes paid in USDC.")["gates"]["paid_action"]["verdict"] == "FAIL"
 
+
+def test_negated_kyc_is_not_misread_as_mandatory():
+    from gates import analyze
+    assert analyze("No KYC is required.")["gates"]["kyc"]["verdict"] == "PASS"
+    assert analyze("KYC is mandatory.")["gates"]["kyc"]["verdict"] == "FAIL"
+
 def test_taskmarket_normalizes_and_kyc_unknown(monkeypatch=None):
     import collectors
     task = {"id": "0x1", "referenceCode": "TSK-1", "description": "Title\nDo it", "reward": "2000000", "status": "open", "phase": "active",
