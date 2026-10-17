@@ -170,7 +170,7 @@ def test_gas_prefilter_never_covers_only_tx_specific_does():
     base = "Prizes paid in USDC to your wallet. No KYC required. Participants must pay network gas for the claim transaction on Base."
     a = run([{"kind": "task", "reward_usd": 20, "competition": 1, "text": base, "title": "a"}])[0]
     assert a["gates"]["paid_action"] == "GAS-PREFILTER-OK" and "need" in a["gas"]
-    assert hunt.qualified(a) is False
+    assert a["tier"] == "PROMISING" and hunt.qualified(a) is True  # reviewable, NOT tx-cleared
     calls = {"eth_estimateGas": hex(60000), "eth_gasPrice": hex(6_000_000), "eth_call": hex(5_000_000_000)}
     hunt._rpc = lambda net, m, p: calls[m]
     spec = {"network": "base", "to": "0x" + "11" * 20, "data": "0xa9059cbb"}
