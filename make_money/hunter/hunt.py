@@ -393,8 +393,9 @@ def update_state(st, ran, cands):
     json.dump(st, open(STATE_F, "w"), indent=2)
 
 
-if __name__ == "__main__":
-    args = sys.argv[1:]
+def main(args):
+    """CLI entry (testable). --force checks EVERY source (ignores cooldown) but is a manual probe: it never touches source_state.json
+    (empty_runs / cooldown_until belong to the scheduled run)."""
     live, force = "--live" in args, "--force" in args
     args = [a for a in args if not a.startswith("--")]
     inbox = args[0] if args else os.path.join(os.path.dirname(DATA), "inbox")
@@ -404,6 +405,11 @@ if __name__ == "__main__":
     for n in cool - set(names):
         health[n] = {"skipped": "cooldown until " + st[n]["cooldown_until"]}
     cands, top = run(inbox, items, health)
-    if live:
+    if live and not force:
         update_state(st, names, cands)
     print(f"{len(cands)} collected, {sum(c['status'] != 'REJECTED' for c in cands)} alive, {sum(qualified(c) for c in cands)} qualified, {len(top)} shortlisted; cooling={sorted(cool)}")
+    return cands, top
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

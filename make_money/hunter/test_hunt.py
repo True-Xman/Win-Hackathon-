@@ -1,6 +1,35 @@
 import json, os, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import atexit, hashlib, shutil
+import common
 import hunt
+
+# Isolation: tests must never touch the real evidence/ or out/ (the scheduled agent owns them), even when a test fails.
+REAL_EVID, REAL_OUT = hunt.EVID, hunt.DATA
+
+
+def _tree_hash(*roots):
+    h = hashlib.sha256()
+    for root in roots:
+        for d, _, fs in sorted(os.walk(root)):
+            if "__pycache__" in d:
+                continue
+            for f in sorted(fs):
+                h.update(os.path.join(d, f).encode())
+                h.update(open(os.path.join(d, f), "rb").read())
+    return h.hexdigest()
+
+
+REAL_HASH = _tree_hash(REAL_EVID, REAL_OUT) if os.path.isdir(REAL_OUT) else _tree_hash(REAL_EVID)
+_SANDBOX = tempfile.mkdtemp(prefix="hunter_test_")
+atexit.register(shutil.rmtree, _SANDBOX, True)
+shutil.copytree(REAL_EVID, os.path.join(_SANDBOX, "evidence"), ignore=shutil.ignore_patterns("rules_cache"))  # claims/budget are read-only inputs
+os.makedirs(os.path.join(_SANDBOX, "evidence", "rules_cache"), exist_ok=True)
+os.makedirs(os.path.join(_SANDBOX, "out"), exist_ok=True)
+hunt.EVID = os.path.join(_SANDBOX, "evidence")
+hunt.DATA = common.DATA = os.path.join(_SANDBOX, "out")
+hunt.GAS_BUDGET_F = os.path.join(hunt.EVID, "wallet_budget.json")
+hunt.STATE_F = os.path.join(hunt.EVID, "source_state.json")
 ORIG_RULES_TEXT = hunt.rules_text  # an earlier test replaces hunt.rules_text for good; keep the real one for the bot-wall test
 
 def run(items):
@@ -286,6 +315,36 @@ def test_agent_visa_stays_needs_check_with_unknown_gates():
     c = run([it])[0]
     assert c["status"] == "NEEDS_CHECK" and c["tier"] == "PROMISING" and "FAIL" not in c["gates"].values()
     assert all(c["gates"][k] != "PASS" for k in ("kyc", "payout", "paid_action"))
+
+
+def test_force_checks_all_sources_but_never_touches_cooldown_state():
+    import datetime as dt
+    hunt.STATE_F = os.path.join(hunt.EVID, "state_force.json")
+    future = (dt.date.today() + dt.timedelta(days=5)).isoformat()
+    state = {"taskmarket": {"empty_runs": 2, "cooldown_until": future}, "devpost": {"empty_runs": 1}}
+    json.dump(state, open(hunt.STATE_F, "w"), indent=2)
+    before = open(hunt.STATE_F, "rb").read()
+    seen = []
+    old = hunt.collect_live
+    hunt.collect_live = lambda names=None: (seen.append(list(names)) or ([], {n: {"ok": True} for n in names}))
+    inbox = tempfile.mkdtemp()
+    try:
+        hunt.main(["--live", "--force", inbox])
+        assert seen[-1] == list(hunt.COLLECTORS)  # cooled-down taskmarket is checked too
+        assert open(hunt.STATE_F, "rb").read() == before  # empty_runs / cooldown_until untouched
+        hunt.main(["--live", inbox])  # scheduled behaviour: cooldown respected AND state updated
+        assert "taskmarket" not in seen[-1] and "devpost" in seen[-1]
+        after = json.load(open(hunt.STATE_F))
+        assert after["devpost"]["empty_runs"] == 2 and after["taskmarket"]["cooldown_until"] == future
+    finally:
+        hunt.collect_live = old
+
+
+def test_tests_ran_in_sandbox_and_real_evidence_is_untouched():
+    assert hunt.EVID.startswith(_SANDBOX) and hunt.DATA.startswith(_SANDBOX) and common.DATA.startswith(_SANDBOX)
+    assert hunt.EVID != REAL_EVID and hunt.DATA != REAL_OUT
+    now = _tree_hash(REAL_EVID, REAL_OUT) if os.path.isdir(REAL_OUT) else _tree_hash(REAL_EVID)
+    assert now == REAL_HASH
 
 
 if __name__ == "__main__":
