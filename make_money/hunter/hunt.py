@@ -319,6 +319,7 @@ def qualified(c):
 
 CRITICAL_DAYS = 3  # deadline within this many days (once per candidate) counts as a material change
 NOTIFY_KEEP_DAYS = 90
+MAX_NOTIFY_ATTEMPTS = 2  # unconfirmed announcements are repeated at most once; delivery is best-effort with NO guarantee (can be lost or duplicated)
 LAST_DELTA = None
 
 
@@ -327,17 +328,23 @@ def notify_path():
 
 
 def load_notify_state():
-    """Persistent (committed with evidence/) record of what the user was already told. {key: {title, tier, sig, first_seen, last_seen, deadline_alerted}}"""
+    """Persistent (committed with evidence/) record of what the user was told.
+    candidates[key] = {title, first_seen, last_seen, told: {tier, sig, deadline_alerted}, pending: None | {attempts, tier, sig, deadline_alerted}}
+    login[key] = {title, first_seen, last_seen, told: bool, pending: None | {attempts}}; ack_enabled switches on the two-phase protocol."""
     try:
-        return json.load(open(notify_path()))["candidates"]
-    except (OSError, ValueError, KeyError):
-        return {}
+        ns = json.load(open(notify_path()))
+    except (OSError, ValueError):
+        ns = {}
+    for k, v in (("candidates", {}), ("login", {}), ("ack_enabled", False)):
+        ns.setdefault(k, v)
+    return ns
 
 
-def save_notify_state(state):
+def save_notify_state(ns):
     os.makedirs(EVID, exist_ok=True)
-    json.dump({"note": "notification dedupe state: what the user was already told, keyed by stable id (source#native_id or normalized URL, never title)",
-               "candidates": state}, open(notify_path(), "w"), indent=2, sort_keys=True)
+    json.dump(dict(ns, note="notification dedupe state, keyed by stable id (source#native_id or normalized URL, never title). "
+                            "'pending' = announced but not yet acknowledged (hunt.py --ack-notify)"),
+              open(notify_path(), "w"), indent=2, sort_keys=True)
 
 
 def stable_key(c):
@@ -348,61 +355,127 @@ def stable_key(c):
     return u or c["id"]
 
 
+GATE_NAMES = ("kyc", "country", "paid_action", "onsite", "payout", "student")
+
+
 def _gate_sig(c):
     """Eligibility signature: only PASS / FAIL / not-yet-known matter. UNKNOWN<->RISK<->INFO flips and repeated UNKNOWN are noise."""
     f = {"PASS": "PASS", "GAS-COVERED": "PASS", "FAIL": "FAIL"}
-    return "".join(f.get(c["gates"][k], "?")[0] for k in ("kyc", "country", "paid_action", "onsite", "payout", "student"))
+    return "".join(f.get(c["gates"][k], "?")[0] for k in GATE_NAMES)
 
 
-def notify_delta(top, state, today=None):
-    """Compare the shortlist with what the user was already told. Mutates `state` to the new record and returns
-    {"new": [...], "changed": [...], "deadline": [...]}. Notifies ONLY for: new candidate, tier change (e.g. PROMISING->VERIFIED), a gate flipping to
-    PASS/FAIL (eligibility evidence), or a deadline entering CRITICAL_DAYS. Score / order / repeated UNKNOWN never notify; nothing is dropped
-    from the shortlist (this only controls notifications)."""
+def _announce(rec, snap, ack):
+    """Record that an announcement is being made. Without ack protocol (legacy) or after MAX attempts the user counts as told; otherwise it stays
+    pending until --ack-notify, so an announcement whose run died before the ack is repeated once next run (it can still be lost after the ack, or
+    after MAX attempts). -> attempt number."""
+    n = ((rec.get("pending") or {}).get("attempts") or 0) + 1
+    if not ack or n >= MAX_NOTIFY_ATTEMPTS:
+        rec["told"], rec["pending"] = snap, None
+    else:
+        rec["pending"] = dict(snap, attempts=n)
+    return n
+
+
+def notify_delta(top, ns, all_cands=(), login_items=(), today=None):
+    """Compare current state with what the user was TOLD. Mutates `ns`; returns {new, changed, deadline, rejected, login}.
+    Notifies ONLY for: new candidate, tier change (e.g. PROMISING->VERIFIED), a gate flipping to PASS/FAIL, deadline entering CRITICAL_DAYS (once),
+    a previously-told candidate that is now REJECTED by a confirmed FAIL (correction; plain expiry is silent), and a NEW login-queue lead.
+    Score / order / title / repeated UNKNOWN never notify; nothing is hidden from the shortlist."""
     import datetime as dt
     today = today or dt.date.today().isoformat()
-    delta = {"new": [], "changed": [], "deadline": []}
+    ns.setdefault("candidates", {}); ns.setdefault("login", {})
+    ack = bool(ns.get("ack_enabled"))
+    delta = {k: [] for k in ("new", "changed", "deadline", "rejected", "login")}
+    seen = set()
     for c in top:
         k, sig, dl = stable_key(c), _gate_sig(c), days_left(c["deadline"])
         crit = dl is not None and 0 <= dl <= CRITICAL_DAYS
-        item = {"key": k, "title": c["title"], "lane": c["lane"], "tier": c["tier"], "url": c["url"], "reward_usd": c["reward_usd"], "deadline": c["deadline"],
-                "pending": [g for g, v in c["gates"].items() if v not in ("PASS", "GAS-COVERED")]}
-        prev = state.get(k)
-        alerted = bool(prev and prev.get("deadline_alerted"))
-        if prev is None:
-            delta["new"].append(item)
-            alerted = crit  # a brand-new candidate already near its deadline is covered by its "new" line
+        seen.add(k)
+        rec = ns["candidates"].setdefault(k, {"first_seen": today, "told": None, "pending": None})
+        told = rec["told"]
+        item = {"key": k, "title": c["title"], "lane": c["lane"], "tier": c["tier"], "url": c["url"], "reward_usd": c["reward_usd"],
+                "pending_gates": [g for g, v in c["gates"].items() if v not in ("PASS", "GAS-COVERED")]}
+        kind = why = None
+        if told is None:
+            kind = "new"
         else:
-            why = []
-            if prev["tier"] != c["tier"]:
-                why.append(f"{prev['tier']}->{c['tier']}")
-            if prev["sig"] != sig:
-                names = ("kyc", "country", "paid_action", "onsite", "payout", "student")
-                why += [f"{n} {prev['sig'][i]}->{sig[i]}" for i, n in enumerate(names) if prev["sig"][i] != sig[i]]
+            why = ([f"{told['tier']}->{c['tier']}"] if told["tier"] != c["tier"] else []) + \
+                  [f"{n} {told['sig'][i]}->{sig[i]}" for i, n in enumerate(GATE_NAMES) if told["sig"][i] != sig[i]]
             if why:
-                delta["changed"].append(dict(item, why=why))
-            if crit and not alerted:
-                delta["deadline"].append(dict(item, days_left=dl))
-                alerted = True
-        state[k] = {"title": c["title"], "tier": c["tier"], "sig": sig, "first_seen": (prev or {}).get("first_seen", today),
-                    "last_seen": today, "deadline_alerted": alerted}
+                kind = "changed"
+            elif crit and not told["deadline_alerted"]:
+                kind = "deadline"
+        rec.update(title=c["title"], last_seen=today)
+        if kind is None:
+            rec["pending"] = None
+            continue
+        n = _announce(rec, {"tier": c["tier"], "sig": sig, "deadline_alerted": crit or bool(told and told["deadline_alerted"])}, ack)
+        delta[kind].append(dict(item, why=why or [], days_left=dl if crit else None, reminder=n > 1))
+    # correction: told earlier, now REJECTED (e.g. KYC=FAIL) -> it left the shortlist, so detect it from the full candidate list
+    rejected = {stable_key(c): c for c in all_cands if c["status"] == "REJECTED"}
+    for k, rec in ns["candidates"].items():
+        c = rejected.get(k)
+        if k in seen or c is None or rec["told"] is None or rec["told"]["tier"] == "REJECTED":
+            continue
+        snap = {"tier": "REJECTED", "sig": _gate_sig(c), "deadline_alerted": rec["told"]["deadline_alerted"]}
+        if c["why"] == ["expired"]:  # routine expiry: no correction needed
+            rec["told"], rec["pending"] = snap, None
+            continue
+        n = _announce(rec, snap, ack)
+        delta["rejected"].append({"key": k, "title": c["title"], "lane": c["lane"], "tier": "REJECTED", "url": c["url"], "reward_usd": c["reward_usd"],
+                                  "why": [w for w in c["why"] if w != "expired"], "reminder": n > 1})
+    for k, q in login_items:
+        rec = ns["login"].setdefault(k, {"first_seen": today, "told": False, "pending": None})
+        rec.update(title=q["title"], last_seen=today)
+        if rec["told"]:
+            continue
+        n = ((rec.get("pending") or {}).get("attempts") or 0) + 1
+        rec["told"], rec["pending"] = (True, None) if (not ack or n >= MAX_NOTIFY_ATTEMPTS) else (False, {"attempts": n})
+        delta["login"].append({"key": k, "title": q["title"], "lane": q["lane"], "url": q["url"], "reward_usd": q["reward_usd"], "reminder": n > 1})
     cutoff = (dt.date.fromisoformat(today) - dt.timedelta(days=NOTIFY_KEEP_DAYS)).isoformat()
-    for k in [k for k, v in state.items() if v["last_seen"] < cutoff]:
-        del state[k]
+    for group in (ns["candidates"], ns["login"]):
+        for k in [k for k, v in group.items() if v.get("last_seen", today) < cutoff]:
+            del group[k]
     return delta
+
+
+def ack_notify(ns):
+    """Called by the scheduled agent right BEFORE it sends its notification message (then commit+push evidence): marks every outstanding
+    announcement as told and enables the two-phase protocol. If the agent never gets here (crash, push failure) the items stay pending and are
+    repeated once in the next run. There is NO delivery receipt from the cloud and the ack precedes the actual send: a message can still be lost
+    (ack done, send failed) or duplicated (send done, ack/push failed). This reduces loss; it guarantees neither exactly-once nor at-least-once."""
+    n = 0
+    for rec in ns.get("candidates", {}).values():
+        if rec.get("pending"):
+            rec["told"] = {k: rec["pending"][k] for k in ("tier", "sig", "deadline_alerted")}
+            rec["pending"] = None
+            n += 1
+    for rec in ns.get("login", {}).values():
+        if rec.get("pending"):
+            rec["told"], rec["pending"] = True, None
+            n += 1
+    ns["ack_enabled"] = True
+    return n
 
 
 def notify_lines(delta):
     """Header for shortlist.md: ONE consolidated message or an explicit NONE (agent ends with NIST for this part)."""
-    n = len(delta["new"]) + len(delta["changed"]) + len(delta["deadline"])
+    n = sum(len(v) for v in delta.values())
     if not n:
-        return ["NOTIFY: NONE (no new or materially changed candidate since the last notification) -> end the run with NIST.",
-                "The lists below are reference only: do NOT notify for already-notified candidates.", ""]
-    tag = lambda i: f"[{'BUILD' if i['lane'] == 'BUILD' else 'FAST'}] {i['title']} ({i['tier']}, ${i['reward_usd']:,.0f})" if i.get("reward_usd") else f"[{i['lane']}] {i['title']} ({i['tier']})"
-    lines = [f"NOTIFY: {len(delta['new'])} new, {len(delta['changed'])} changed, {len(delta['deadline'])} deadline -> send ONE short consolidated message (no per-candidate messages):"]
-    lines += [f"- NEW {tag(i)} | check: {','.join(i['pending']) or '-'} | {i['url']}" for i in delta["new"]]
+        return ["NOTIFY: NONE (no new or materially changed candidate/login lead since the last notification) -> nothing to send for candidates; "
+                "if there is also no blocker and no user-action item, end the run with NIST.",
+                "The lists below are reference only: do NOT notify for already-notified candidates (even PROMISING ones). "
+                "A real blocker (collectors failing, push failing) or a user-action request must still be reported.", ""]
+    def tag(i):
+        base = f"[{'BUILD' if i['lane'] == 'BUILD' else 'FAST'}] {i['title']} ({i['tier']}" + (f", ${i['reward_usd']:,.0f}" if i.get("reward_usd") else "") + ")"
+        return ("REMINDER (unconfirmed earlier) " if i.get("reminder") else "") + base
+    lines = [f"NOTIFY: {len(delta['new'])} new, {len(delta['changed'])} changed, {len(delta['deadline'])} deadline, {len(delta['rejected'])} rejected, "
+             f"{len(delta['login'])} login -> send ONE short consolidated message (no per-candidate messages); run `hunt.py --ack-notify` first:"]
+    lines += [f"- NEW {tag(i)} | check: {','.join(i['pending_gates']) or '-'} | {i['url']}" for i in delta["new"]]
     lines += [f"- CHANGED {tag(i)} | {'; '.join(i['why'])} | {i['url']}" for i in delta["changed"]]
     lines += [f"- DEADLINE <={CRITICAL_DAYS}d ({i['days_left']}d left) {tag(i)} | {i['url']}" for i in delta["deadline"]]
+    lines += [f"- CORRECTION: no longer qualified, FAIL on {','.join(i['why'])} {tag(i)} | {i['url']}" for i in delta["rejected"]]
+    lines += [f"- LOGIN-QUEUE (needs manual login by the user) {tag(dict(i, tier='LOGIN'))} | {i['url']}" for i in delta["login"]]
     return lines + [""]
 
 
@@ -420,6 +493,7 @@ def run(inbox, live=None, health=None, notify=None):
     cands.sort(key=lambda c: (priority[c["tier"]], c["status"] == "LOGIN-REQUIRED-FOR-VERIFY", -c["score"]))
     queue = [{"title": c["title"], "lane": c["lane"], "url": c["url"], "rules_url": c["rules_url"], "reward_usd": c["reward_usd"],
               "deadline": c["deadline"], "score": c["score"]} for c in cands if c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and worthy(c)]
+    login_items = [(stable_key(c), q) for c, q in zip([c for c in cands if c["status"] == "LOGIN-REQUIRED-FOR-VERIFY" and worthy(c)], queue)]
     json.dump({"note": "valuable leads whose rules need a manual login (user does it, not Hunter)", "queue": queue},
               open(os.path.join(EVID, "login_queue.json"), "w"), indent=2)
     verified = [c for c in cands if c["tier"] == "VERIFIED"]
@@ -431,7 +505,7 @@ def run(inbox, live=None, health=None, notify=None):
     save("candidates.json", cands)
     if health is not None:
         save("source_health.json", health)
-    LAST_DELTA = notify_delta(top, notify) if notify is not None else None
+    LAST_DELTA = notify_delta(top, notify, cands, login_items) if notify is not None else None
     lines = (notify_lines(LAST_DELTA) if LAST_DELTA is not None else []) + ["# Shortlist (read-only; user approval required)\n",
              "VERIFIED = all required gates explicitly supported.",
              "PROMISING = worthwhile without explicit blocker; UNKNOWN/RISK requires checking.",
@@ -488,6 +562,12 @@ def main(args):
     """CLI entry (testable). --force checks EVERY source (ignores cooldown) but is a manual probe: it never touches source_state.json
     (empty_runs / cooldown_until belong to the scheduled run)."""
     live, force = "--live" in args, "--force" in args
+    if "--ack-notify" in args:  # scheduled agent: call right before sending the notification, then commit+push evidence/
+        ns = load_notify_state()
+        n = ack_notify(ns)
+        save_notify_state(ns)
+        print(f"acknowledged {n} announcement(s)")
+        return [], []
     args = [a for a in args if not a.startswith("--")]
     inbox = args[0] if args else os.path.join(os.path.dirname(DATA), "inbox")
     st, cool = ({}, set()) if not live else cooling_down()

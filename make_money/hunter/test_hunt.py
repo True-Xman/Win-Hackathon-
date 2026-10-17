@@ -357,7 +357,7 @@ def test_notify_two_identical_runs_notify_once_and_never_hide_candidates():
     assert len(d1["new"]) == 2 and md1.startswith("NOTIFY: 2 new")  # ONE consolidated message for both
     assert md1.count("\nNOTIFY") == 0 and md1.count("- NEW") == 2
     d2, md2 = _notify_run([_bi("a"), _bi("b", "Other AI hackathon")], state)
-    assert d2 == {"new": [], "changed": [], "deadline": []} and md2.startswith("NOTIFY: NONE") and "NIST" in md2
+    assert not any(d2.values()) and md2.startswith("NOTIFY: NONE") and "NIST" in md2
     assert "AI agent hackathon" in md2 and "Other AI hackathon" in md2  # UNKNOWN candidates stay visible, only the notification is suppressed
 
 
@@ -366,7 +366,7 @@ def test_notify_ignores_score_order_title_and_unknown_flips_but_catches_material
     _notify_run([_bi("a"), _bi("b", "Second", reward=20000)], state)
     # reward/score/order change, retitle, UNKNOWN -> RISK wording: no notification
     d, _ = _notify_run([_bi("b", "Second", reward=90000), _bi("a", "Renamed title", reward=40000, text="Build an AI agent demo. Fully online. Winners may need to verify country of residence.")], state)
-    assert d == {"new": [], "changed": [], "deadline": []}
+    assert not any(d.values())
     # evidence that changes eligibility: payout -> PASS and no fee -> PASS (tier stays PROMISING)
     d, md = _notify_run([_bi("a", text="Build an AI agent demo. Fully online. Prizes paid in USDC to your wallet. Free to enter.")], state)
     assert [c["title"] for c in d["changed"]] == ["AI agent hackathon"] and "payout ?->P" in "; ".join(d["changed"][0]["why"]) and not d["new"]
@@ -375,7 +375,7 @@ def test_notify_ignores_score_order_title_and_unknown_flips_but_catches_material
     d, md = _notify_run([_bi("a", text=full)], state)
     assert d["changed"] and "PROMISING->VERIFIED" in d["changed"][0]["why"] and "CHANGED" in md
     d, _ = _notify_run([_bi("a", text=full)], state)
-    assert d == {"new": [], "changed": [], "deadline": []}  # and then quiet again
+    assert not any(d.values())  # and then quiet again
 
 
 def test_notify_identity_is_stable_id_not_title_and_returning_candidate_is_not_renotified():
@@ -398,7 +398,7 @@ def test_notify_deadline_critical_once_and_state_survives_new_sessions():
     _notify_run([_bi("a")], state)
     hunt.save_notify_state(state)
     state2 = hunt.load_notify_state()  # fresh session: only the file survives
-    assert state2 == state and state2["s#a"]["tier"] == "PROMISING"
+    assert state2["candidates"] == state["candidates"] and state2["candidates"]["s#a"]["told"]["tier"] == "PROMISING"
     d, md = _notify_run([_bi("a", deadline=soon)], state2)
     assert len(d["deadline"]) == 1 and not d["new"] and "DEADLINE" in md
     d, _ = _notify_run([_bi("a", deadline=soon)], state2)
@@ -420,9 +420,81 @@ def test_force_run_does_not_consume_notifications():
         hunt.main(["--live", inbox])
         assert hunt.LAST_DELTA["new"] and os.path.exists(hunt.notify_path())
         hunt.main(["--live", inbox])
-        assert hunt.LAST_DELTA == {"new": [], "changed": [], "deadline": []}  # 2nd scheduled run: nothing repeated
+        assert not any(hunt.LAST_DELTA.values())  # 2nd scheduled run: nothing repeated
     finally:
         hunt.collect_live = old
+
+
+def test_unacknowledged_notification_is_repeated_once_and_ack_settles_it():
+    # legacy (no ack protocol yet): told immediately, never repeated
+    legacy = {}
+    _notify_run([_bi("a")], legacy)
+    assert not any(_notify_run([_bi("a")], legacy)[0].values())
+    # ack protocol: notification failed (no ack) -> repeated as REMINDER, then settled after MAX attempts (bounded, no infinite spam)
+    ns = {"ack_enabled": True}
+    d1, _ = _notify_run([_bi("a")], ns)
+    assert len(d1["new"]) == 1 and not d1["new"][0]["reminder"] and ns["candidates"]["s#a"]["told"] is None
+    d2, md2 = _notify_run([_bi("a")], ns)
+    assert len(d2["new"]) == 1 and d2["new"][0]["reminder"] and "REMINDER" in md2
+    d3, _ = _notify_run([_bi("a")], ns)
+    assert not any(d3.values())  # best-effort cap reached
+    # ack protocol: delivered (agent called --ack-notify before sending) -> never repeated
+    ns = {"ack_enabled": True}
+    _notify_run([_bi("a")], ns)
+    assert hunt.ack_notify(ns) == 1 and ns["candidates"]["s#a"]["pending"] is None and ns["candidates"]["s#a"]["told"]["tier"] == "PROMISING"
+    assert not any(_notify_run([_bi("a")], ns)[0].values())
+    # a material change while a notification is unconfirmed is announced relative to what the user was actually told
+    ns = {"ack_enabled": True}
+    _notify_run([_bi("a")], ns)
+    d, _ = _notify_run([_bi("a", text="Build an AI agent demo. Fully online. Prizes paid in USDC to your wallet.")], ns)
+    assert len(d["new"]) == 1 and not d["changed"]
+
+
+def test_ack_command_enables_protocol_and_persists_acknowledgement():
+    if os.path.exists(hunt.notify_path()):
+        os.remove(hunt.notify_path())
+    ns = hunt.load_notify_state()
+    ns["ack_enabled"] = True
+    _notify_run([_bi("a")], ns)
+    hunt.save_notify_state(ns)
+    hunt.main(["--ack-notify"])
+    after = hunt.load_notify_state()
+    assert after["ack_enabled"] is True and after["candidates"]["s#a"]["pending"] is None and after["candidates"]["s#a"]["told"]["tier"] == "PROMISING"
+    hunt.main(["--ack-notify"])  # idempotent
+    os.remove(hunt.notify_path())
+
+
+def test_told_candidate_that_becomes_rejected_gets_one_correction_but_expiry_is_silent():
+    state = {}
+    _notify_run([_bi("k"), _bi("e", "Will expire")], state)
+    d, md = _notify_run([_bi("k", text="Build an AI agent demo. Winners must complete KYC. Prizes paid in USDC."),
+                         _bi("e", "Will expire", deadline="2020-01-01T00:00:00Z")], state)
+    assert [i["title"] for i in d["rejected"]] == ["AI agent hackathon"] and d["rejected"][0]["why"] == ["kyc"]
+    assert "CORRECTION" in md and "FAIL on kyc" in md and "Will expire" not in md.split("# Shortlist")[0]
+    assert state["candidates"]["s#e"]["told"]["tier"] == "REJECTED"
+    d, md = _notify_run([_bi("k", text="Build an AI agent demo. Winners must complete KYC. Prizes paid in USDC.")], state)
+    assert not any(d.values()) and md.startswith("NOTIFY: NONE")  # correction is sent once
+    # never-told rejected candidates stay silent
+    d, _ = _notify_run([_bi("never", text="Winners must complete KYC. Prizes paid in USDC.")], {})
+    assert not any(d.values())
+
+
+def test_login_queue_lead_notifies_once():
+    old = hunt.rules_text
+    hunt.rules_text = lambda url: ("Continue with GitHub\nContinue with Google", "static")
+    try:
+        it = _bi("gated", "Gated hackathon", rules_url="https://gated.example/rules")
+        state = {}
+        d1, md1 = _notify_run([it], state)
+        assert len(d1["login"]) == 1 and "LOGIN-QUEUE" in md1 and md1.count("NOTIFY:") == 1
+        d2, md2 = _notify_run([it], state)
+        assert not any(d2.values()) and md2.startswith("NOTIFY: NONE")
+        ns = {"ack_enabled": True}
+        _notify_run([it], ns)
+        d, _ = _notify_run([it], ns)
+        assert d["login"][0]["reminder"]  # unconfirmed login lead repeated once, same rule as candidates
+    finally:
+        hunt.rules_text = old
 
 
 def test_tests_ran_in_sandbox_and_real_evidence_is_untouched():
