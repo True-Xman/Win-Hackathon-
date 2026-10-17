@@ -35,6 +35,51 @@ def test_unqualified_not_forced_into_shortlist():
     d = tempfile.mkdtemp(); json.dump([{"kind": "task", "title": "t", "text": "Build a thing."}], open(d + "/s.json", "w"))
     assert hunt.run(d)[1] == []
 
+
+def test_missing_kyc_payout_and_fee_is_promising_not_rejected():
+    item = {"kind": "task", "lane": "BUILD", "title": "AI agent hackathon",
+            "reward_usd": 50000, "deadline": "2999-01-01T00:00:00Z",
+            "text": "Build an AI agent demo. Fully online."}
+    cands, top = hunt.run(tempfile.mkdtemp(), [item])
+    c = cands[0]
+    assert c["gates"]["kyc"] == "UNKNOWN"
+    assert c["gates"]["payout"] == "UNKNOWN"
+    assert c["gates"]["paid_action"] == "UNKNOWN"
+    assert c["status"] == "NEEDS_CHECK" and c["tier"] == "PROMISING"
+    assert len(top) == 1 and top[0]["title"] == "AI agent hackathon"
+
+
+def test_explicit_kyc_fiat_or_fee_still_rejected():
+    cases = [
+        ("kyc", "Winners must complete KYC. Prizes paid in USDC. Free to enter."),
+        ("payout", "Prizes paid by bank transfer. Free to enter."),
+        ("paid_action", "Entry fee is $10. Prizes paid in USDC.")
+    ]
+    for gate, txt in cases:
+        c = run([{"kind": "task", "title": gate, "reward_usd": 1000, "text": txt}])[0]
+        assert c["gates"][gate] == "FAIL" and c["tier"] is None
+
+
+def test_verified_and_promising_get_distinct_sections():
+    verified = {"kind": "task", "lane": "BUILD", "title": "Verified AI hackathon",
+                "reward_usd": 10000, "deadline": "2999-01-01T00:00:00Z",
+                "text": "Build an AI agent demo. No KYC required. Open to everyone, anywhere. Free to enter. Fully online. Prizes paid in USDC."}
+    promising = {"kind": "task", "lane": "BUILD", "title": "Promising AI hackathon",
+                 "reward_usd": 50000, "deadline": "2999-01-01T00:00:00Z",
+                 "text": "Build an AI agent demo. Fully online."}
+    _, top = hunt.run(tempfile.mkdtemp(), [promising, verified])
+    assert {c["tier"] for c in top} == {"VERIFIED", "PROMISING"}
+    assert top[0]["tier"] == "VERIFIED"
+    with open(os.path.join(hunt.DATA, "shortlist.md")) as f:
+        summary = f.read()
+    assert "## VERIFIED" in summary and "## PROMISING" in summary
+
+
+def test_no_entry_fee_is_pass_not_fee_fail():
+    from gates import analyze
+    assert analyze("No entry fee. Prizes paid in USDC.")["gates"]["paid_action"]["verdict"] == "PASS"
+    assert analyze("Entry fee is $10. Prizes paid in USDC.")["gates"]["paid_action"]["verdict"] == "FAIL"
+
 def test_taskmarket_normalizes_and_kyc_unknown(monkeypatch=None):
     import collectors
     task = {"id": "0x1", "referenceCode": "TSK-1", "description": "Title\nDo it", "reward": "2000000", "status": "open", "phase": "active",
