@@ -2,6 +2,7 @@
 """Money Hunter V1: collect -> normalize -> verify -> filter -> rank -> top 1-3. Read-only: never acts.
 
 Usage: python3 hunt.py [inbox_dir] [--live]   (default inbox: ../inbox/*.json; --live adds read-only collectors)
+       --preflight [--branch B] | --ack-notify | --persist "msg" [--branch B]   (scheduled run: write-access check, ack, verified commit+push)
 Sources are plain JSON lists (one file per source). Each item:
   {"kind": "task"|"signal", "source": str, "title": str, "url": str,
    "text": str (rules/description; or "rules_url" to fetch), "reward_usd": num|null,
@@ -20,6 +21,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DATA, days_left, fetch, html_to_text, load, render_text, save  # noqa: E402
 from gates import analyze, load_text  # noqa: E402
 from collectors import COLLECTORS, collect_live  # noqa: E402
+import persist  # noqa: E402
+
+REQUIRE_WRITE_ACCESS = True  # --live / --ack-notify refuse to start when this checkout cannot push (tests switch it off: no network)
 
 CLAIMS = {}
 HARD = ("kyc", "country", "paid_action", "onsite", "payout")  # + student (FAIL only)
@@ -562,13 +566,31 @@ def main(args):
     """CLI entry (testable). --force checks EVERY source (ignores cooldown) but is a manual probe: it never touches source_state.json
     (empty_runs / cooldown_until belong to the scheduled run)."""
     live, force = "--live" in args, "--force" in args
+    opt = lambda name: next((a for a in args[args.index(name) + 1:][:1] if not a.startswith("--")), None) if name in args else None
+    branch = opt("--branch")
+    if "--preflight" in args or "--persist" in args or (REQUIRE_WRITE_ACCESS and ("--ack-notify" in args or (live and not force))):
+        if "--persist" in args:  # scheduled agent, last step: commit evidence + push + verify on the remote
+            ok, why = persist.persist(opt("--persist") or "hunter run", branch)
+            print(f"PERSIST: {'OK' if ok else 'FAILED'} {why}")
+            if not ok:
+                print("PERSIST FAILED = BLOCKER: remote notify_state.json is unchanged, so pending announcements are repeated next run. "
+                      "Still send the notification, and report this blocker in the same message.")
+                raise SystemExit(2)
+            return [], []
+        ok, why = persist.preflight(branch)
+        print(f"PREFLIGHT: {'OK' if ok else 'FAIL'} {why}")
+        if not ok:
+            print("PREFLIGHT FAIL = BLOCKER: hunt NOT started" + (", notification NOT acknowledged" if "--ack-notify" in args else "") + ". Report it; do not work around it.")
+            raise SystemExit(1)
+        if "--preflight" in args:
+            return [], []
     if "--ack-notify" in args:  # scheduled agent: call right before sending the notification, then commit+push evidence/
         ns = load_notify_state()
         n = ack_notify(ns)
         save_notify_state(ns)
         print(f"acknowledged {n} announcement(s)")
         return [], []
-    args = [a for a in args if not a.startswith("--")]
+    args = [a for a in args if not a.startswith("--") and a not in (opt("--branch"), opt("--persist"))]
     inbox = args[0] if args else os.path.join(os.path.dirname(DATA), "inbox")
     st, cool = ({}, set()) if not live else cooling_down()
     names = [n for n in COLLECTORS if force or n not in cool]

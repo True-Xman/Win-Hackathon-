@@ -1,8 +1,10 @@
-import json, os, sys, tempfile
+import json, os, re, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import atexit, hashlib, shutil
 import common
 import hunt
+import persist
+hunt.REQUIRE_WRITE_ACCESS = False  # tests never touch the network; the preflight gate is exercised below with local bare repos
 
 # Isolation: tests must never touch the real evidence/ or out/ (the scheduled agent owns them), even when a test fails.
 REAL_EVID, REAL_OUT = hunt.EVID, hunt.DATA
@@ -308,13 +310,16 @@ def test_aditya_onsite_fee_student_fail_from_sponsor_text_and_claim():
     assert b["status"] == "NEEDS_CHECK" and b["tier"] == "PROMISING" and b["rules_blocked"]  # blocked wall != FAIL, != PASS
 
 
-def test_agent_visa_stays_needs_check_with_unknown_gates():
+def test_agent_visa_stays_rejected_by_its_non_cash_claim():
+    # Regression: the 2026-10-06 "not a cash prize" evidence was stored as UNKNOWN, which verify() ignores, so the 10-17 tier policy re-shortlisted it.
     it = {"kind": "task", "lane": "BUILD", "source": "risein", "native_id": "/stacks/agent-visa", "title": "Agent Visa", "reward_usd": 15000,
           "deadline": "2999-01-01T00:00:00Z", "discovery_text": "The Celo Agent Visa is a tiered program for AI agents that transact on Celo. Agents qualify for the "
           "Tourist Visa with one transaction, the Work Visa with Self Agent ID, 1,000+ transactions and/or 5K+ volume."}
     c = run([it])[0]
-    assert c["status"] == "NEEDS_CHECK" and c["tier"] == "PROMISING" and "FAIL" not in c["gates"].values()
-    assert all(c["gates"][k] != "PASS" for k in ("kyc", "payout", "paid_action"))
+    assert c["status"] == "REJECTED" and c["tier"] is None and c["gates"]["payout"] == "FAIL"
+    # every ignored claim verdict is a latent re-shortlist: a cached rejection must be FAIL, never UNKNOWN
+    for cl in json.load(open(os.path.join(hunt.EVID, "claims.json")))["claims"]:
+        assert not (cl["verdict"] == "UNKNOWN" and re.search(r"not a (cash|money)|not a money opportunity", cl["quote"], re.I)), cl["source"]
 
 
 def test_force_checks_all_sources_but_never_touches_cooldown_state():
@@ -495,6 +500,121 @@ def test_login_queue_lead_notifies_once():
         assert d["login"][0]["reminder"]  # unconfirmed login lead repeated once, same rule as candidates
     finally:
         hunt.rules_text = old
+
+
+def _repo(reject_push=False):
+    """A work clone + a local bare 'origin'; reject_push installs a pre-receive hook that fails like a 403 on a repo without push access."""
+    base = tempfile.mkdtemp(dir=_SANDBOX)
+    bare, work = os.path.join(base, "o.git"), os.path.join(base, "w")
+    g = lambda *a, cwd=work: subprocess.run(["git", *a], cwd=cwd, check=True, capture_output=True, text=True)
+    g("init", "-q", "--bare", "-b", "main", bare, cwd=base); g("clone", "-q", bare, work, cwd=base)
+    g("config", "user.email", "t@t"); g("config", "user.name", "t")
+    os.makedirs(os.path.join(work, "make_money", "evidence"))
+    open(os.path.join(work, "make_money", "evidence", "notify_state.json"), "w").write("{}")
+    g("add", "."); g("commit", "-qm", "base"); g("push", "-q", "origin", "HEAD:main")
+    if reject_push:
+        hook = os.path.join(bare, "hooks", "pre-receive")
+        open(hook, "w").write("#!/bin/sh\necho 'remote: Permission denied: HTTP 403' >&2\nexit 1\n"); os.chmod(hook, 0o755)
+    return work, bare, g
+
+
+def _forbidden(work):
+    """Point origin at a local HTTP server that answers 403 like the cloud git proxy does for a repo without push scope."""
+    import http.server, threading
+    class H(http.server.BaseHTTPRequestHandler):
+        def do_GET(self): self.send_response(403); self.end_headers(); self.wfile.write(b"access denied")
+        do_POST = do_GET
+        def log_message(self, *a): pass
+    srv = http.server.HTTPServer(("127.0.0.1", 0), H); threading.Thread(target=srv.serve_forever, daemon=True).start()
+    atexit.register(srv.shutdown)
+    subprocess.run(["git", "remote", "set-url", "origin", f"http://127.0.0.1:{srv.server_port}/x.git"], cwd=work, check=True)
+    return work
+
+
+def test_preflight_ok_with_write_access_and_fails_without():
+    work, _, _ = _repo()
+    ok, why = persist.preflight("main", work)
+    assert ok, why
+    assert not persist.preflight("other-branch", work)[0]
+    bad = _forbidden(_repo()[0])
+    ok, why = persist.preflight("main", bad)
+    assert not ok and "403" in why and "add_repo" in why
+    notgit = tempfile.mkdtemp(dir=_SANDBOX)
+    ok, why = persist.preflight(None, notgit)
+    assert not ok and "not a git checkout" in why
+
+
+def test_live_and_ack_refuse_to_run_without_write_access_and_leave_state_untouched():
+    real, hunt.REQUIRE_WRITE_ACCESS, called = persist.ROOT, True, []
+    bad = _forbidden(_repo()[0])
+    persist.ROOT, hunt.collect_live = bad, (lambda names=None: called.append(1) or ([], {}))
+    persist.preflight.__defaults__ = (None, bad, "origin")
+    ns = hunt.load_notify_state(); ns["candidates"]["x#1"] = {"first_seen": "2026-01-01", "told": None, "pending": {"attempts": 1, "tier": "PROMISING", "sig": "?????", "deadline_alerted": False}}
+    hunt.save_notify_state(ns); before = open(hunt.notify_path(), "rb").read()
+    try:
+        for argv in (["--live", tempfile.mkdtemp()], ["--ack-notify"]):
+            try:
+                hunt.main(argv); raise AssertionError("must refuse")
+            except SystemExit as e:
+                assert e.code == 1
+        assert not called  # expensive hunt never started
+        assert open(hunt.notify_path(), "rb").read() == before  # pending announcement NOT consumed
+    finally:
+        persist.ROOT, hunt.REQUIRE_WRITE_ACCESS = real, False
+        persist.preflight.__defaults__ = (None, real, "origin")
+        os.remove(hunt.notify_path())
+
+
+def test_persist_pushes_and_verifies_remote_head():
+    work, bare, g = _repo()
+    open(os.path.join(work, "make_money", "evidence", "notify_state.json"), "w").write('{"a": 1}')
+    ok, why = persist.persist("hunter run test", "main", work, backoff=())
+    assert ok, why
+    assert g("rev-parse", "main", cwd=bare).stdout == g("rev-parse", "HEAD").stdout
+    assert g("show", "main:make_money/evidence/notify_state.json", cwd=bare).stdout == '{"a": 1}'
+    ok, why = persist.persist("again", "main", work, backoff=())  # nothing new: still verified OK
+    assert ok, why
+
+
+def test_failed_push_is_loud_and_remote_state_stays_pending():
+    work, bare, g = _repo(reject_push=True)
+    before = g("rev-parse", "main", cwd=bare).stdout
+    open(os.path.join(work, "make_money", "evidence", "notify_state.json"), "w").write('{"acked": true}')
+    slept = []
+    old = persist.time.sleep; persist.time.sleep = slept.append
+    try:
+        ok, why = persist.persist("hunter run test", "main", work)
+    finally:
+        persist.time.sleep = old
+    assert not ok and "auth" in why and "add_repo" in why and not slept  # auth failure: no pointless backoff
+    assert g("rev-parse", "main", cwd=bare).stdout == before  # remote notify_state.json unchanged -> announcements stay pending
+    # CLI contract: exit code 2 + BLOCKER text
+    real, persist.ROOT = persist.ROOT, work
+    import io, contextlib
+    persist.persist.__defaults__ = (None, work, "origin", persist.PERSIST_PATHS, ())
+    buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf):
+            try:
+                hunt.main(["--persist", "x", "--branch", "main"]); raise AssertionError("must exit 2")
+            except SystemExit as e:
+                assert e.code == 2
+    finally:
+        persist.ROOT = real; persist.persist.__defaults__ = (None, real, "origin", persist.PERSIST_PATHS, persist.BACKOFF)
+    assert "PERSIST: FAILED" in buf.getvalue() and "BLOCKER" in buf.getvalue()
+
+
+def test_persist_retries_network_errors_then_gives_up():
+    work, _, _ = _repo()
+    g = lambda *a: subprocess.run(["git", *a], cwd=work, check=True, capture_output=True)
+    g("remote", "set-url", "origin", "/nonexistent/path.git")
+    slept = []
+    old = persist.time.sleep; persist.time.sleep = slept.append
+    try:
+        ok, why = persist.persist("x", "main", work, backoff=(2, 4, 8, 16))
+    finally:
+        persist.time.sleep = old
+    assert not ok and "after 5 attempts" in why and slept == [2, 4, 8, 16]
 
 
 def test_tests_ran_in_sandbox_and_real_evidence_is_untouched():
